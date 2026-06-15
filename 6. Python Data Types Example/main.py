@@ -459,3 +459,59 @@ C:\Users\{folder_name}\new_folder\test.txt
 C:\Users\Python_Files\new_folder\test.txt
 
 একই সাথে ভেরিয়েবলের মানও বসাতে হয় (f), আবার ব্যাকস্ল্যাশের (\) ঝামেলাও এড়াতে হয় (r), তখনই  rf বা fr ব্যবহার করা হয়। 
+
+
+মিনি প্রজেক্ট 💻 সহজ নিয়মে মিনি স্টুডেন্ট প্রোফাইল
+
+print("=== মিনি স্টুডেন্ট প্রোফাইল ম্যানেজমেন্ট ===")
+
+# --- স্টুডেন্ট ১ এর ডেটা ---
+# ১. নাম ও ঠিকানা স্ট্রিং (Immutable) হিসেবে নিলাম
+name1 = "Mohammad Abdullah"
+address1 = "Gongachora, Rangpur"
+
+# ২. নাম ও ঠিকানাকে একটা টুপলে (Immutable Sequence) লক করলাম
+info_student1 = (name1, address1)
+age1 = 29
+cgpa1 = 3.50
+
+
+# --- স্টুডেন্ট ২ এর ডেটা ---
+name2 = "Aziz"
+address2 = "Dhaka, Bangladesh"
+
+info_student2 = (name2, address2)
+age2 = 30
+cgpa2 = 3.85
+
+
+# --- ডাটাবেজ (Mutable List) ---
+# এবার এই দুইজনের পুরো প্রোফাইলকে আমরা একটি মেইন লিস্টের ভেতর সিরিয়ালি সাজিয়ে রাখলাম
+student_database = [info_student1, age1, cgpa1, info_student2, age2, cgpa2]
+
+# --------------------------------------------------
+print("\n💻 ডাটাবেজ (List) থেকে ইনডেক্স ধরে ডেটা দেখানো হচ্ছে:\n")
+
+# আমরা যেহেতু সিকোয়েন্সের ইনডেক্সিং [0, 1, 2] শিখেছি, তাই সরাসরি ইনডেক্স ধরে প্রিন্ট করবো
+print("👤 ১ম স্টুডেন্টের নাম ও ঠিকানা (টুপল):", student_database[0])
+print("🎂 ১ম স্টুডেন্টের বয়স :", student_database[1])
+print("🎓 ১ম স্টুডেন্টের CGPA :", student_database[2])
+
+print("-" * 40)
+
+print("👤 ২য় স্টুডেন্টের নাম ও ঠিকানা (টুপল):", student_database[3])
+print("🎂 ২য় স্টুডেন্টের বয়স :", student_database[4])
+print("🎓 ২য় স্টুডেন্টের CGPA :", student_database[5])
+
+
+=== মিনি স্টুডেন্ট প্রোফাইল ম্যানেজমেন্ট ===
+
+💻 ডাটাবেজ (List) থেকে ইনডেক্স ধরে ডেটা দেখানো হচ্ছে:
+
+👤 ১ম স্টুডেন্টের নাম ও ঠিকানা (টুপল): ('Mohammad Abdullah', 'Gongachora, Rangpur')
+🎂 ১ম স্টুডেন্টের বয়স : 29
+🎓 ১ম স্টুডেন্টের CGPA : 3.5
+----------------------------------------
+👤 ২য় স্টুডেন্টের নাম ও ঠিকানা (টুপল): ('Aziz', 'Dhaka, Bangladesh')
+🎂 ২য় স্টুডেন্টের বয়স : 30
+🎓 ২য় স্টুডেন্টের CGPA : 3.85
