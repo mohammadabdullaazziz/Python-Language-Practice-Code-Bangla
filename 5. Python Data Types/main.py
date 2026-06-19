@@ -1,6 +1,47 @@
 পাইথনে ডাটা টাইপ বলতে বোঝায় একটি ভেরিয়েবলে কী ধরনের তথ্য বা উপাত্ত জমা রাখা হচ্ছে তা নির্ধারণ করা পাইথন একটি Dynamically Typed প্রোগ্রামিং ভাষা, 
 যার মানে হলো এখানে ভেরিয়েবল তৈরি করার সময় আলাদা করে ডাটা টাইপ বলে দিতে হয় না; ভ্যালু দেখে পাইথন নিজেই তা বুঝে নেয়। কোনো ভেরিয়েবলের ডাটা টাইপ জানতে type() ফাংশন ব্যবহার করা হয়।
 
+
+Text Type:    	  str
+Numeric Types:	  int, float, complex
+Sequence Types:	 list, tuple, range
+Mapping Type:	   dict
+Set Types:      	set, frozenset
+Boolean Type:	   bool
+Binary Types:   	bytes, bytearray, memoryview
+None Type:	      NoneType
+
+
+
+
+Numeric Data Types
+int
+flot
+complex
+
+String Data Types
+
+Sequence Data Types
+list
+tuple
+range
+
+Binary Data Types
+bytes
+bytearray
+memoryview
+
+Dictionary Data Type
+
+Set Data Type
+set
+frozenset
+
+Boolean Data Type
+None Type
+
+
+
 ১. Numeric Types (সংখ্যাবাচক ডাটা)যেকোনো ধরনের গাণিতিক সংখ্যা এই ক্যাটাগরির অন্তর্ভুক্ত। এটি ৩ প্রকার:
 ==============================================================================================
 
