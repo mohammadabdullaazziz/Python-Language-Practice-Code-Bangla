@@ -18,6 +18,71 @@ print(age)
 print(gpa)
 
 
+
+
+name = "Abdullah"
+age = 30
+height = 5.2
+
+print("My name is " + name + " and I am " + str(age) + " years old. My height is " + str(height) + " feet.")
+
+print(f"My name is {name} and I am {age} years old. My height is {height} feet.")
+
+print(f'My name is {name} and I am {age} years old. My height is {height} feet.')
+
+print(f'''My name is {name} 
+and I am {age} years old. 
+My height is {height} feet.''')
+
+print(f"""My name is {name} 
+and I am {age} years old. 
+My height is {height} feet.""")
+
+
+ ভিতরে Single Quote থাকলে Double ব্যবহার 
+
+text = "He said, 'Python is awesome!'"
+print(f'{text}')  # এখানে Double ভালো
+
+
+
+ভিতরে Double Quote থাকলে Single ব্যবহার 
+
+text = 'She told me, "Learn Python!"'
+print(f'{text}')  # এখানে Single 
+
+
+
+মাল্টিলাইন টেক্সট (যেমন ইমেইল বা লম্বা মেসেজ)
+
+message = f'''Dear {name},
+Your age is {age} and height is {height} feet.
+Thank you!'''
+print(message)
+
+
+f-string-এর ভিতরে f-string (নেস্টেড)
+
+person = "Abdullah"
+print(f'My name is {f"Mr. {person}"}')  # ভিতরে Double, বাইরে Single
+
+
+
+f-string-এর ভিতরে একই ধরনের Quote ব্যবহার করা যাবে না
+
+# ❌ ভুল (ভিতরে-বাইরে একই Quote)
+print(f'My name is {name} and I'm {age}')  # Syntax Error!
+
+# ✅ ঠিক (ভিতরে Single, বাইরে Double)
+print(f"My name is {name} and I'm {age}")
+
+
+f-string-এ Escape Character (\) ব্যবহার 
+
+print(f'My name is {name}. I\'m {age} years old.')  # \' দিয়ে Single এস্কেপ
+
+
+
 ভেরিয়েবলের নাম
 একটি ভেরিয়েবলের সংক্ষিপ্ত নাম (যেমন x এবং y) অথবা আরও বর্ণনামূলক নাম (age, carname, total_volume) থাকতে পারে।
 
@@ -38,6 +103,8 @@ _my_var = "Abdullah"
 myVar = "Abdullah"
 MYVAR = "Abdullah"
 myvar2 = "Abdullah"
+
+
 
 Illegal variable names:
 
@@ -107,6 +174,8 @@ print(x)
 print(y)
 print(z)
 
+
+
 x = y = z = "Mango"
 print(x) # আউটপুট: Mango
 print(y) # আউটপুট: Mango
@@ -170,6 +239,7 @@ print(x, y)
 name = "Abdullah"
 score = 95
 height = 5.8
+
 
 print(type(name))   # আউটপুট: <class 'str'> (String)
 print(type(score))  # আউটপুট: <class 'int'> (Integer)
