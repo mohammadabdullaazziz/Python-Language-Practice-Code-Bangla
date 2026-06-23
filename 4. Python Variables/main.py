@@ -83,6 +83,23 @@ print(f'My name is {name}. I\'m {age} years old.')  # \' দিয়ে Single এ
 
 
 
+
+name = "Abdullah"
+age = 30
+height = 5.2
+
+print("Name:", name)
+print("Age:", age)
+print("Height:", height)
+
+print("Name:" + name)
+print("Age:" + str(age))
+print("Height:" + str(height))
+
+
+
+
+
 ভেরিয়েবলের নাম
 একটি ভেরিয়েবলের সংক্ষিপ্ত নাম (যেমন x এবং y) অথবা আরও বর্ণনামূলক নাম (age, carname, total_volume) থাকতে পারে।
 
