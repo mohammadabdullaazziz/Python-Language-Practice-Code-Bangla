@@ -2,51 +2,138 @@
 যার মানে হলো এখানে ভেরিয়েবল তৈরি করার সময় আলাদা করে ডাটা টাইপ বলে দিতে হয় না; ভ্যালু দেখে পাইথন নিজেই তা বুঝে নেয়। কোনো ভেরিয়েবলের ডাটা টাইপ জানতে type() ফাংশন ব্যবহার করা হয়।
 
 
-
-১. Primitive (প্রিমিটিভ) ডেটা টাইপ
-Python-এও Primitive (প্রিমিটিভ) এবং Non-Primitive (নন-প্রিমিটিভ) ডেটা টাইপের ধারণা আছে। Python-এ সবকিছুই অবজেক্ট (জাভার মতো)। 
-তাই অন্যান্য ভাষার (C/C++/Java) তুলনায় এখানে "Primitive" কথাটা একটু আলাদা অর্থে ব্যবহৃত হয়।
-
-ডেটা টাইপ	          উদাহরণ	                 মন্তব্য 
-int (পূর্ণসংখ্যা)	      x = 10	                 C/Java-র int-এর মতো, কিন্তু সাইজের বাধা নেই
-float (দশমিক)	     pi = 3.14	              C-এর float/double-এর মতো 
-bool (সত্য/মিথ্যা)	    flag = True            	C-তে 0/1, Java-তে boolean
-str (স্ট্রিং)	name = "Abdullah"	                অনেকেই একে primitive বলেন, যদিও এটি character-এর sequence
-NoneType (শূন্য)	      data = None	           C-এর NULL বা Java-র null-এর মতো
-
-বিশেষ দ্রষ্টব্য: অন্যান্য ভাষায় (/C) str/String কে Non-Primitive বলা হয়। কিন্তু Python-এ str-ও immutable এবং এটি সরাসরি ভাষায় তৈরি (built-in), তাই অনেকেই একে Primitive-এর কাতারে ফেলেন। 
-তবে অফিশিয়াল Python ডকুমেন্টেশনে "Primitive" শব্দটা ব্যবহার করা হয় না; বরং বলে "Immutable Built-in Types"।
+📚 Python ডেটা টাইপসমূহ (সম্পূর্ণ তালিকা)
 
 
-২. Non-Primitive (নন-প্রিমিটিভ) ডেটা টাইপ
-যে ডেটা টাইপগুলো একাধিক মান (collection) ধারণ করে এবং পরিবর্তনযোগ্য (mutable) অথবা ইমিউটেবলও হতে পারে। এগুলো আসলে অন্যান্য ডেটা টাইপকে ধারণ করে।
+১. Numeric Types (সংখ্যা)--
+
+#	      টাইপ        	বিবরণ	                               উদাহরণ
+১	      int	         পূর্ণসংখ্যা (Integer)	                   age = 25, price = -10
+২	      float	       দশমিক সংখ্যা                         (Floating-point)	pi = 3.1416, temp = -5.5
+৩      	complex	     জটিল সংখ্যা                          (Complex number)	z = 3 + 4j
 
 
 
-ডেটা টাইপ	                            উদাহরণ	                               মন্তব্য
-list (তালিকা)	                        [1, 2, 3, "hello"]	                   C-এর array-এর মতো, কিন্তু মিক্সড টাইপ রাখা যায়
-tuple (টিউপল)	                       (1, 2, 3)	                            list-এর মতো কিন্তু immutable (অপরিবর্তনীয়)
-dict (ডিকশনারি)	                      {"name": "Rahim", "age": 25}	         JS-এর object বা Java-র HashMap-এর মতো
-set (সেট)	                            {1, 2, 3}	                            ইউনিক মানের সংগ্রহ
-frozenset                            	frozenset({1,2,3})	                   set-এর immutable ভার্সন
+২. Sequence Types (ক্রম/ধারা)---
 
-এই Non-Primitive গুলো Reference Type (রেফারেন্স টাইপ) - অর্থাৎ ভেরিয়েবলে আসল ডেটা না থেকে ডেটার ঠিকানা (মেমোরি অ্যাড্রেস) থাকে।''
-
-তাই Python-এর ক্ষেত্রে অনেকে "Primitive" শব্দটা এড়িয়ে "Immutable vs Mutable" বলেন। কারণ:
-
-Immutable (অপরিবর্তনীয়): int, float, bool, str, tuple, frozenset → এগুলো Primitive-এর মতো আচরণ করে
-
-Mutable (পরিবর্তনীয়): list, dict, set → এগুলো Non-Primitive-এর মতো আচরণ করে
+#	  টাইপ	                  বিবরণ	                           উদাহরণ
+৪	  list	                  পরিবর্তনযোগ্য সিকোয়েন্স(Mutable)	   fruits = ["apple", "banana"]
+৫  	tuple	                 অপরিবর্তনীয় সিকোয়েন্স (Immutable)  colors = ("red", "green")
+৬	range	                  সংখ্যার ধারা (জেনারেটরের মতো)	     nums = range(0, 10, 2)
 
 
-"Primitive" মানে হলো—"যা আর ভাঙা যায় না, সেই মৌলিক ডেটা"।
-"Non-Primitive" মানে হলো—"যা Primitive-দের নিয়ে গঠিত, সেই জটিল ডেটা"।
 
-ভাষার বিল্ট-ইন, ইমিউটেবল (অপরিবর্তনীয়), এবং সাধারণত একক মান ধারণ করে—যেমন int, float, bool, str।
+৩. Mapping Type (ম্যাপিং)---
 
-আর Non-Primitive বলতে বোঝায়—
+#	     টাইপ	       বিবরণ	                              উদাহরণ
+৭	     dict	       কী-ভ্যালু জোড়ার সংগ্রহ(Mutable)	      person = {"name": "Rahim", "age": 25}
 
-একাধিক মান ধারণ করতে পারে, সাধারণত মিউটেবল (পরিবর্তনীয়) অথবা ইমিউটেবল কালেকশন—যেমন list, dict, set, tuple।
+
+
+৪. Set Types (সেট)---
+
+
+#	 টাইপ          	বিবরণ	                                উদাহরণ
+৮ 	set	           ইউনিক এলিমেন্টের সংগ্রহ (Mutable)	      tags = {"python", "fastapi"}
+৯	 frozenset	     ইউনিক এলিমেন্টের ইমিউটেবল সেট	        fs = frozenset([1, 2, 3])
+
+
+৫. Boolean Type (বুলিয়ান)---
+
+#	  টাইপ	   বিবরণ	             উদাহরণ
+১০	 bool	   সত্য/মিথ্যা           (True/False)	is_active = True, is_deleted = False
+
+
+
+৬. Binary Types (বাইনারি)---
+
+#	  টাইপ	       বিবরণ	                     উদাহরণ
+১১	 bytes	      ইমিউটেবল বাইনারি ডেটা	      data = b"hello"
+১২	bytearray	   মিউটেবল বাইনারি ডেটা       	ba = bytearray(b"hello")
+১৩	memoryview	  বাইনারি ডেটার মেমোরি ভিউ   	mv = memoryview(data)
+
+
+৭. None Type (নাল)---
+
+#	   টাইপ     	বিবরণ	         উদাহরণ
+১৪	  NoneType	 শূন্য/নাল ভ্যালু	  value = None
+
+
+৮. Text Type (টেক্সট)---
+
+#	   টাইপ	    বিবরণ	                   উদাহরণ
+১৫  	str	     টেক্সট/স্ট্রিং (Immutable)   	name = "Python"
+
+
+
+
+
+ক্যাটাগরি	           টাইপ	      মিউটেবল?	    উদাহরণ
+Numeric	           int	       ❌ না	        x = 10
+Numeric	           float	     ❌ না	        x = 3.14
+Numeric	           complex	   ❌ না        	x = 3+4j
+Sequence	          list       ✅ হ্যাঁ	       [1, 2, 3]
+Sequence	          tuple	     ❌ না	        (1, 2, 3)
+Sequence          	range	     ❌ না	        range(5)
+Mapping	           dict      	✅ হ্যাঁ	       {"a": 1}
+Set	               set	       ✅ হ্যাঁ       	{1, 2, 3}
+Set	               frozenset	 ❌ না	        frozenset({1,2,3})
+Boolean	           bool	      ❌ না        	True
+Binary	            bytes	     ❌ না        	b"hello"
+Binary	            bytearray 	✅ হ্যাঁ	       bytearray(b"hello")
+Binary	            memoryview	নির্ভর করে	    memoryview(data)
+None	              NoneType	  ❌ না	        None
+Text              	str	       ❌ না	        "Hello"
+
+
+
+🎯 FastAPI-র জন্য গুরুত্বপূর্ণ টাইপ (নোট)
+
+✅ Must Learn (৯টি)
+
+#	      টাইপ       	ব্যবহার
+১	      int	ID,     বয়স, পরিমাণ
+২      	float	      দাম, রেটিং, ট্যাক্স
+৩	      str	        নাম, বিবরণ, টেক্সট
+৪	      bool	       ফিচার ফ্ল্যাগ, স্ট্যাটাস
+৫	      list	       একাধিক ডেটা, ট্যাগ
+৬	     dict	       JSON ডেটা, কনফিগ
+৭	      set	        ইউনিক ট্যাগ, ডুপ্লিকেট বাদ
+৮      	Optional[type]	অপশনাল ফিল্ড
+৯	      None	নাল ভ্যালু
+
+
+
+⚠️ Good to Know (৫টি)
+
+#	       টাইপ	        কখন লাগবে?
+১০	      tuple       	ডেটাবেস রেকর্ড, কনফিগ, ফাংশন রিটার্ন
+১১      	bytes	       ফাইল আপলোড, এনক্রিপশন, হ্যাশিং
+১২	      EmailStr	    ইমেইল ভ্যালিডেশন (Pydantic)
+১৩	      HttpUrl	URL  ভ্যালিডেশন (Pydantic)
+১৪	      datetime	    টাইমস্ট্যাম্প, created_at
+
+
+
+❌ বাদ (৪টি)
+#        	টাইপ      	কেন বাদ?
+১৫	       complex	   FastAPI-তে কোনো কাজেই না
+১৬       	bytearray	 bytes-ই যথেষ্ট
+১৭	       memoryview	বড় ডেটা ছাড়া দরকার নেই
+১৮       	frozenset	খুব কমই লাগে
+
+
+💡 সংক্ষিপ্ত টিপস:
+
+প্রথমে ৯টি Must টাইপ  (int, float, str, bool, list, dict, set, Optional, None)
+
+তারপর Pydantic স্পেশাল (EmailStr, HttpUrl, UUID, datetime)
+
+সবশেষে Binary (bytes, bytearray) — সিকিউরিটি/ফাইল কাজে
+
+বাদ complex, memoryview, frozenset
+
+
 
 
 
