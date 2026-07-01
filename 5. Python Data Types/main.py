@@ -19,7 +19,7 @@
 #	  টাইপ	                  বিবরণ	                           উদাহরণ
 ৪	  list	                  পরিবর্তনযোগ্য সিকোয়েন্স(Mutable)	   fruits = ["apple", "banana"]
 ৫  	tuple	                 অপরিবর্তনীয় সিকোয়েন্স (Immutable)  colors = ("red", "green")
-৬	range	                  সংখ্যার ধারা (জেনারেটরের মতো)	     nums = range(0, 10, 2)
+৬	 range	                  সংখ্যার ধারা (জেনারেটরের মতো)	   nums = range(0, 10, 2)
 
 
 
@@ -49,8 +49,8 @@
 
 #	  টাইপ	       বিবরণ	                     উদাহরণ
 ১১	 bytes	      ইমিউটেবল বাইনারি ডেটা	      data = b"hello"
-১২	bytearray	   মিউটেবল বাইনারি ডেটা       	ba = bytearray(b"hello")
-১৩	memoryview	  বাইনারি ডেটার মেমোরি ভিউ   	mv = memoryview(data)
+১২ 	bytearray	   মিউটেবল বাইনারি ডেটা       	ba = bytearray(b"hello")
+১৩	 memoryview	  বাইনারি ডেটার মেমোরি ভিউ   	mv = memoryview(data)
 
 
 ৭. None Type (নাল)---
