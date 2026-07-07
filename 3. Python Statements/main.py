@@ -45,3 +45,21 @@ print("Hello"); print("How are you?"); print("Bye bye!")
 print("Python is fun!") print("Really!")
 
 SyntaxError: invalid syntax
+
+যদি এক লাইনেই সবগুলো ভেরিয়েবল প্রিন্ট করতে চাওয়া হয়, তবে সেমিকোলন ব্যবহার করার চেয়ে পাইথনের স্ট্যান্ডার্ড বা সঠিক নিয়ম হলো কমা ( , ) ব্যবহার করা।
+
+name1 = "Abdullah"
+name2 = 'Abdullah'
+name3 = '''Abdullah'''
+name4 = """Abdullah"""
+
+print(name1, name2, name3, name4)
+# আউটপুট: Abdullah Abdullah Abdullah Abdullah
+সুবিধা: এক লাইনেই সব প্রিন্ট হবে এবং পাইথন নিজে থেকেই প্রতিটা নামের মাঝে একটি করে স্পেস (খালি জায়গা) দিয়ে দেবে।
+
+
+সেমিকোলন দিয়ে লিখতে চাইলে (শেষে বাংলা কমেন্ট সহ)
+
+name1 = "Abdullah"; name2 = 'Abdullah'; name3 = '''Abdullah'''; name4 = """Abdullah"""
+
+print(name1); print(name2); print(name3); print(name4)  # এভাবে প্রিন্ট করলে কোনো প্রবলেম নেই
