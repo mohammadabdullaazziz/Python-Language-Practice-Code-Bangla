@@ -37,10 +37,11 @@ age = 30
 height = 5.2
 
 print("My name is " + name + " and I am " + str(age) + " years old. My height is " + str(height) + " feet.")
-
 print(f"My name is {name} and I am {age} years old. My height is {height} feet.")
 
-print(f'My name is {name} and I am {age} years old. My height is {height} feet.')
+২ নম্বর print স্টেটমেন্টে (যাকে বলা হয় f-string) আলাদা করে str() করা লাগেনা, কারণ পাইথন ব্যাকগ্রাউন্ডে নিজের দায়িত্বেই ওই ভেরিয়েবলগুলোকে স্ট্রিং বা টেক্সটে রূপান্তর করে নেয়। 
+f-string-এর ভেতরের কার্লি ব্রেসেস {}-এর কাজই এটি।
+
 
 print(f'''My name is {name} 
 and I am {age} years old. 
@@ -287,3 +288,64 @@ print(type(name))   # আউটপুট: <class 'str'> (String)
 print(type(score))  # আউটপুট: <class 'int'> (Integer)
 print(type(height)) # আউটপুট: <class 'float'> (Float)
 
+
+
+
+
+
+জাভাস্ক্রিপ্টে যেভাবে .toFixed(2) ব্যবহার করে দশমিকের পরের ঘর ফিক্সড করা হয়, পাইথনেও ঠিক একইভাবে str() ব্যবহার না করে f-string-এর ভেতরেই সংখ্যা বা 
+হাইটকে ফরম্যাট (যেমন দশমিকের পর কয় ঘর থাকবে তা ফিক্সড) করা যায়।
+
+পাইথনে এর জন্য কোলন (:) ব্যবহার করতে হয়।
+
+পাইথনে toFixed এর বিকল্প (f-string ফরম্যাটিং)
+
+হাইট যদি হয় 5.8745 এবং যদি চাওয়া হয় দশমিকের পর মাত্র ২ ঘর দেখাবে (JS-এর .toFixed(2)-এর মতো), তবে f-string-এর ভেতর  {height:.2f}।
+
+এখানে:
+
+: মানে হলো ফরম্যাট করতে চাওয়া হসছে।
+
+.2 মানে হলো দশমিকের পর ২ ঘর রাখতে চাওয়া হসছে।
+
+f মানে হলো এটি একটি ফ্লোট বা দশমিক সংখ্যা (Float)।
+
+name = "Abdullah"
+age = 25
+height = 5.8745  # একটি দশমিক সংখ্যা
+
+# str() ছাড়া এবং দশমিকের পর ২ ঘর ফিক্সড করে প্রিন্ট:
+print(f"My name is {name}, I am {age} years old and my height is {height:.2f} feet.")
+
+
+
+
+প্লাস (+) চিহ্ন দিয়ে কোটেশনের ভেতরেও দশমিকের ঘর ফিক্সড করা যায়, তবে সে ক্ষেত্রে পাইথনের বিল্ট-ইন round() ফাংশন অথবা format() ফাংশন ব্যবহার করতে হবে।
+যেহেতু প্লাস (+) দিয়ে জোড়া দেওয়ার সময় পাইথনে str() লিখতেই হয়, তাই str()-এর ভেতরেই সংখ্যাটিকে সাইজ করে নিতে হবে।
+
+round() ফাংশন ব্যবহার করে (সবচেয়ে সহজ)
+
+round(height, 2) লিখলে পাইথন সংখ্যাটিকে দশমিকের পর ২ ঘরে নিয়ে আসে। এরপর সেটাকে str() দিয়ে ঘিরে দিলেই কাজ শেষ।
+
+name = "Abdullah"
+age = 25
+height = 5.8745
+
+print("My name is " + name + ", I am " + str(age) + " years old and my height is " + str(round(height, 2)) + " feet.")
+
+
+format() ফাংশন ব্যবহার করে (একদম নিখুঁত)
+
+format(height, ".2f") ব্যবহার করলে এটি জাভাস্ক্রিপ্টের .toFixed(2)-এর মতো হুবহু কাজ করে এবং সরাসরি টেক্সট বা স্ট্রিং আউটপুট দেয় (তাই এর বাইরে আলাদা করে আর str() লেখা লাগে না)।
+
+name = "Abdullah"
+age = 25
+height = 5.8745
+
+print("My name is " + name + ", I am " + str(age) + " years old and my height is " + format(height, ".2f") + " feet.")
+
+⚠️ একটি ছোট পার্থক্য:
+
+যদি হাইট হুবহু 5.80 হতো, তবে round(5.80, 2) করলে পাইথন শেষের শূন্যটি বাদ দিয়ে শুধু 5.8 দেখাবে।
+
+কিন্তু format(5.80, ".2f") ব্যবহার করলে জাভাস্ক্রিপ্টের মতোই জোর করে দশমিকের পর দুই ঘর মিলিয়ে 5.80-ই দেখাবে। তাই দশমিক ফিক্সড করার জন্য format() ব্যবহার করাই সবচেয়ে নিরাপদ।
