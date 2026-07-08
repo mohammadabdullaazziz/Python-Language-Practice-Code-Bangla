@@ -297,6 +297,8 @@ height = 5.222
 print("My name is " + name + ", i am " + str(age) + " " + "years old and my height is " + str(round(height, 1)) + " feet.")
 print("My name is " + name + ", i am " + str(age) + " " + "years old and my height is " + format(height, ".1f") + " feet.")
 print(f"My name is {name}, I am {age} years old and my height is {height:.1f} feet.")
+print("My name is:", name, "I am", age, "years old and my height is", f"{height:.1f}", "feet.")
+
 
 
 
