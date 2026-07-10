@@ -54,6 +54,10 @@ sys.getsizeof(230) -- 32 Bytes (সংখ্যাটি বড় হওয়ায় 
 
 sys.getsizeof(260) --- 36 Bytes
 
+int (পূর্ণসংখ্যা) ➔ ফিক্সড নয় (পরিবর্তনশীল)
+
+
+
 
 
 
@@ -126,6 +130,7 @@ JSON-এ	     সংখ্যা	     সংখ্যা
 
 
 
+
 ডিভিশন বা ভাগের ক্ষেত্রে সতর্কতা (Division behavior)
 
 পাইথনে দুটি ইন্টিজার সংখ্যাকে ভাগ করলে আউটপুট সবসময় একটি float (দশমিক সংখ্যা) আসে, এমনকি ভাগফল মিলে গেলেও।
@@ -134,11 +139,27 @@ result = 10 / 2
 print(result) # আউটপুট: 5.0 (এটি float)
 
 
-
 যদি ভাগফলের দশমিক অংশ বাদ দিয়ে শুধু পূর্ণসংখ্যাটি আসুক (Integer Division), তবে  দুটি স্ল্যাশ (//) ব্যবহার করতে হবে:
 
 result = 10 // 2
 print(result) # আউটপুট: 5 (এটি int)
+
+
+num1 = 10
+num2 = 5
+result = num1 // num2
+
+print("The result of dividing", num1, "and", num2, "is", result)
+
+print(f"The result of dividing {num1} and {num2} is {result}")
+
+print("The result of dividing " + str(num1) + " and " + str(num2) + " is " + str(result))
+
+print(f"The result of dividing {num1 // num2}")
+
+
+
+
 
 
 
