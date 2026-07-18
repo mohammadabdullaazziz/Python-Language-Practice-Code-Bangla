@@ -353,6 +353,10 @@ print(f"My name is {name}, I am {age} years old and my height is {height:.1f} fe
 print("My name is:", name, "I am", age, "years old and my height is", f"{height:.1f}", "feet.")
 
 
+# শেষে ".1f" }) এর পর ডাবল কোটেশন ও ব্র্যাকেট ঠিক করা হয়েছে
+print(f"My name {name} my age {age} my height {format(height, '.1f')}")
+
+
 
 
 
