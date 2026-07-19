@@ -347,11 +347,20 @@ name = "Abdullah"
 age = 30
 height = 5.222
 
-print("My name is " + name + ", i am " + str(age) + " " + "years old and my height is " + str(round(height, 1)) + " feet.")
-print("My name is " + name + ", i am " + str(age) + " " + "years old and my height is " + format(height, ".1f") + " feet.")
-print(f"My name is {name}, I am {age} years old and my height is {height:.1f} feet.")
-print("My name is:", name, "I am", age, "years old and my height is", f"{height:.1f}", "feet.")
+# ১. সাধারণ স্ট্রিং জোড়া লাগানো (+ চিহ্ন এবং str() দিয়ে)
+print("My name is: " + userName + " My age is: " + str(userAge) + " My height is: " + str(userHeight) + " feet")
 
+# ২. round() ফাংশন ব্যবহার করে দশমিকের পর ১ ঘর রাউন্ড করে
+print("My name is: " + userName + " My age is: " + str(userAge) + " My height is: " + str(round(userHeight, 1)) + " feet")
+
+# ৩. format() ফাংশন ব্যবহার করে দশমিকের পর ১ ঘর ফিক্সড করে
+print("My name is: " + userName + " My age is: " + str(userAge) + " My height is: " + format(userHeight, ".1f") + " feet")
+
+# ৪. আধুনিক f-string ব্যবহার করে (সবচেয়ে সহজ এবং বেস্ট প্র্যাকটিস)
+print(f"My name is: {userName} My age is: {userAge} My height is: {userHeight:.1f} feet")
+
+# ৫. কমা (,) ব্যবহার করে (আপনার শেষের লাইনটির সঠিক রূপ)
+print("My name is:", userName, "My age is:", userAge, "My height is:", f"{userHeight:.1f}", "feet")
 
 # শেষে ".1f" }) এর পর ডাবল কোটেশন ও ব্র্যাকেট ঠিক করা হয়েছে
 print(f"My name {name} my age {age} my height {format(height, '.1f')}")
