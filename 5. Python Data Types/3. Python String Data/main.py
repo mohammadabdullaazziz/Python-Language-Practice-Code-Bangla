@@ -631,10 +631,178 @@ is_all_space = text.isspace():
 text = "Hello World, Hello Python"
 
 print(text.find("World"))    # ৬ (ইন্ডেক্স)
+এর কাজ হলো কোনো লেখার ভেতরে আপনার কাঙ্ক্ষিত শব্দ বা অক্ষরটি প্রথম কোথায় আছে, তার ইনডেক্স নম্বর (ঠিকানা) বলে দেওয়া।
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে 
+text = "Hello World, Hello Python"
+
+# ২. find() ফাংশন দিয়ে "World" শব্দটি কোথায় আছে তা খুঁজলাম
+world_index = text.find("World")
+
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট
+print(f"Original Text: '{text}'")
+print(f"Index of 'World': {world_index}")
+
+১. text = "Hello World, Hello Python": এই স্ট্রিংটিতে পাইথন শূন্য (0) থেকে ইনডেক্সিং শুরু করে।
+
+H 0
+e 1
+l 2
+l 3
+o 4  
+(স্পেস)  5
+W  6
+
+২. world_index = text.find("World"):
+
+পাইথন যখন text.find("World") রান করে, সে একদম শুরু থেকে খোঁজ করা শুরু করে।
+
+সে দেখে World শব্দের একদম প্রথম অক্ষর W কত নম্বর ইনডেক্সে বসে আছে।
+
+পাইথন দেখতে পায় W বসে আছে 6 নম্বর ইনডেক্সে। তাই সে পুরো World শব্দের ঠিকানা হিসেবে প্রথম অক্ষরের ইনডেক্স 6 রিটার্ন করে।
+
+
+
+
+
+
+
 print(text.find("Java"))     # -১ (পায়নি)
+
+পাইথনের find() ফাংশনের সবচেয়ে দারুণ দিক হলো, যদি এমন কোনো শব্দ বা অক্ষর খুঁজতে দেওয়া হয় যা মূল লেখার ভেতরে একেবারেই নেই, 
+তবে সে কোনো এরর (Error) বা কোড ক্র্যাশ করিয়ে প্রোগ্রাম বন্ধ করে দেয় না। বরং খুব শান্তভাবে জানিয়ে দেয় -1।
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে 
+text = "Hello World, Hello Python"
+
+# ২. find() ফাংশন দিয়ে "Java" শব্দটি খুঁজলাম (যা মূল লেখায় নেই)
+java_index = text.find("Java")
+
+# ৩. f-string ব্যবহার করে  আউটপুট প্রিন্ট 
+print(f"Original Text: '{text}'")
+print(f"Index of 'Java': {java_index}")
+
+
+text = "Hello World, Hello Python":  এই মূল লেখার ভেতরে আছে Hello, World, এবং Python শব্দগুলো।
+
+java_index = text.find("Java"):
+
+
+পাইথন একদম শুরু (0 নম্বর ইনডেক্স) থেকে শুরু করে শেষ পর্যন্ত পুরো লেখাটি স্ক্যান করে দেখল।
+
+সে কোথাও "Java" কথাটি খুঁজে পেল না।
+
+পাইথনের নিয়ম অনুযায়ী, যদি কোনো শব্দ বা ক্যারেক্টার খুঁজে না পাওয়া যায়, সে ইনডেক্স হিসেবে ফেরত পাঠায় -1।
+
+এই -1 মানটি এসে জমা হলো java_index ভেরিয়েবল বক্সে।
+
+
+
+
+
 print(text.index("World"))   # ৬ (পায়নি হলে Error)
+বাহ্যিকভাবে এর কাজ দেখতে একদম find() ফাংশনের মতোই—অর্থাৎ লেখার ভেতরে কাঙ্ক্ষিত শব্দ বা অক্ষরটি প্রথম কোথায় আছে, তার ইনডেক্স নম্বর (ঠিকানা) বলে দেওয়া।
+তবে find() এর সাথে এর মূল পার্থক্য হলো: শব্দটি না পাওয়া গেলে এটি নীরব থাকার বদলে সরাসরি 'Error' খাইয়ে দেয়!
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে 
+text = "Hello World, Hello Python"
+
+# ২. index() ফাংশন দিয়ে "World" শব্দটি কোথায় আছে তা খুঁজা
+world_index = text.index("World")
+
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট
+print(f"Original Text: '{text}'")
+print(f"Index of 'World': {world_index}")
+
+text = "Hello World, Hello Python": এই স্ট্রিংটিতে প্রতিটি অক্ষরের একটি নির্দিষ্ট পজিশন বা ইনডেক্স আছে:
+
+H 0
+e 1
+l 2
+l 3
+o 4 
+(স্পেস) 5
+W  6
+
+world_index = text.index("World"):
+
+পাইথন যখন text.index("World") রান করে, সে একদম শুরু থেকে স্ক্যান করা শুরু করে।
+
+সে দেখতে পায় World শব্দের একদম প্রথম অক্ষর W বসে আছে 6 নম্বর ইনডেক্সে।
+
+তাই সে World এর ঠিকানা হিসেবে ফেরত দেয় 6।
+
+
+
+
+
+
+
 print(text.count("Hello"))   # ২
+এর কাজ খুবই সোজা—একটি বড় টেক্সটের মধ্যে কোনো নির্দিষ্ট শব্দ বা অক্ষর ঠিক কতবার (How many times) আছে, তা গুনে বের করা।
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে 
+text = "Hello World, Hello Python"
+
+# ২. count() ফাংশন দিয়ে "Hello" শব্দটি কতবার আছে তা গুনা
+hello_count = text.count("Hello")
+
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট 
+print(f"Original Text: '{text}'")
+print(f"Count of 'Hello': {hello_count}")
+
+text = "Hello World, Hello Python": এই বাক্যটি যদি লক্ষ করা হলে, তবে দেখতে ্পাওা যাবে এখানে দুটি জায়গায় "Hello" লেখাটি আছে—একবার একদম শুরুতে, আর আরেকবার কমার (,) পরে।
+
+hello_count = text.count("Hello"):
+
+পাইথন যখন text.count("Hello") রান করবে, সে পুরো টেক্সটের মধ্যে একদম শুরু থেকে শেষ পর্যন্ত চোখ বুলাবে।
+
+সে গুনে দেখবে "Hello" শব্দটি মোট কয়বার এসেছে।
+
+প্রথমবারে একটা পেল গণনা = 1
+কমার পরে আবার পেল গণনা = 2
+
+মোট ২টি খুঁজে পাওয়ায় পাইথন রিটার্ন দেবে 2।
+
+এই 2 মানটি এসে জমা হবে hello_count ভেরিয়েবল বক্সে।
+
+
+
+
 print(text.replace("Hello", "Hi"))  # 'Hi World, Hi Python'
+এর কাজ হলো টেক্সটের ভেতর থেকে কোনো নির্দিষ্ট শব্দ বা ক্যারেক্টারকে খুঁজে বের করে সেটিকে নতুন আরেকটি শব্দ বা ক্যারেক্টার দিয়ে পাল্টে ফেলা।
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে 
+text = "Hello World, Hello Python"
+
+# ২. replace() ফাংশন ব্যবহার করে "Hello" কে "Hi" বানিয়ে নতুন ভেরিয়েবলে 
+replaced_text = text.replace("Hello", "Hi")
+
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট 
+print(f"Original Text: '{text}'")
+print(f"Replaced Text: '{replaced_text}'")
+
+text = "Hello World, Hello Python": এই স্ট্রিংটিতে "Hello" শব্দটি মোট দুবার রয়েছে।
+
+replaced_text = text.replace("Hello", "Hi"):
+
+replace() ফাংশন দুটি জিনিস গ্রহণ করে: replace(পুরোনো শব্দ, নতুন শব্দ)।
+
+পাইথন পুরো টেক্সটের ভেতর যেখানে যেখানে "Hello" খুঁজে পাবে, সেখানেই ঝটপট সেটিকে মুছে তার জায়গায় "Hi" বসিয়ে দেবে।
+
+যেহেতু এখানে দুবার "Hello" ছিল, দুটিই চেঞ্জ হয়ে যাবে এবং নতুন টেক্সট তৈরি হবে "Hi World, Hi Python"।
+
+যদি চাওয়া হয় টেক্সটে ১০ বার "Hello" থাকলেও সবগুলো চেঞ্জ হবে না, শুধু প্রথম ১টি বা ২টি চেঞ্জ হবে, তবে  ৩ নম্বর একটি সংখ্যা পাস করতে পারা যাবে!
+
+# শুধু প্রথম 'Hello'-কে পাল্টে 'Hi' করবে, বাকিগুলো আগের মতোই রাখবে
+text = "Hello World, Hello Python"
+print(text.replace("Hello", "Hi", 1)) 
+
+# আউটপুট আসবে: 'Hi World, Hello Python'
+
+পাইথনে স্ট্রিং কিন্তু immutable (পরিবর্তন অযোগ্য)। text.replace() করার পরও মূল text ভেরিয়েবলের মান কিন্তু বদলায়নি! নতুন মান পাওয়ার জন্য এটাকে সব সময় নতুন একটি ভেরিয়েবলে অ্যাসাইন করে নিতে হয়।
+
+
 
 
 
@@ -655,39 +823,94 @@ words = "Hello Python World".split()  # ['Hello', 'Python', 'World']
 
 
 
+
+
 🔹 E. স্ট্রিপ (ফাঁকা জায়গা বাদ)
 
 text = "  Hello World  "
+
+
 print(text.strip())   # 'Hello World' (দুই পাশ থেকে)
+একটি টেক্সটের একদম শুরুতে (বাম পাশে) এবং একদম শেষে (ডান পাশে) থাকা অপ্রয়োজনীয় স্পেস বা খালি জায়গাগুলোকে কেটে পরিষ্কার করে দেওয়া। তবে টেক্সটের মাঝখানের স্পেসকে সে স্পর্শও করে না।
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে  (দুই পাশে স্পেস সহ)
+text = "  Hello World  "
+
+# ২. strip() ফাংশন দিয়ে দুই পাশের খালি স্পেস মুছে ফেলা
+stripped_text = text.strip()
+
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট
+print(f"Original Text: '{text}'")
+print(f"Stripped Text: '{stripped_text}'")
+
+text = "  Hello World  ": এই লেখাটির শুরুতে ২টি স্পেস আছে, মাঝে ১টি স্পেস আছে, এবং শেষে ২টি স্পেস আছে।
+stripped_text = text.strip():
+
+পাইথন যখন text.strip() রান করবে, সে শুধু লেখার দুই প্রান্তের (Left & Right) বাড়তি স্পেসগুলোকে ছেঁটে ফেলে দেবে।
+
+Hello এবং World-এর মাঝখানের স্পেসটি অক্ষত থাকবে।
+
+ফলে আমরা নিখুঁত একটি পরিষ্কার স্ট্রিং পাব: "Hello World"।
+
+এই মানটি এসে জমা হবে stripped_text ভেরিয়েবল বক্সে।
+
+
+
+
 print(text.lstrip())  # 'Hello World  ' (বাম পাশ থেকে)
+lstrip() এর l এসেছে "Left" শব্দ থেকে। অর্থাৎ এর একমাত্র কাজ হলো স্ট্রিংয়ের শুধুমাত্র বাম পাশ (শুরু) থেকে অপ্রয়োজনীয় স্পেস বা খালি জায়গা কেটে ফেলে দেওয়া। ডান পাশের স্পেসকে সে একদম ধরেও দেখে না।
+
+# ১. মূল স্ট্রিং ভেরিয়েবলে রাখলাম (দুই পাশে স্পেস সহ)
+text = "  Hello World  "
+
+# ২. lstrip() ফাংশন দিয়ে শুধুমাত্র বাম পাশের খালি স্পেস মুছে ফেলা
+lstripped_text = text.lstrip()
+
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট
+print(f"Original Text:      '{text}'")
+print(f"Left Stripped Text: '{lstripped_text}'")
+
+text = "  Hello World  ": এই লেখার বামে ২টি স্পেস, মাঝে ১টি স্পেস এবং ডানে ২টি স্পেস আছে।
+
+lstripped_text = text.lstrip():
+
+পাইথন যখন text.lstrip() রান করে, সে শুধু স্ট্রিংয়ের শুরুর (Left) স্পেসগুলোকে স্ক্যান করে মুছে ফেলে।
+
+মাঝখানের স্পেস এবং ডান পাশের (Right) স্পেস দুটিকে সে ঠিক যেমন ছিল তেমনই রেখে দেয়।
+
+ফলে আউটপুট দাঁড়ায়: "Hello World  " (ডানপাশে স্পেস দুটি রয়ে গেছে)।
+
+এই মানটি জমা হয় lstripped_text ভেরিয়েবল বক্সে।
+
+
+
+
+
 print(text.rstrip())  # '  Hello World' (ডান পাশ থেকে)
+rstrip() এর r এসেছে "Right" শব্দ থেকে। অর্থাৎ এর একমাত্র কাজ হলো স্ট্রিংয়ের শুধুমাত্র ডান পাশ (শেষ) থেকে অনাকাঙ্ক্ষিত স্পেস বা খালি জায়গা কেটে সাফ করে দেওয়া। বাম পাশের স্পেসগুলোকে সে একদম স্পর্শও করে না।
 
+# ১. মূল স্ট্রিং ভেরিয়েবলে (দুই পাশে স্পেস সহ)
+text = "  Hello World  "
 
+# ২. rstrip() ফাংশন দিয়ে শুধুমাত্র ডান পাশের খালি স্পেস মুছে ফেলা
+rstripped_text = text.rstrip()
 
-🔹 F. ফরম্যাটিং (f-string)
+# ৩. f-string ব্যবহার করে আউটপুট প্রিন্ট 
+print(f"Original Text:       '{text}'")
+print(f"Right Stripped Text: '{rstripped_text}'")
 
-name = "Rahim"
-age = 25
-score = 85.5
+text = "  Hello World  ": এই লেখার শুরুতে ২টি স্পেস, মাঝে ১টি স্পেস এবং শেষে ২টি স্পেস আছে।
 
-# f-string (সবচেয়ে ভালো)
-print(f"Name: {name}, Age: {age}, Score: {score}")
+rstripped_text = text.rstrip():
 
-# .format() মেথড
-print("Name: {}, Age: {}, Score: {}".format(name, age, score))
+পাইথন যখন text.rstrip() রান করবে, সে শুধু স্ট্রিংয়ের শেষের (Right) স্পেসগুলোকে ছেঁটে ফেলে দেবে।
 
-# % ফরম্যাটিং (পুরনো)
-print("Name: %s, Age: %d, Score: %.2f" % (name, age, score))
+বাম পাশের (Left) স্পেস দুটি এবং মাঝখানের স্পেসকে সে ঠিক আগের মতোই রেখে দেবে।
 
+ফলে আমরা আউটপুট পাব: "  Hello World" (শুরুতে স্পেস দুটি রয়ে গেছে)।
 
+এই মানটি এসে জমা হবে rstripped_text ভেরিয়েবল বক্সে।
 
-str-এর গুরুত্বপূর্ণ টিপস
-
-f-string ব্যবহার      	f"Name: {name}"
-মাল্টিলাইন স্ট্রিং	        """...""" বা '''...'''
-এস্কেপ ক্যারেক্টার	      \n (নিউলাইন), \t (ট্যাব)
-Raw স্ট্রিং	              r"C:\Users\Rahim" (ব্যাকস্ল্যাশ এড়াতে)
-স্ট্রিং ইন্টারপোলেশন	    f-string সবচেয়ে ভালো 
 
 
 
@@ -708,11 +931,11 @@ Raw স্ট্রিং	              r"C:\Users\Rahim" (ব্যাকস্
 upper(), lower(), strip(), split(), join()
 replace(), find(), count(), len()
 
-✅ মনে রাখবেন:
+✅ মনে রাখা লাগবে:
 - ইমিউটেবল (পরিবর্তন করা যায় না)
-- ফরম্যাটিংয়ে f-string ব্যবহার করুন
+- ফরম্যাটিংয়ে f-string ব্যবহার ্করা
 - ইউনিকোড (বাংলা) সাপোর্ট করে
-- None চেক করতে ভুলবেন না
+- None চেক করতে ভুলা যাবে না
 
 
 ১.	str দিয়ে বেসিক অপারেশন করুন (ইন্ডেক্সিং, স্লাইসিং)
@@ -751,83 +974,13 @@ print(text[0:5])  # আউটপুট আসবে: Hello
 পাইথনে স্ট্রিং হলো Immutable। এর মানে হলো, একবার একটি স্ট্রিং তৈরি করলে তার ভেতরের কোনো নির্দিষ্ট অক্ষর আপনি সরাসরি বদলে দিতে পারবেন না।
 
 word = "Cat"
-# আপনি যদি চান 'C' বদলে 'B' করে "Bat" বানাবেন:
+# যদি চাওয়া হয় 'C' বদলে 'B' করে "Bat" হবে:
 # word[0] = "B"  --> এটি করলে পাইথনে Error আসবে!
 
 
 
-স্ট্রিংয়ের কিছু প্রয়োজনীয় মেথড (String Methods)
-
-msg = "  hello python  "
-
-print(msg.upper())     # সব বড় হাতের হবে -> "  HELLO PYTHON  "
-print(msg.title())     # প্রতি শব্দের প্রথম অক্ষর বড় হাতের হবে -> "  Hello Python  "
-print(msg.strip())     # শুরুর এবং শেষের সব ফালতু স্পেস কেটে দেবে -> "hello python"
-print(msg.replace("hello", "hi")) # শব্দ বদলে দেবে -> "  hi python  "
-
-# স্ট্রিংয়ে মোট কয়টি ক্যারেক্টার আছে তা জানতে len() ব্যবহার করা হয়
-print(len("Dhaka"))    # আউটপুট আসবে: 5
 
 
-স্লাইসিং (Slicing)
-
-text = "Programming"
-
-print(text[0:6])    # Progra   (0 থেকে 5 পর্যন্ত, 6 বাদ)
-print(text[:4])     # Prog     (শুরু থেকে 4 পর্যন্ত)
-print(text[4:])     # ramming  (4 থেকে শেষ পর্যন্ত)
-print(text[::-1])   # gnimmargorP  (পুরো স্ট্রিং উল্টে যাবে)
-print(text[::2])    # Pormig   (প্রতি 2 ধাপে একটা করে)
-
-
-
-
-গুরুত্বপূর্ণ স্ট্রিং মেথডসমূহ
-
-text = "  Python Programming  "
-
-print(text.upper())        # Python কে বড় হাতের করে: "  PYTHON PROGRAMMING  "
-print(text.lower())        # ছোট হাতের করে
-print(text.strip())        # দুই পাশের স্পেস বাদ দেয়: "Python Programming"
-print(text.replace("Python", "Java"))  # "  Java Programming  "
-print(text.split())        # স্পেস দিয়ে ভেঙে লিস্ট বানায়: ['Python', 'Programming']
-print(len(text))           # স্ট্রিং-এর মোট ক্যারেক্টার সংখ্যা
-
-s = "hello"
-print(s.startswith("he"))  # True
-print(s.endswith("lo"))    # True
-print(s.find("ll"))        # 2 (ইনডেক্স পজিশন রিটার্ন করে)
-print(s.count("l"))        # 2 (কতবার আছে গোনে)
-print(s.capitalize())      # Hello
-print(s.title())           # Hello (প্রতিটা শব্দের প্রথম অক্ষর বড়)
-
-
-
-
-স্ট্রিং চেক করার মেথড (is-মেথডগুলো)
-
-print("123".isdigit())     # True — সব সংখ্যা কিনা
-print("abc".isalpha())     # True — সব অক্ষর কিনা
-print("abc123".isalnum())  # True — অক্ষর+সংখ্যা কিনা
-print("   ".isspace())     # True — শুধু স্পেস কিনা
-print("Hello".islower())   # False
-print("HELLO".isupper())   # True
-
-
-
-
-স্ট্রিং ফরম্যাটিং (String Formatting)
-
-পদ্ধতি ১: f-string (সবচেয়ে জনপ্রিয় ও আধুনিক)
-
-name = "Arman"
-age = 25
-print(f"My name is {name} and I am {age} years old.")
-
-
-পদ্ধতি ২: .format() মেথড
-
-print("My name is {} and I am {} years old.".format(name, age))
 
 
 Escape Characters
@@ -869,6 +1022,7 @@ for char in "Hi!":
 in অপারেটর দিয়ে চেক করা
 
 text = "Python is powerful"
+
 print("Python" in text)      # True
 print("Java" in text)        # False
 print("Java" not in text)    # True
