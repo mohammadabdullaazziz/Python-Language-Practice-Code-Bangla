@@ -13,6 +13,17 @@ Python-এ স্ট্রিং Unicode সাপোর্ট করে, তা
 
 
 
+userName = 'Abdullah'
+
+print(f'is String: {isinstance(userName, str)}')
+
+print(f'is type Int: {type(userName) == str}')
+
+
+
+
+
+
 
 যখন কোনো লেখাকে Single Quote (' '), Double Quote (" ") অথবা Triple Quote (''' ''' / """ """) এর মধ্যে লেখা হয়, তখন সেটি String হয়।
 
