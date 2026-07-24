@@ -26,15 +26,19 @@ bool যেভাবে লিখা লাগবে?
 # সরাসরি বুলিয়ান মান
 is_active = True
 is_deleted = False
-is_verified = True
+is_active = True
+
+
+
+print(type(is_active))  # <class 'bool'>
+print(type(is_deleted))  # <class 'bool'>
+print(is_active) # True
 
 # কন্ডিশন থেকে বুলিয়ান
 age = 18
 is_adult = age >= 18  # True
 is_child = age < 10   # False
 
-# টাইপ চেক
-print(type(is_active))  # <class 'bool'>
 
 
 
@@ -45,6 +49,36 @@ bool-এর বৈশিষ্ট্য
 ইমিউটেবল	পরিবর্তন করা যায় না (কিন্তু নতুন ভ্যালু অ্যাসাইন করা যায়)
 সংখ্যা হিসেবে	True = 1, False = 0 (গাণিতিক অপারেশনেও কাজ করে)
 কেস সংবেদনশীল	true/false কাজ করে না (ছোট হাতের হবে না)
+
+
+
+
+
+
+boolean_one = True
+boolean_two = False
+
+# ধাপ ১: টাইপ কনভার্সন (Type Casting)
+# int(boolean_one)  --> int(True)  --> এর মান হয় 1
+# int(boolean_two)  --> int(False) --> এর মান হয় 0
+
+result = int(boolean_one) - int(boolean_two)
+# result = 1 - 0
+# result = 1
+
+print(result) # Output: 1
+
+int() দিয়ে টাইপ কাস্ট না করলেও চলত! পাইথন বুুলিয়ানদের সাথে যেকোনো গাণিতিক কাজ (যোগ, বিয়োগ, গুণ) করার সময় স্বয়ংক্রিয়ভাবে সেগুলোকে 1 এবং 0 ধরে নেয়:
+
+boolean_one = True
+boolean_two = False
+
+# সরাসরি বিয়োগ করলেও একই ১ আসবে!
+result = boolean_one - boolean_two  # 1 - 0
+
+print(result) # Output: 1
+
+
 
 
 
@@ -72,10 +106,37 @@ print(True + 5)         # 6
 
 বিশেষ মান: None
 
+
+
 print(bool(0))       # False
+# ০ কে বুুলিয়ানে রূপান্তর
+
+result = bool(0)
+
+print(result)   #output False
+
+print(bool(0))        # Output: False (পূর্ণসংখ্যা ০)
+print(bool(0.0))      # Output: False (দশমিক ০)
+print(bool(-0))       # Output: False
+শূন্য (0) ব্যতীত পৃথিবীর যেকোনো ধনাত্মক বা ঋণাত্মক সংখ্যাই True হবে:
+print(bool(1))        # Output: True
+print(bool(100))      # Output: True
+print(bool(-5))       # Output: True (ঋণাত্মক হলেও True!)
+print(bool(0.1))      # Output: True
+
+
+
 print(bool(""))      # False
 print(bool([]))      # False
 print(bool(None))    # False
+সহজ ভাষায়, পাইথনে None মানে হলো "কিছুই নেই" বা "মান খালি (Empty / No Value)"। আর যেহেতু এখানে কোনো মান বা ভ্যালু নেই, তাই পাইথন একে মিথ্যা বা False হিসেবে ধরে নেয়।
+
+# None কে বুুলিয়ানে রূপান্তর
+result = bool(None)
+
+print(result)
+
+
 
 False             False
 
