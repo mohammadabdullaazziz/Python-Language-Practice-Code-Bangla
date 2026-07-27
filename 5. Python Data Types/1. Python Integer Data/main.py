@@ -653,7 +653,13 @@ print(f"Power: {pow(2, 10)}")  # 1024
 ২ * ২ * ২ ...এভাবে ১০ বার গুণ করলে হয় ১০২৪।কোড আউটপুট: Power: 1024
 
 
+
 বর্গমূল বা Square Root (math.sqrt)
+
+sqrt শব্দটা এসেছে "square root" (বর্গমূল) থেকে। এই ফাংশনের কাজ হলো — কোনো সংখ্যার বর্গমূল বের করে দেওয়া।
+
+সহজ কথায়: কোন সংখ্যাকে নিজে দিয়ে গুণ করলে (square করলে) দেওয়া সংখ্যাটা পাওয়া যাবে, সেটাই বর্গমূল।
+
 # Square root
 print(f"Square root: {math.sqrt(16)}")  # 4.0
 
@@ -684,6 +690,143 @@ result = math.sqrt(num):
 
 print(f"Square root: {result}"): পাইথন {result} এর জায়গায় তার ভেতরে থাকা মান 4.0 বসিয়ে পুরো লেখাটি প্রিন্ট করবে।
 
+import math
+
+print(math.sqrt(4))    # 2.0    -> 2 × 2 = 4
+print(math.sqrt(9))     # 3.0    -> 3 × 3 = 9
+print(math.sqrt(25))    # 5.0    -> 5 × 5 = 25
+print(math.sqrt(100))   # 10.0   -> 10 × 10 = 100
+print(math.sqrt(2))     # 1.4142135623730951  -> perfect square না, তাই decimal
+print(math.sqrt(0))     # 0.0
+print(math.sqrt(1))     # 1.0
+
+⚠️ Negative সংখ্যার real বর্গমূল হয় না, তাই এখানে error আসবে। এটা এড়াতে চাইলে আগে চেক করে নিতে হয়:
+
+num = -4
+
+if num >= 0:
+    print(math.sqrt(num))
+else:
+    print("Negative সংখ্যার বর্গমূল বের করা যাবে না")
+
+
+
+Pythagorean theorem (দুই বাহু থেকে অতিভুজ বের করা)
+
+import math
+
+base = 3
+height = 4
+
+hypotenuse = math.sqrt(base**2 + height**2)
+print(f"অতিভুজ: {hypotenuse}")  # 5.0
+
+
+ একটা সংখ্যা perfect square কিনা চেক করা
+
+import math
+
+def is_perfect_square(num):
+    root = math.sqrt(num)
+    return root == int(root)
+
+print(is_perfect_square(16))  # True
+print(is_perfect_square(20))  # False
+ 
+
+
+পাইথনের বিল্ট-ইন গণিত মডিউল math-এর কোনো মেথড (যেমন: ceil, floor, sqrt) ব্যবহার করার আগে অবশ্যই ফাইলের শুরুতে import math করে নিতে হবে।
+
+ছাদ এবং মেঝে বা Ceiling and Floor (math.ceil ও math.floor)
+# Ceiling and Floor
+
+ceil শব্দটা এসেছে "ceiling" (ছাদ/উপরের সীমা) থেকে। এই ফাংশনের কাজ হলো — কোনো decimal সংখ্যাকে উপরের দিকের নিকটতম পূর্ণসংখ্যায় (integer) রাউন্ড করে দেওয়া।
+
+সহজ কথায়: সংখ্যাটা যত ছোট বা বড় fraction (ভগ্নাংশ) থাকুক না কেন, সবসময় উপরের দিকের পূর্ণসংখ্যা বেছে নেওয়া হয়।
+
+print(f"Ceiling: {math.ceil(3.14)}")  # 4
+
+import math
+
+print(math.ceil(3.14))   # 4  -> 3.14 উপরে গিয়ে হয় 4
+print(math.ceil(3.99))   # 4  -> 3.99 উপরে গিয়ে হয় 4
+print(math.ceil(3.01))   # 4  -> সামান্য বেশি হলেও উপরে যাবে
+print(math.ceil(3.0))    # 3  -> পুরোপুরি integer হলে সেটাই থাকবে
+print(math.ceil(0))      # 0
+
+Negative (ঋণাত্মক) সংখ্যার ক্ষেত্রে (একটু গুরুত্বপূর্ণ)
+print(math.ceil(-3.14))  # -3  -> -3.14 এর উপরে (মানে বেশি বড়) হলো -3
+print(math.ceil(-3.99))  # -3  -> এখানেও -3 উপরের দিকে
+print(math.ceil(-3.0))   # -3
+⚠️ এখানে অনেকে ভুল করে ভাবে negative সংখ্যায় "উপরে" মানে আরও negative দিকে যাওয়া, কিন্তু আসলে number line এ -3, -3.14 থেকে ডানদিকে/বড় সংখ্যা, তাই ceil(-3.14) = -3 হয়, -4 না।
+
+
+import math
+
+total_items = 95
+items_per_page = 10
+
+total_pages = math.ceil(total_items / items_per_page)
+print(f"মোট পেজ লাগবে: {total_pages}")  # 10
+
+এখানে 95÷10 = 9.5, কিন্তু 9 পেজে সব আইটেম ধরবে না, তাই 10 পেজ লাগবে (শেষ পেজে মাত্র 5টা আইটেম থাকবে)। এই কারণেই ceil এখানে perfect — সবসময় উপরে রাউন্ড করে, যাতে কোনো ডেটা বাদ না পড়ে।
+
+আরেকটা উদাহরণ — একটা গাড়িতে 4 জন বসতে পারে, 22 জন মানুষ নিতে কয়টা গাড়ি লাগবে:
+
+
+people = 22
+capacity = 4
+
+cars_needed = math.ceil(people / capacity)
+print(f"গাড়ি লাগবে: {cars_needed}")  # 6 (5.5 হলেও পুরো 6টা গাড়ি লাগবে)
+
+
+
+
+print(f"Floor: {math.floor(3.14)}")  # 3
+
+floor শব্দটা এসেছে "floor" (মেঝে/নিচের সীমা) থেকে। এই ফাংশনের কাজ হলো — কোনো decimal সংখ্যাকে নিচের দিকের নিকটতম পূর্ণসংখ্যায় (integer) রাউন্ড করে দেওয়া।
+
+সহজ কথায়: fraction (ভগ্নাংশ) যত বড় বা ছোট থাকুক না কেন, সবসময় নিচের দিকের পূর্ণসংখ্যা বেছে নেওয়া হয়।
+
+import math
+
+print(math.floor(3.14))   # 3  -> নিচের দিকে
+print(math.floor(3.99))   # 3  -> 3.99 হলেও নিচেই থাকবে
+print(math.floor(3.01))   # 3
+print(math.floor(3.0))    # 3  -> পুরোপুরি integer হলে সেটাই থাকবে
+print(math.floor(0))      # 0
+
+
+Negative (ঋণাত্মক) সংখ্যার ক্ষেত্রে
+
+print(math.floor(-3.14))  # -4  -> -3.14 এর নিচে (মানে আরও ছোট) হলো -4
+print(math.floor(-3.99))  # -4
+print(math.floor(-3.0))   # -3
+
+egative সংখ্যায় "নিচে" মানে number line এ আরও বামদিকে/আরও ছোট সংখ্যায় যাওয়া। তাই floor(-3.14) = -4 হয়, -3 না (এটা ceil এর মতো উল্টো কাজ করে)।
+
+import math
+
+budget = 100
+price_per_item = 12
+
+items_can_buy = math.floor(budget / price_per_item)
+print(f"কেনা যাবে: {items_can_buy} টা")  # 8 টা (100/12 = 8.33, কিন্তু 9টা কেনার টাকা নেই)
+
+এখানে 100÷12 = 8.33, কিন্তু 8.33 টা জিনিস কেনা সম্ভব না, আর 9টা কেনার মতো টাকাও নেই। তাই floor ব্যবহার করে বলা হচ্ছে — যতগুলো সম্পূর্ণভাবে কেনা সম্ভব ততগুলোই নেওয়া হবে (8টা)।
+
+আরেকটা উদাহরণ — বয়স বের করার ক্ষেত্রে:
+age_in_years = math.floor(25.9)  # 25 (26 হয়ে যায়নি এখনো, তাই পুরো 25 বছরই)
+
+
+import math
+
+# ceil(3.14) হলো 4 এবং floor(3.14) হলো 3
+# ৪ + ৩ = ৭
+print(f"Total Sum: {math.ceil(3.14) + math.floor(3.14)}")
+
+
 
 
 
@@ -708,16 +851,7 @@ print(f"GCD: {math.gcd(12, 18)}")  # 6
 কোড আউটপুট: GCD: 6
 
 
-ছাদ এবং মেঝে বা Ceiling and Floor (math.ceil ও math.floor)
-# Ceiling and Floor
-print(f"Ceiling: {math.ceil(3.14)}")  # 4
-print(f"Floor: {math.floor(3.14)}")  # 3
 
-লজিক: ceil এসেছে Ceiling (ছাদ) থেকে। ছাদ থাকে উপরে! তাই কোনো দশমিক সংখ্যার ঠিক উপরের বা পরের পূর্ণসংখ্যাটি সে রিটার্ন করে।
-
-হিসাব: 3.14 এর ঠিক উপরের পূর্ণসংখ্যাটি হলো 4।
-
-কোড আউটপুট: Ceiling: 4
 
 
 
