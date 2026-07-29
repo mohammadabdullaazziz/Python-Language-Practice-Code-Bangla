@@ -29,4 +29,41 @@ COUNTRY: Final = "Bangladesh"
 
 # এখন যদি নিচে এটি পরিবর্তন করতে গেলে:
 COUNTRY = "USA" 
+
 # আপনার কোড এডিটর (VS Code / PyCharm) সাথে সাথে নিচে লাল দাগ দিয়ে ওয়ার্নিং দেখাবে!
+
+
+
+COUNTRY: Final = "Bangladesh"
+
+COUNTRY: Final = "Usa"
+
+print(COUNTRY) 
+
+
+সহজ কথায়: পাইথনে সত্যিকারের কোনো "কনস্ট্যান্ট (Constant)" বা অপরিবর্তনীয় ভ্যারিয়েবল বলতে কিছু নেই।
+
+কেন এটি কাজ করছে এবং এরর দিচ্ছে না?
+
+১. Final কেবল একটি সংকেত (Type Hint):
+পাইথনে from typing import Final ইমপোর্ট করে যখন  COUNTRY: Final = "Bangladesh" লিখা হয়, তখন পাইথন আসলে এটাকে কোনো হার্ড-লক বা ব্লক করে দেয় না।
+এটি মূলত অন্য ডেভেলপার বা IDE (যেমন: VS Code, PyCharm)-কে একটা মেসেজ দেয় যে—"এই ভ্যারিয়েবলের মান পরিবর্তন করা উচিত নয়।"
+
+২. পাইথন একটি ডাইনামিক ল্যাঙ্গুয়েজ:
+পাইথন ইন্টারপ্রেটার নিজে Final টাইপ চেক করে কোড চালানো বন্ধ করে না। তাই রানটাইমে ভ্যালু রিঅ্যাসাইন (Reassign) হয়ে যায় এবং আউটপুট Usa প্রিন্ট করে।
+
+তাহলে Final-এর কাজ কী এবং কেন ব্যবহার করা হয়?
+Final তৈরি করা হয়েছে স্ট্যাটিক টাইপ চেকার (Static Type Checker) যেমন—mypy বা VS Code (Pylance/Pyright)-এর জন্য।
+
+যখন আপনার এডিটরে (VS Code/PyCharm) কোডটি লিখা হবে, তখন এডিটর নিজে থেকেই COUNTRY-এর নিচে একটি লাল তরঙ্গায়িত দাগ (Red Squiggly Line) বা ওয়ার্নিং দেখাবে।
+
+
+from typing import Final
+
+COUNTRY: Final = "Bangladesh"
+
+# VS Code বা PyCharm এখানে লাল দাগ দিয়ে ওয়ার্নিং দেবে:
+# "Cannot assign to final attribute COUNTRY"
+COUNTRY = "Usa"
+
+print(COUNTRY)
