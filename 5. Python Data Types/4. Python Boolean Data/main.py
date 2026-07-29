@@ -81,7 +81,19 @@ print(result) # Output: 1
 
 
 
+পাইথনে সরাসরি কোনো মানকে int() বা অন্য কিছু দিয়ে কনভার্ট না করলেও, পাইথন ব্যাকগ্রাউন্ডে নিজেই বুলিয়ান (Boolean) মানগুলোকে নাম্বারে কনভার্ট বা কাস্ট (Implicit Type Conversion) করে নেয়।
 
+কেন এবং কীভাবে এটি ঘটে?
+
+পাইথন প্রোগ্রামিং ভাষার একদম গোড়ার নিয়মে:
+
+True এর ভেতরের গাণিতিক মান ধরা হয় 1
+
+False এর ভেতরের গাণিতিক মান ধরা হয় 0
+
+কারণ পাইথনে bool (Boolean) টাইপটি মূলত int (Integer) টাইপেরই একটি অংশ বা সাব-ক্লাস।
+
+তাই যখনই আপনি দুটো বুলিয়ান মানের মাঝে কোনো গাণিতিক চিহ্ন (যেমন: +, -, *, /) ব্যবহার করা হয়, পাইথন স্বয়ংক্রিয়ভাবে সেগুলোকে সংখ্যায় রূপান্তর করে যোগ-বিয়োগ করে ফেলে:
 
 Boolean আসলে Integer-এর subclass
 Python-এ bool টাইপটি int টাইপের একটি subclass। অর্থাৎ:
@@ -93,6 +105,7 @@ print(True + True)      # 2
 print(True == 1)        # True
 print(False == 0)       # True
 print(True + 5)         # 6
+
 
 
 
@@ -365,3 +378,68 @@ FastAPI-তে bool প্যারামিটার ও মডেল ব্য
 print(True + True)   # 1 + 1 = 2
 print(True * 5)      # 1 * 5 = 5
 print(False + True)  # 0 + 1 = 1
+
+
+
+
+x = 10
+y = 5
+
+# ১০ কি ৫ এর চেয়ে বড়?
+print(x > y)   # Output: True
+
+# ১০ কি ৫ এর সমান? (সমান বোঝাতে '==' দেওয়া হয়)
+print(x == y)  # Output: False
+
+# ১০ কি ৫ এর চেয়ে ছোট বা সমান?
+print(x <= y)  # Output: False
+
+
+
+
+
+
+
+text = "Python Programming"
+
+# 'Python' কি টেক্সটে আছে?
+print("Python" in text)    # Output: True
+
+# 'Java' কি টেক্সটে আছে?
+print("Java" in text)      # Output: False
+
+# 'Java' কি টেক্সটে নেই?
+print("Java" not in text)  # Output: True
+
+
+name = "Bangladesh"
+num = "12345"
+spaces = "   "
+
+# সব কি অক্ষর?
+print(name.isalpha())   # Output: True
+
+# সব কি সংখ্যা?
+print(num.isdigit())    # Output: True
+
+# এটি কি পুরোটাই খালি স্পেস?
+print(spaces.isspace()) # Output: True
+
+
+
+
+
+আগের কথার মতোই, গাণিতিক হিযাবে True কাজ করে 1 হিসেবে এবং False কাজ করে 0 হিসেবে।
+
+has_passport = True   # 1
+has_visa = True       # 1
+is_banned = False     # 0
+
+# ১ + ১ - ০ = ২
+print(has_passport + has_visa - is_banned) # Output: 2
+
+# True কে ১০ দিয়ে গুণ
+print(True * 10)  # Output: 10
+
+# False কে ১০ দিয়ে গুণ
+print(False * 10) # Output: 0
