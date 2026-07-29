@@ -867,6 +867,10 @@ is_all_space = text.isspace():
 
 এই False মানটি এসে জমা হবে is_all_space ভেরিয়েবল বক্সে।
 
+print("Mohammad aziz".isspace())  # False (কারণ বর্ণ রয়েছে)
+print("A".isspace())              # False (কারণ এটি একটি অক্ষর)
+print(" ".isspace())              # True  (কারণ শুধুমাত্র স্পেস রয়েছে)
+print("".isspace())               # False (সম্পূর্ণ খালি/Empty string হলে কিন্তু False দেয়!)
 
 
 
@@ -950,6 +954,13 @@ java_index = text.find("Java"):
 এই -1 মানটি এসে জমা হলো java_index ভেরিয়েবল বক্সে।
 
 
+text = "Mohammad aziz"
+
+# শুধু 'a' অক্ষরটি দিয়ে খুঁজুন
+text_slice = text.find("a")
+
+print(text_slice)
+
 
 
 
@@ -996,26 +1007,6 @@ index_pos = text.lower().find(search_term.lower())
 
 print(index_pos) # আউটপুট: 8
 
-
-
-
-শব্দটি বারবার থাকলে কোনটা দেবে? (First Occurrence)
-মূল টেক্সটে যদি একই শব্দ একাধিকবার থাকে, তবে find() বা indexOf() সবসময় প্রথমবার যেখানে পেয়েছে সেই ইনডেক্সটাই দেবে।
-
-let text = "cat dog cat";
-console.log(text.indexOf("cat")); // Output: 0 (প্রথম cat-এর c এর পজিশন)
-যদি শেষের দিক থেকে খুঁজতে চাওয়া হয়, তবে lastIndexOf() ব্যবহার করতে হবে। text.lastIndexOf("cat") দিলে আউটপুট আসবে 8 (শেষের cat-এর ইনডেক্স)।
-
-
-
-
-শব্দ কত নম্বর ইনডেক্স থেকে খোঁজা শুরু হবে, তা বলে দেওয়া যায়!
-indexOf() মেথডে চাইলে ২টি প্যারামিটার পাঠানো যাবে। ২য় প্যারামিটার নির্দেশ করে "কোথা থেকে খোঁজা শুরু করব?"
-
-let text = "cat dog cat";
-
-// ৬ নম্বর ইনডেক্সের পর থেকে "cat" খোঁজা শুরু করো:
-console.log(text.indexOf("cat", 6)); // Output: 8
 
 
 
@@ -1085,6 +1076,21 @@ print(text.replace("Hello", "Hi", 1))
 
 পাইথনে স্ট্রিং কিন্তু immutable (পরিবর্তন অযোগ্য)। text.replace() করার পরও মূল text ভেরিয়েবলের মান কিন্তু বদলায়নি! নতুন মান পাওয়ার জন্য এটাকে সব সময় নতুন একটি ভেরিয়েবলে অ্যাসাইন করে নিতে হয়।
 
+
+text = "Hello i am Abdullah, Hello Mem Hello Bangladesh"
+
+# কমা (,) দিয়ে লেখাটিকে ৩টি ভাগে ভাগ করা
+parts = text.split(", ")
+
+# ২ নম্বর অংশে (index 1) থাকা "Hello" কে "Hi" বানানো
+parts[1] = parts[1].replace("Hello", "Hi", 1)
+
+# আবার কমা দিয়ে যুক্ত করে দেওয়া
+text_slice = ", ".join(parts)
+
+print(text_slice)
+
+Hello i am Abdullah, Hi Mem Hello Bangladesh
 
 
 
@@ -1193,6 +1199,32 @@ rstripped_text = text.rstrip():
 ফলে আমরা আউটপুট পাব: "  Hello World" (শুরুতে স্পেস দুটি রয়ে গেছে)।
 
 এই মানটি এসে জমা হবে rstripped_text ভেরিয়েবল বক্সে।
+
+
+
+
+
+text = "Python"
+
+# মোট ১৫ দৈর্ঘ্যের জায়গা বানিয়ে ডানপাশের খালি অংশ '*' দিয়ে পূরণ করবে
+result = text.ljust(15, "*")
+
+print(result)
+
+Python*********
+
+
+
+text = "Apple"
+
+# মোট ১০ দৈর্ঘ্যের জায়গা তৈরি করবে এবং 'Apple' কে বামে রাখবে
+result = text.ljust(10)
+
+print(result + "Is Good")
+
+
+Apple     Is Good
+
 
 
 
