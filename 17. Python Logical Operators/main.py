@@ -13,10 +13,6 @@ not (নট)                   শর্তকে উল্টে দেয় (
 
 
 
-
-
-
-
   
 and অপারেটর (সবগুলো শর্ত সত্য হতে হবে)
 
@@ -103,6 +99,7 @@ is_eligible_for_license = (age >= 18) and has_good_eyesight
 print("License Eligibility Output:", is_eligible_for_license)
 
 Login Output: Welcome to your profile!
+
 
 
 
@@ -226,6 +223,88 @@ print("জব পাবেন কি না? :", got_job)  # Output: True (ক�
 
 
 
+বাসে হাফ ভাড়া দেওয়া যাবে যদি আপনি ছাত্র হন অথবা আপনার বয়স ৬০-এর বেশি হয়।
+
+is_student = True
+age = 25
+
+# যেকোনো একটি সত্য হলেই True
+gets_discount = is_student or (age > 60)
+
+print("Gets Bus Discount:", gets_discount)        Gets Bus Discount: True
+(ব্যাখ্যা: বয়স ৬০-এর বেশি না হলেও তিনি একজন ছাত্র, তাই ১টি শর্ত মিলে যাওয়ায় উত্তর এসেছে True)
+
+
+
+
+কেনাকাটার জন্য ক্যাশ টাকা অথবা বিকাশ অ্যাকাউন্ট যেকোনো একটা থাকলেই চলবে।
+
+has_cash = False
+has_bkash = True
+
+can_pay = has_cash or has_bkash
+
+print("Can Pay Money:", can_pay)   Can Pay Money: True
+
+
+
+আজ ছুটির দিন হবে যদি আজ শুক্রবার হয় অথবা আজ সরকারি ছুটি থাকে।
+
+is_friday = False
+is_govt_holiday = False
+
+is_day_off = is_friday or is_govt_holiday
+
+print("Is Today a Holiday:", is_day_off)  Is Today a Holiday: False    (ব্যাখ্যা: দুটো শর্তের একটিও সত্য নয়, তাই or-এর চূড়ান্ত আউটপুট এসেছে False)
+
+
+
+খেলাটি টিভিতে সরাসরি সম্প্রচার করা হচ্ছে অথবা ইউটিউবে লাইভ স্ট্রিম হচ্ছে—যেকোনো একটি মাধ্যম চালু থাকলেই খেলা দেখতে পারবেন।
+
+has_tv = False
+has_youtube_live = True
+
+can_watch_game = has_tv or has_youtube_live
+
+print("Can Watch Game:", can_watch_game)  Can Watch Game: True
+
+
+
+খাবারের বিলে ছাড় পাবেন যদি কাছে কুপন কোড থাকে অথবা মেম্বারশিপ কার্ড থাকে।
+
+has_coupon = True
+has_membership_card = False
+
+gets_discount = has_coupon or has_membership_card
+
+print("Discount Status:", gets_discount)  Discount Status: True
+
+
+
+অফিসের দরজা খুলবে যদি আইডি কার্ড পাঞ্চ করেন অথবা ফিঙ্গারপ্রিন্ট সেন্সরে আঙুল দেন।
+
+has_id_card = False
+has_fingerprint = False
+
+door_opens = has_id_card or has_fingerprint
+
+print("Door Opens Output:", door_opens) Door Opens Output: False
+(ব্যাখ্যা: কার্ডও নেই, ফিঙ্গারপ্রিন্টও ম্যাচ করেনি—দুটোই False হওয়ায় দরজা খুলবে না)
+
+
+
+আপনি জামাটি কিনবেন যদি জামাটির রঙ নীল (blue) হয় অথবা কালো (black) হয়।
+
+shirt_color = "blue"
+
+# রঙ নীল হলেও সত্য, কালো হলেও সত্য
+is_my_choice = (shirt_color == "blue") or (shirt_color == "black")
+
+if is_my_choice:
+    print("Shopping Status: I will buy this shirt!")       Shopping Status: I will buy this shirt!
+
+
+
 # or অপারেটর - যেকোনো একটি শর্ত সত্য হলেই হবে
 
 day = "Saturday"
@@ -317,6 +396,94 @@ print(not False)  # True
 
 is_raining = False
 print("বাইরে যাব কি না? :", not is_raining)  # Output: True (বৃষ্টি হচ্ছে না, তাই যাব)
+
+
+
+ধরে নিই বৃষ্টি হচ্ছে না (is_raining = False)। কিন্তু সামনে not বসালে তা সত্য হয়ে যাবে।
+
+is_raining = False
+
+# not ব্যবহারের কারণে False হয়ে যাবে True
+go_outside = not is_raining
+
+print("Can Go Outside:", go_outside) Can Go Outside: True
+
+
+
+গেমে প্লেয়ারের অবস্থা হলো is_dead = True (প্লেয়ার মারা গেছে)।
+
+is_dead = True
+
+# not এর কারণে True হয়ে যাবে False
+is_alive = not is_dead
+
+print("Is Player Alive:", is_alive)  Is Player Alive: False
+
+
+
+ইউজার পাসওয়ার্ড ফাঁকা রেখে দিলে সিস্টেম চেক করে পাসওয়ার্ড আছে কি না।
+
+is_password_entered = False
+
+# পাসওয়ার্ড দেওয়া না হলে not দিয়ে শর্তটি সত্য করা হলো
+if not is_password_entered:
+    print("Warning: Please enter your password!") Warning: Please enter your password!
+
+
+
+সুইচ বর্তমানে অন রয়েছে (is_switched_on = True)। সুইচে চাপ দিলে তা বন্ধ হবে।
+
+is_switched_on = True
+
+# সুইচে চাপ দিলে উল্টে যাবে
+current_state = not is_switched_on
+
+print("Current Switch State (On = True, Off = False):", current_state)   Current Switch State (On = True, Off = False): False
+
+
+
+হোটেলের দরজায় যদি "Do Not Disturb" ঝুলানো না থাকে (False), তবেই বেডরুম ক্লিনার ভেতরে ঢুকতে পারবে।
+
+is_do_not_disturb = False
+
+# not ব্যবহারের কারণে False হয়ে যাবে True
+can_clean_room = not is_do_not_disturb
+
+print("Can Clean Room:", can_clean_room)       Can Clean Room: True
+
+
+
+ফোনে ওয়াইফাই কানেক্টেড আছে (is_wifi_connected = True)। কিন্তু ইন্টারনেট কাজ করছে না কি না চেক করতে not ব্যবহার করা যায়:
+
+is_wifi_connected = True
+
+# not এর কারণে True হয়ে যাবে False
+is_offline = not is_wifi_connected
+
+print("Is Offline Status:", is_offline)        Is Offline Status: False
+
+
+
+ইউজার একটি ভুল ইমেইল অ্যাড্রেস দিলে তা চেক করার নিয়ম:
+
+is_email_valid = False
+
+# ইমেইল যদি সঠিক না হয় (not True)
+if not is_email_valid:
+    print("Email Output: Please provide a valid email address!")     Email Output: Please provide a valid email address!
+
+
+
+
+একটি ভ্যারিয়েবল ফাঁকা বা খালি কি না তা চেক করতে not খুব জনপ্রিয়:
+
+user_name = ""  # খালি স্ট্রিং পাইথনে কিন্তু False হিসেবে কাজ করে
+
+# empty value-র সামনে not দিলে তা True হয়ে যায়
+if not user_name:
+    print("Form Status: Username cannot be empty!")    Form Status: Username cannot be empty!
+ 
+
 
 
 
