@@ -11,7 +11,7 @@
 !=	             অসমান (Not Equal)	                দুটি মান অসমান কিনা চেক করে	         x != y → True
 
 
-বড় অপারেটর (>)
+বড় অপারেটর (>) Greater than
 বাম পাশের মান ডান পাশের মানের চেয়ে বড় কিনা চেক করে।
 
 age = 25
@@ -24,9 +24,41 @@ print("apple" > "banana")   # False ('a' < 'b')
 print("banana" > "apple")   # True ('b' > 'a')
 print("Python" > "Java")    # True ('P' > 'J')
 
+পাইথন প্রতিটি অক্ষরের জন্য একটি নির্দিষ্ট সংখ্যা বা মান ব্যবহার করে, যাকে বলা হয় ASCII Value (অ্যাসকি মান)। বর্ণমালার ক্রম অনুযায়ী এই মানগুলো একে একে বাড়তে থাকে:
+
+'a' = 97
+
+'b' = 98
+
+'c' = 99
+
+'d' = 100 ... এভাবেই চলতে থাকে।
+
+যখন পাইথন "apple" এবং "banana" এর তুলনা শুরু করে, সে প্রথম অক্ষরটি দেখে:
+
+"apple"-এর প্রথম অক্ষর হলো 'a' (মান: 97)
+
+"banana"-এর প্রথম অক্ষর হলো 'b' (মান: 98)
+
+যেহেতু 97 > 98 কথাটি মিথ্যা (False), তাই পাইথন সাথে সাথেই সিদ্ধান্ত নিয়ে নেয় যে "apple" > "banana" হবে False।
+
+# C কি B-এর চেয়ে বড়? (99 > 98)
+print("cat" > "banana")   # Output: True (কারণ 'c' অক্ষরটি 'b'-এর চেয়ে বড়)
+
+# B কি A-এর চেয়ে বড়? (98 > 97)
+print("banana" > "apple") # Output: True (কারণ 'b' অক্ষরটি 'a'-এর চেয়ে বড়)
+
+# A কি B-এর চেয়ে বড়? (97 > 98)
+print("apple" > "banana") # Output: False
 
 
-ছোট অপারেটর (<)
+
+
+
+
+
+ছোট অপারেটর (<) Less than
+
 বাম পাশের মান ডান পাশের মানের চেয়ে ছোট কিনা চেক করে।
 temperature = 30
 boiling_point = 100
@@ -39,7 +71,10 @@ print("car" < "bus")        # False ('c' > 'b')
 
 
 
-বড় বা সমান অপারেটর (>=)
+
+
+বড় বা সমান অপারেটর (>=) Greater than or Equal to
+
 বাম পাশের মান ডান পাশের মানের চেয়ে বড় বা সমান কিনা চেক করে।
 
 marks = 80
@@ -54,7 +89,9 @@ print(score >= target)  # False (75 >= 80 নয়)
 
 
 
-ছোট বা সমান অপারেটর (<=)
+
+ছোট বা সমান অপারেটর (<=) Less than or Equal to
+
 বাম পাশের মান ডান পাশের মানের চেয়ে ছোট বা সমান কিনা চেক করে।
 
 age = 17
@@ -69,7 +106,9 @@ print(weight <= max_weight)  # True (ওজন সীমার মধ্যে)
 
 
 
-অসমান অপারেটর (!=)
+
+অসমান অপারেটর (!=) Not Equal to
+
 দুটি মান অসমান কিনা চেক করে।
 x = 10
 y = 5
@@ -84,7 +123,9 @@ print("apple" != "orange")  # True
 
 
 
-সমান অপারেটর (==)
+
+সমান অপারেটর (==) Equal to
+
 দুটি মান সমান কিনা চেক করে।
 
 # সংখ্যা
@@ -119,12 +160,20 @@ print(10 == "10")  # False (ভিন্ন টাইপ)
 print("apple" < "banana")  # True
 print("abc" < "abcd")      # True (ছোট স্ট্রিং বড় স্ট্রিং-এর আগে)
 
+
+
 # বড় হাতের অক্ষর ছোট হাতের থেকে ছোট (ASCII তে)
 print("Apple" < "apple")   # True ('A' 65 < 'a' 97)
 
 # কিন্তু কেস ইনসেনসিটিভ তুলনা চাইলে:
 print("Apple".lower() == "apple".lower())  # True
 
+fruit1 = "Apple"
+fruit2 = "apple"
+
+fruit3 = fruit1.lower() == fruit2.lower()
+
+print(fruit3)
 
 
 
@@ -139,12 +188,18 @@ print(x > 3 and x < 10)  # True
 # চেইন কম্প্যারিজন (পাইথন স্টাইল)
 print(3 < x < 10)  # True (একেবারে গাণিতিক নোটেশনের মতো!)
 
+
+
 # অন্যান্য উদাহরণ
 age = 25
 print(18 <= age <= 60)  # True (বয়স ১৮-৬০ এর মধ্যে)
 
+
+
 score = 85
 print(80 <= score <= 100)  # True (স্কোর ৮০-১০০ এর মধ্যে)
+
+
 
 # একাধিক চেইন
 a = 10
@@ -199,6 +254,7 @@ print(False < 1)   # True
 # বুলিয়ান নিজেদের মধ্যে
 print(True == True)   # True
 print(True != False)  # True
+
 
 
 
@@ -280,11 +336,15 @@ print(a == b)  # True (মান সমান)
 print(a is b)  # False (ভিন্ন অবজেক্ট)
 print(a is c)  # True (একই অবজেক্ট)
 
+
+
+
 # ইমিউটেবল ডেটার ক্ষেত্রে:
 x = 10
 y = 10
 print(x == y)  # True
 print(x is y)  # True (পাইথন ছোট ইন্টিজার ক্যাশে রাখে)
+
 
 # স্ট্রিং
 str1 = "hello"
@@ -338,19 +398,96 @@ if age >= 18 and age <= 60:
 # ১.
 print(5 > 3 > 1)
 
+# Variables declaration
+a = 5
+b = 3
+c = 1
+
+# 1. Direct Chained Comparison
+result1 = a > b > c
+print("Direct Output:", result1)
+
+# 2. How Python works under the hood (using 'and')
+result2 = (a > b) and (b > c)
+print("Under the Hood Output:", result2)
+
+Direct Output: True
+Under the Hood Output: True
+
+
+
+
 # ২.
 print(10 == 10.0)
 
+# Variables declaration
+num_int = 10       # Integer number
+num_float = 10.0   # Float number
+
+# Value comparison using '=='
+is_equal = num_int == num_float
+print("Value Comparison Output:", is_equal)
+
+# Type comparison using 'type()'
+is_same_type = type(num_int) == type(num_float)
+print("Data Type Comparison Output:", is_same_type)
+
+
+Value Comparison Output: True
+Data Type Comparison Output: False
+
+
+
+
+
 # ৩.
-print("Python" > "python")
+print("Python" > "python") output False কারণ হলো: পাইথনে বড় হাতের অক্ষর (Uppercase) এবং ছোট হাতের অক্ষর (Lowercase) এক নয়। পাইথনের কাছে বড় হাতের অক্ষর ছোট হাতের অক্ষরের চেয়ে সংখ্যাগতভাবে ছোট।
+
+
+# Variables declaration
+str1 = "Python"  # Starts with uppercase 'P'
+str2 = "python"  # Starts with lowercase 'p'
+
+# Comparison using '>'
+result = str1 > str2
+print("Comparison Output:", result)
+
+# ASCII / Unicode values of first letters
+p_upper_code = ord(str1[0])  # Code for 'P'
+p_lower_code = ord(str2[0])  # Code for 'p'
+
+print("ASCII value of 'P':", p_upper_code)
+print("ASCII value of 'p':", p_lower_code)
+
+
+Comparison Output: False
+ASCII value of 'P': 80
+ASCII value of 'p': 112
+
+
+
 
 # ৪.
 print([1, 2] == [1, 2])
 
+
+
+
 # ৫.
 print(3 < 5 != 8)
 
-(উত্তরগুলো: True, True, False, True, True)
+# Variables declaration
+a = 3
+b = 5
+c = 8
+
+# 1. Direct Chained Comparison
+result1 = a < b != c
+print("Direct Output:", result1)
+
+# 2. How Python evaluates it under the hood (using 'and')
+result2 = (a < b) and (b != c)
+print("Under the Hood Output:", result2)
 
 
 
@@ -391,16 +528,21 @@ print("apple" in fruits)     # True
 print("grape" in fruits)     # False
 print("grape" not in fruits) # True
 
+
+
 # স্ট্রিংয়ে সাবস্ট্রিং
 text = "Hello, World!"
 print("World" in text)       # True
 print("world" in text)       # False (কেস সেনসিটিভ)
+
+
 
 # ডিকশনারিতে কী চেক
 person = {"name": "Alice", "age": 30}
 print("name" in person)      # True (কী চেক করে)
 print("Alice" in person)     # False (ভ্যালু চেক করে না)
 print("Alice" in person.values())  # True (ভ্যালু চেক করতে চাইলে)
+
 
 # রেঞ্জে সদস্যতা
 print(5 in range(1, 10))     # True
@@ -417,6 +559,7 @@ z = [1, 2, 3]
 print(type(x) == int)        # True
 print(type(y) == str)        # True
 print(type(z) == list)       # True
+
 
 # আধুনিক পদ্ধতি (isinstance)
 print(isinstance(x, int))    # True
@@ -438,9 +581,30 @@ print(isinstance(x, (int, float)))  # True
 
 # স্ট্রিং চেইন
 print("apple" < "banana" < "cherry")  # True
+এটিও একটি Chained Comparison (তুলনার শিকল)। এটি ব্যাকগ্রাউন্ডে দুটি তুলনাকে and দিয়ে যুক্ত করে কাজ করে: ("apple" < "banana") and ("banana" < "cherry")।
+
+# Variables declaration
+str1 = "apple"
+str2 = "banana"
+str3 = "cherry"
+
+# 1. Direct Chained Comparison
+result1 = str1 < str2 < str3
+print("Direct Output:", result1)
+
+# 2. How Python evaluates it under the hood (using 'and')
+result2 = (str1 < str2) and (str2 < str3)
+print("Under the Hood Output:", result2)
+
+Direct Output: True
+Under the Hood Output: True
+
+
+
 
 # লিস্ট চেইন
 print([1, 2] < [1, 3] < [1, 4])      # True
+
 
 # মিক্সড চেইন (সতর্ক থাকুন)
 x = 5
