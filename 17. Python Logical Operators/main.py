@@ -2,10 +2,13 @@
 
 পাইথনে ৩টি লজিক্যাল অপারেটর আছে:
 
-অপারেটর	                                    কাজ
- and (অ্যান্ড)                       দুটি শর্তই সত্য হলে True
- or (অর)                          যেকোনো একটি শর্ত সত্য হলে True
- not (নট)                          শর্তকে উল্টে দেয় (True → False, False → True)
+
+
+অপারেটর	                 কাজ
+
+and (অ্যান্ড)                দুটি শর্তই সত্য হলে True
+or (অর)                   যেকোনো একটি শর্ত সত্য হলে True
+not (নট)                   শর্তকে উল্টে দেয় (True → False, False → True)
 
 
 
@@ -17,7 +20,7 @@
   
 and অপারেটর (সবগুলো শর্ত সত্য হতে হবে)
 
-and অপারেটরের দুই পাশের সবগুলো শর্তই সত্য (True) হতে হবে। যদি একটি শর্তও মিথ্যা (False) হয়, তবে পুরো ফলাফলটিই False হয়ে যাবে।
+উভয় পাশের শর্ত সত্য (True) হলেই কেবল পুরোটার উত্তর True হবে। যেকোনো একটা মিথ্যা হলে উত্তর False হয়ে যাবে।
 
 
 # AND এর ট্রুথ টেবিল
@@ -27,12 +30,94 @@ print(False and True)  # False
 print(False and False) # False
 
 
+কোনো স্কলারশিপের জন্য বয়স ২০-এর কম হতে হবে এবং প্রাপ্ত নম্বর ৮০-এর বেশি হতে হবে।
+
+age = 18
+score = 85
+
+# দুটো শর্ত একসাথে চেক করা হচ্ছে
+can_get_scholarship = (age < 20) and (score > 80)
+
+print("Scholarship Eligible Output:", can_get_scholarship)
+
+Scholarship Eligible Output: True
+
+
+মেলায় ঢুকতে হলে আপনার কাছে টিকিট থাকতে হবে এবং মাস্ক পরা থাকতে হবে।
+
+has_ticket = True
+has_mask = False
+
+# দুটোই True না হলে ঢোকা যাবে না
+can_enter = has_ticket and has_mask
+
+print("Can Enter Output:", can_enter)
+
+Can Enter Output: False
+
+
+অফারে ফ্রি মিনিট চালু করার শর্ত: অ্যাকাউন্ট অ্যাক্টিভ থাকতে হবে এবং ব্যালেন্স ৫ টাকার বেশি হতে হবে।
+
+is_active = True
+balance = 10
+
+# দুটোই সত্য হতে হবে
+can_activate_offer = is_active and (balance > 5)
+
+print("Offer Activation Status:", can_activate_offer)
+
+Offer Activation Status: True
+
+
+
+ফ্রি ডেলিভারি পাওয়ার শর্ত: অর্ডারের পরিমাণ ৫০০ টাকার বেশি হতে হবে এবং পেমেন্ট অনলাইনে করতে হবে।
+
+order_amount = 600
+payment_method = "Online"
+
+# ৫০০ এর বেশি এবং পেমেন্ট অনলাইন হলে True হবে
+free_delivery = (order_amount > 500) and (payment_method == "Online")
+
+print("Free Delivery Output:", free_delivery)
+
+
+
+
 # উদাহরণ: ব্যাংকে লোন পাওয়ার জন্য বয়স ১৮+ এবং ইনকাম ২০০০০+ হতে হবে
 age = 25
 income = 25000
 
 eligible = (age > 18) and (income > 20000)
 print("লোন পাবেন কি না? :", eligible)  # Output: True (কারণ দুটি শর্তই সত্য)
+
+
+
+ড্রাইভিং লাইসেন্স পাওয়ার শর্ত: বয়স ১৮ বা তার বেশি হতে হবে এবং চোখের দৃষ্টি ভালো হতে হবে।
+
+age = 20
+has_good_eyesight = False
+
+# একটা শর্ত পূর্ণ হলেও অন্যটা মিথ্যা (False)
+is_eligible_for_license = (age >= 18) and has_good_eyesight
+
+print("License Eligibility Output:", is_eligible_for_license)
+
+Login Output: Welcome to your profile!
+
+
+
+
+লগইন করার শর্ত: ইমেইল সঠিক হতে হবে এবং পাসওয়ার্ডও সঠিক হতে হবে।
+
+correct_email = "user@gmail.com"
+correct_pass = "12345"
+
+entered_email = "user@gmail.com"
+entered_pass = "12345"
+
+# শুধু if দিয়ে লেখা
+if (entered_email == correct_email) and (entered_pass == correct_pass):
+    print("Login Output: Welcome to your profile!")
 
 
 
@@ -121,6 +206,7 @@ else:
 
 
 or অপারেটর (OR)
+
 or অপারেটরের দুই পাশের শর্তগুলোর মধ্যে যেকোনো একটি সত্য (True) হলেই চূড়ান্ত ফলাফল True হয়। দুটি শর্তই মিথ্যা হলে কেবল তখনই ফলাফল False হয়।
 
 # OR এর ট্রুথ টেবিল
