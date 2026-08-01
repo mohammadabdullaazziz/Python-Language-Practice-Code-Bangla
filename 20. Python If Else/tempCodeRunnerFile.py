@@ -1,0 +1,1 @@
+t(f'First character is: {text_first}')
