@@ -510,6 +510,15 @@ final_math = result + 5  # ১০ + ৫ = ১৫ (কাজ করবে, কা
 ভবিষ্যতে ব্যবহারের জন্য (Long-term): যদি ওই পজিটিভ মানটা দিয়ে পরবর্তীতে কোডে আরও অন্য কোনো কাজ করতে হয়, তখন  রি-অ্যাসাইন করে মেমোরিতে সেভ করে রাখতে হয়।
 
 
+যদি আসল num ভ্যারিয়েবলের মানই স্থায়ীভাবে বদলে ফেলতে
+abs() এর ফলাফলটি আবার num ভ্যারিয়েবলের ভেতরেই রি-অ্যাসাইন (Re-assign) করতে হবে:
+
+num = -42.7
+
+# num এর মান বদলে নিজেই নিজের পরম মান (absolute value) হয়ে যাবে
+num = abs(num)
+
+print(num)  # Output: 42.7
 
 
 
@@ -681,18 +690,79 @@ print(f"Power: {pow(2, 10)}")  # 1024
 
 
 
+# একটি বড় গুণফল বা পাওয়ারের হিসাব
+base_number = 5
+exponent = 11
+
+# pow(5, 11) = 48,828,125 
+# f-string এ ':, ' ব্যবহার করায় প্রতি ৩ সংখ্যা পর পর কমা (,) বসবে
+result = f'{pow(base_number, exponent):,}'
+
+print(result)
+# Output: 48,828,125
+
+
+পাইথনে f-string এর ভেতর কোলনের পর কমা :, দিলে পাইথন স্বয়ংক্রিয়ভাবে হাজার, মিলিয়ন ইত্যাদির স্থানে কমা বসিয়ে দেয়:
+
+# উদাহরণ: সরাসরি একটি বড় সংখ্যার ওপর কমা ফরম্যাটিং
+my_number = 22568450
+
+# f-string এ :, ব্যবহার করা হয়েছে
+formatted_result = f'{my_number:,}'
+
+print(formatted_result)
+# Output: 22,568,450
+
+💡 আরেকটি উদাহরণ (ক্যালকুলেশনের সাথে):
+
+price = 1500
+quantity = 15045.633
+
+# হিসাব ও ফরম্যাটিং একসাথে
+total = price * quantity
+
+# :, দিয়ে কমা এবং .2f দিয়ে দশমিকের পর ২ ঘর নির্দিষ্ট করা হয়েছে
+final_output = f'{total:,.2f}'
+
+print(final_output)
+# Output: 22,568,449.50
+
+মূল ট্রিক: f-string এর ভেতর ভ্যারিয়েবলের নামের পর :, ব্যবহার করলেই সংখ্যাটি পড়ার সুবিধার্থে কমা যুক্ত হয়ে যায়!
+
+
+
+
 বর্গমূল বা Square Root (math.sqrt)
 
 sqrt শব্দটা এসেছে "square root" (বর্গমূল) থেকে। এই ফাংশনের কাজ হলো — কোনো সংখ্যার বর্গমূল বের করে দেওয়া।
 
 সহজ কথায়: কোন সংখ্যাকে নিজে দিয়ে গুণ করলে (square করলে) দেওয়া সংখ্যাটা পাওয়া যাবে, সেটাই বর্গমূল।
 
+গণিতের ভাষায় যেসব সংখ্যাকে কোনো একটি পূর্ণসংখ্যা (Integer)-কে নিজের সাথে গুণ করে পাওয়া যায়, সেগুলোকে পূর্ণবর্গ সংখ্যা (Perfect Square Numbers) বলা হয়।
+
+1 * 1 = 1
+2 * 2 = 4
+3 * 3 = 9
+4 * 4 = 4
+5 * 5 = 25
+6 * 6 = 36
+7 * 7 = 49
+8 * 8 = 64
+9 * 9 = 81
+10 * 10 = 100
+
+২০-এর বর্গমূল কেন ৪.৪৭২১৩৫৯৫৪৯৯৯৫৮...? (অমূলদ সংখ্যা)
+২০ কোনো পূর্ণবর্গ সংখ্যা নয়। অর্থাৎ, কোনো আস্ত বা পূর্ণসংখ্যা নেই যা নিজের সাথে গুণ করলে ২০ হবে।
+
+সহজ কথায়, যেসব সংখ্যাকে বর্গমূল (Square Root) করলে একটি আস্ত পূর্ণসংখ্যা পাওয়া যায় না—বরং দশমিক সংখ্যা চলে আসে, সেগুলোকে পূর্ণবর্গ সংখ্যা নয় (Non-Perfect Square Numbers) বলা হয়।
+
+
+
 # Square root
 print(f"Square root: {math.sqrt(16)}")  # 4.0
 
 লজিক: sqrt এসেছে Square Root থেকে। কোন সংখ্যাকে সেই সংখ্যা দিয়ে গুণ করলে ১৬ হয়? সেটা বের করাই এর কাজ।হিসাব: আমরা জানি, ৪ * ৪ = ১৬। তাই ১৬ এর বর্গমূল হলো ৪।
 পাইথন math মডিউলের এই ফাংশনটি উত্তরটিকে সবসময় ফ্লোট (float) আকারে দেয়।কোড আউটপুট: Square root: 4.0
-
 
 import math  # প্রথমে পাইথনের ম্যাথ মডিউলটি ইম্পোর্ট 
 
@@ -738,6 +808,48 @@ else:
 
 
 
+
+
+import math
+
+number = -9
+
+if number < 0:
+    print(f"{number} is a negative number. Square root is not real.")
+else:
+    result = math.sqrt(number)
+    if result.is_integer():
+        print(f"{number} is a perfect square. Answer: {int(result)}")
+        
+    else:
+        print(f"{number} is NOT a perfect square.")
+
+
+আউটপুট: -9 is a negative number. Square root is not real.
+    
+
+
+
+import math
+
+number = 20
+
+# বর্গমূল বের করা
+result = math.sqrt(number)
+
+# এটি পূর্ণ সংখ্যা কি না পরীক্ষা করা
+if result.is_integer():
+    print(f"{number} is a perfect square. Square root is {int(result)}.")
+else:
+    print(f"{number} is not a perfect square. Square root is {result}.")
+
+
+20 পূর্ণবর্গ সংখ্যা নয়। (এর বর্গমূল হলো 4.47213595499958)
+
+
+
+
+
 Pythagorean theorem (দুই বাহু থেকে অতিভুজ বের করা)
 
 import math
@@ -759,6 +871,49 @@ def is_perfect_square(num):
 
 print(is_perfect_square(16))  # True
 print(is_perfect_square(20))  # False
+
+
+ইউজারের থেকে ইনপুট নিয়ে চেক করা (input() দিয়ে)
+
+import math
+
+# ইউজার থেকে ইনপুট নেওয়া
+number = int(input("Enter a number: "))
+
+result = math.sqrt(number)
+
+if result.is_integer():
+    print(f"{number} is a perfect square.")
+else:
+    print(f"{number} is NOT a perfect square.")
+
+
+
+ইনপুট ২৫ দিলে: 25 is a perfect square.
+
+ইনপুট ১২ দিলে: 12 is NOT a perfect square.
+
+
+
+সরাসরি সংখ্যা বসিয়ে সহজে দেখা (যেমন: ১৬)
+
+
+import math
+
+number = 16
+
+result = math.sqrt(number)
+
+if result.is_integer():
+    print(f"{number} is a perfect square. Answer: {int(result)}")
+else:
+    print(f"{number} is NOT a perfect square.")
+
+
+আউটপুট: 16 is a perfect square. Answer: 4
+
+
+
  
 
 
@@ -781,11 +936,36 @@ print(math.ceil(3.01))   # 4  -> সামান্য বেশি হলেও
 print(math.ceil(3.0))    # 3  -> পুরোপুরি integer হলে সেটাই থাকবে
 print(math.ceil(0))      # 0
 
+
+import math
+
+# ১. ভেরিয়েবলে দশমিক সংখ্যা রাখা
+price = 3.14
+
+# ২. ceil() প্রয়োগ করে নতুন ভেরিয়েবলে রেজাল্ট রাখা
+rounded_price = math.ceil(price)
+
+# ৩. আউটপুট প্রিন্ট করা
+print("Original:", price)          # Output: 3.14
+print("Ceil Value:", rounded_price) # Output: 4
+
+
+
 Negative (ঋণাত্মক) সংখ্যার ক্ষেত্রে (একটু গুরুত্বপূর্ণ)
 print(math.ceil(-3.14))  # -3  -> -3.14 এর উপরে (মানে বেশি বড়) হলো -3
 print(math.ceil(-3.99))  # -3  -> এখানেও -3 উপরের দিকে
 print(math.ceil(-3.0))   # -3
 ⚠️ এখানে অনেকে ভুল করে ভাবে negative সংখ্যায় "উপরে" মানে আরও negative দিকে যাওয়া, কিন্তু আসলে number line এ -3, -3.14 থেকে ডানদিকে/বড় সংখ্যা, তাই ceil(-3.14) = -3 হয়, -4 না।
+
+import math
+
+temp = -3.14
+
+result = math.ceil(temp)
+
+print(result) # Output: -3
+
+
 
 
 import math
@@ -876,10 +1056,6 @@ print(f"GCD: {math.gcd(12, 18)}")  # 6
 হিসাব: ১২ এবং ১৮-কে ৩ দিয়েও ভাগ যায়, আবার ৬ দিয়েও যায়। যেহেতু ৬ সবচেয়ে বড়, তাই গসাগু হলো ৬।
 
 কোড আউটপুট: GCD: 6
-
-
-
-
 
 
 
@@ -1344,4 +1520,39 @@ uuid	      ইউনিক আইডি	                     ডেটাবে�
 random = int, float, list-এর জন্য
 string = অক্ষর যোগ করতে
 secrets = নিরাপদ ডেটার জন্য
-uuid = ইউনিক আইডির জন্য
+uuid = ইউনিক আইডির জন্য 
+
+
+
+
+
+
+
+
+
+🎩 ম্যাজিক ১: মনের সংখ্যা বলে দেওয়া (Mind Reading Trick)
+এই ম্যাজিকটি দিয়ে যে কারও মনের সংখ্যা বলে দিতে পারা যাবে, সে যে সংখ্যাই ধরুক না কেন, উত্তর সবসময় ৩ আসবে!
+
+১. মনে মনে যেকোনো একটি সংখ্যা ধরো (যেমন: ৫)।
+২. সেই সংখ্যাটিকে ২ দিয়ে গুণ করো (৫ $\times$ ২ = ১০)।
+৩. গুণফলের সাথে ৬ যোগ করো (১০ + ৬ = ১৬)।
+৪. এবার পুরো যোগফলটিকে ২ দিয়ে ভাগ করো (১৬ $\div$ ২ = ৮)।
+৫. সবশেষে, শুরুতে যে সংখ্যাটি ধরেছিলে, সেটা এখনকার সংখ্যা থেকে বিয়োগ করে দাও (৮ - ৫ = ৩)।
+
+
+# ইউজার থেকে যেকোনো একটি সংখ্যা নেওয়া
+user_number = float(input("যেকোনো একটি সংখ্যা ধরুন (যেমন: ৫, ১২, ১০০): "))
+
+# ১. সংখ্যাটিকে ২ দিয়ে গুণ
+step1 = user_number * 2
+
+# ২. গুণফলের সাথে ৬ যোগ
+step2 = step1 + 6
+
+# ৩. ২ দিয়ে ভাগ
+step3 = step2 / 2
+
+# ৪. শুরুতে ধরা সংখ্যাটি বিয়োগ
+final_result = step3 - user_number
+
+print(f"🪄 ম্যাজিক! আপনার চূড়ান্ত উত্তর সবসময়: {int(final_result)}")
