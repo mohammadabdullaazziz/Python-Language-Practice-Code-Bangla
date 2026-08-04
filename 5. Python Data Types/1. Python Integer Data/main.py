@@ -130,6 +130,30 @@ f"Python version: {sys.version}" (f-string)
 
 
 
+int_num = 5645
+float_num = 3.14159
+boolen_value = True
+string_value = "Hello, World!"
+empty_string = ""
+empty_none = None
+
+print(f'size of int_num: {int_num.__sizeof__()} bytes')
+print(f'size of float_num: {float_num.__sizeof__()} bytes')
+print(f'size of boolen_value: {boolen_value.__sizeof__()} bytes')
+print(f'size of string_value: {string_value.__sizeof__()} bytes')
+print(f'size of empty_string: {empty_string.__sizeof__()} bytes')
+print(f'size of empty_none: {empty_none.__sizeof__()} bytes')
+
+
+
+
+
+
+
+
+
+
+
 
 কেন এত বেশি জায়গা লাগে? (The Overhead)
 Python-এ সবকিছুই আসলে এক একটি Object (অবজেক্ট)।  যখন x = 25 লিখা হয়, Python মেমোরিতে শুধু 25 সংখ্যাটি রাখে না, বরং সেই সংখ্যার সাথে আরও অনেক অতিরিক্ত তথ্য (Metadata) গুছিয়ে রাখে।
@@ -655,6 +679,34 @@ Is number: True
 
 
 
+int_num = 5645
+float_num = 3.14159
+boolen_value = True
+string_value = "Hello, World!"
+empty_string = ""
+empty_none = None
+
+
+print(f"is integer: {isinstance(int_num, int)}")
+print(f"is type integer: {type(int_num) == int}")
+
+print(f"is float: {isinstance(float_num, float)}")
+print(f"is type float: {type(float_num) == float}")
+
+print(f"is boolean: {isinstance(boolen_value, bool)}")
+print(f"is type boolean: {type(boolen_value) == bool}")
+
+print(f"is string: {isinstance(string_value, str)}")
+print(f"is type string: {type(string_value) == str}")
+
+print(f"is empty string: {isinstance(empty_string, str) and len(empty_string) == 0}")
+print(f"is type: {type(empty_none) == type(None)}")
+
+
+
+
+
+
 Mathematical Functions
 
 গণিত নিয়ে পাইথনের এই বিল্ট-ইন (built-in) ফাংশনগুলো খুব মজার এবং কাজের! কোডে math মডিউলের কিছু ফাংশন ব্যবহার করা হয়েছে (যেমন: math.sqrt, math.ceil ইত্যাদি)।
@@ -662,27 +714,47 @@ Mathematical Functions
 
 import math
 
-num = -42.7
+import math
 
-# Absolute value
-print(f"Absolute: {abs(num)}")  # 42.7
+number = -42.7
+fixed_number = abs(number)
 
-এখানে num নামের একটি ভেরিয়েবলে একটি ঋণাত্মক দশমিক সংখ্যা (-42.7) রাখা হয়েছে।
+print(f"The absolute value of {number} is {fixed_number}")
 
 লজিক: abs() ফাংশনের কাজ হলো সংখ্যার আগে থাকা প্লাস বা মাইনাস চিহ্নকে ফুঁ দিয়ে উড়িয়ে দেওয়া! সে মাইনাস চিহ্ন বাদ দিয়ে শুধুমাত্র মূল পজিটিভ মানটা বের করে আনে।
 
-হিসাব: -42.7 থেকে মাইনাস চলে গেলে থাকে 42.7।
+🛠️ যদি মূল number ভ্যারিয়েবলের মানই পরিবর্তন করতে চাওয়া হয়:
+তাহলে abs()-এর মানটি আবার number ভ্যারিয়েবলেই অ্যাসাইন (assign) বা পুনরায় জমা করতে হবে:
 
-কোড আউটপুট: Absolute: 42.7
+import math
+
+number = -42.7
+number = abs(number)  # এখন মূল number ভ্যারিয়েবলের মানই পরিবর্তন হয়ে যাবে
+
+print(number)  # আউটপুট আসবে: 42.7
 
 
 
-num_one = 2
-result = num_one ** 10
-print(result)
+
+
+num = 2
+result = num ** 10
+print("The tenth power of", num, "is", result)
+
+
+num = 2
+result = num ** 10
+print("Power Calculation(2, 10) =", result)
+
+
 
 # Power
-print(f"Power: {pow(2, 10)}")  # 1024
+print(f"Power Calculation(2, 10) {pow(2, 10)}")  # 1024
+
+num = 2
+result = pow(num, 10)
+print(result)
+
 
 পাওয়ার বা সূচক (pow)
 লজিক: pow(x, y) মানে হলো x এর ওপর পাওয়ার y। অর্থাৎ x-কে নিজের সাথে নিজেই y বার গুণ করতে হবে।হিসাব: এখানে pow(2, 10) মানে 2^10 (২-কে ১০ বার গুণ)। 
