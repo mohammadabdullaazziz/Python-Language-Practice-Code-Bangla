@@ -829,6 +829,36 @@ sqrt শব্দটা এসেছে "square root" (বর্গমূল) �
 সহজ কথায়, যেসব সংখ্যাকে বর্গমূল (Square Root) করলে একটি আস্ত পূর্ণসংখ্যা পাওয়া যায় না—বরং দশমিক সংখ্যা চলে আসে, সেগুলোকে পূর্ণবর্গ সংখ্যা নয় (Non-Perfect Square Numbers) বলা হয়।
 
 
+পাইথনে math.sqrt() ফাংশনটিকে সবসময় দশমিক সংখ্যা বা float ডেটা টাইপ আউটপুট দেওয়ার জন্যই ডিজাইন করা হয়েছে।
+এমনকি কোনো পূর্ণসংখ্যার বর্গমূল যদি মিলে যায় (যেমন: root 25 = 5), তাহলেও এটি গাণিতিক ধারাবাহিকতা বজায় রাখতে 5.0 হিসেবেই ফলাফল ফেরত দেয়।
+
+import math
+
+base_number = 25
+result = f"Result is: {int(math.sqrt(base_number))}"
+print(result)  # Output: Result is: 5
+
+
+
+math.isqrt() ফাংশন ব্যবহার করে
+
+import math
+
+base_number = 25
+result = f"Result is: {math.isqrt(base_number)}"
+print(result)  # Output: Result is: 5
+
+
+
+** 0.5 এবং int() ব্যবহার করে (math ছাড়া)
+
+base_number = 25
+result = f"Result is: {int(base_number ** 0.5)}"
+print(result)  # Output: Result is: 5
+
+
+
+
 
 # Square root
 print(f"Square root: {math.sqrt(16)}")  # 4.0
