@@ -627,7 +627,8 @@ capitalized_text = text.capitalize()
 # ৩. f-string ব্যবহার করে  আউটপুট প্রিন্ট 
 print(f"Original Text: '{text}'")
 print(f"Capitalized Text: '{capitalized_text}'")
-
+পুরো string এর শুধু প্রথম অক্ষরটাকে বড় হাতের (uppercase) করে
+আর বাকি সব অক্ষরকে ছোট হাতের (lowercase) করে দেয়
 
 
 
@@ -710,7 +711,23 @@ is_only_letters = text.isalpha():
 কারণ Hello এবং Python এর মাঝখানে একটি খালি জায়গা বা স্পেস (Space) আছে। পাইথনের কাছে স্পেস কোনো বর্ণ/অক্ষর নয়। তাই মাঝখানে স্পেস থাকলেও isalpha() সরাসরি False দিয়ে দেয়।
 
 
+text = "hello python"
 
+result = text.isalpha()
+print(result)
+false kno
+
+False আসছে কারণ text.isalpha() শুধু তখনই True দেয় যখন পুরো স্ট্রিংয়ের সব character letter হয়, আর hello python-এ মাঝখানে একটা space আছে । output False
+
+text = "python"
+
+result = text.isalpha()
+print(result)     output True
+
+
+
+
+text = "Hello123"
 
 print(text.isdigit())    # False (অক্ষর আছে)
 
@@ -739,6 +756,12 @@ is_only_digits = text.isdigit():
 যেহেতু পাইথনের নিয়ম হলো—শুরু থেকে শেষ পর্যন্ত সব ক্যারেক্টারকে সংখ্যা হতে হবে, তাই প্রথম ঘরেই শর্ত ভঙ্গ হওয়ায় পাইথন সরাসরি উত্তর দেবে False।
 
 এই False মানটি এসে জমা হবে is_only_digits ভেরিয়েবল বক্সে।
+
+
+text = "123456"
+
+result = text.isdigit()
+print(result) output True
 
 
 
@@ -775,6 +798,15 @@ is_alphanumeric = text.isalnum():
 পুরো লেখার মধ্যে যেহেতু অক্ষর আর সংখ্যা ছাড়া অন্য কোনো আপত্তিকর জিনিস (যেমন স্পেস বা চিহ্ন) নেই, তাই পাইথন খুশি হয়ে উত্তর দেবে True।
 
 এই True মানটি এসে জমা হবে is_alphanumeric ভেরিয়েবল বক্সে।
+
+
+
+text = "456"
+
+result = text.isnumeric()
+print(result) output True
+
+
 
 
 
@@ -1227,9 +1259,76 @@ Apple     Is Good
 
 
 
+num1 = 10.0
+num2 = 10.5
+
+print(num1.is_integer())  # Output: True (কারণ দশমিকের পর ০ আছে)
+print(num2.is_integer())  # Output: False (কারণ দশমিকের পর ৫ আছে)
 
 
 
+total_money = 100
+people = 4
+
+share = total_money / people  # 25.0
+
+if share.is_integer():
+    print(f"প্রত্যেকে সমানভাবে {int(share)} টাকা করে পাবে।")
+else:
+    print(f"প্রত্যেকে {share} টাকা করে পাবে (ভাঙতি টাকা থাকবে)।")
+
+
+    
+
+⚠️ জরুরি সতর্কতা:
+
+is_integer() মেথডটি কেবল float টাইপ সংখ্যার ওপর কাজ করে। যদি সরাসরি int টাইপ সংখ্যার ওপর এটি চালাতে, তবে এরর আসবে:
+
+
+x = 10
+# print(x.is_integer()) -> AttributeError আসবে!
+
+# সঠিক নিয়ম (ফ্লোটে কনভার্ট করে নেওয়া):
+print(float(x).is_integer()) # Output: True
+
+
+
+
+
+
+
+math.isnan() মেথডটির নাম এসেছে "Is Not a Number" কথাটি থেকে।
+
+পাইথনে গাণিতিক অসংজ্ঞায়িত মান বা ভুল গণনার কারণে তৈরি হওয়া NaN (Not a Number) মানটি চেক করতে এই ফাংশন ব্যবহার করা হয়।
+এটি মানটি NaN হলে True এবং স্বাভাবিক সংখ্যা হলে False ফেরত দেয়।
+
+import math
+
+# ফ্লোট টাইপের মাধ্যমে NaN ভ্যারিয়েবল তৈরি করা
+invalid_data = float('nan') 
+valid_data = 25.5
+
+# isnan() দিয়ে চেক করা
+print(math.isnan(invalid_data))  # Output: True
+print(math.isnan(valid_data))    # Output: False
+
+
+
+সাধারণ == দিয়ে কেন চেক করা যায় না? (খুবই জরুরি টিপস)
+পাইথনের একটি অদ্ভুত বিষয় হলো, NaN কিন্তু নিজের সাথেও সমান নয় (float('nan') == float('nan') দিলে False আসে)। 
+তাই সাধারণ কন্ডিশন দিয়ে এটি চেক করা যায় না, math.isnan() ব্যবহার করা আবশ্যক।
+
+import math
+
+my_var = float('nan')
+
+# ❌ ভুল উপায় (কাজ করবে না):
+if my_var == float('nan'):
+    print("এটি কাজ করবে না!")
+
+# ✅ সঠিক উপায়:
+if math.isnan(my_var):
+    print("সঠিকভাবে NaN শনাক্ত করা গেছে!")
 
 📝 দ্রুত নোট (সংক্ষেপে):
 
