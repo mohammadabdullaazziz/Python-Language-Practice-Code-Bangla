@@ -1310,6 +1310,13 @@ print(text.startswith("Python", 4))   # Output: True
 
 
 
+text = "Hello Python World"
+
+# ৬ নম্বর ইনডেক্স থেকে শুরু করে ১২ নম্বরের মধ্যে "Python" আছে কি না
+result = text.startswith("Python", 6, 12)
+
+print(result)  # Output: True
+
 
 
 
