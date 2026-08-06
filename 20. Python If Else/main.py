@@ -423,16 +423,56 @@ else:
 
 এখানে চেক করা হচ্ছে: ইউজারনেমটি কি শুধুমাত্র অক্ষর (isalpha()), দৈর্ঘ্য কি বড়, এবং এটি কি খালি নয়?
 
-username_input = "Alex"
+
+username_input = "Aziz"
 
 # and এবং not এর ব্যবহার
 if username_input.isalpha() and not username_input.isspace() and len(username_input) >= 3:
-    print("1. Registration success: Username is valid.")
+    print("1. Registration success: Username is valid.")
 else:
-    print("1. Registration failed: Username must contain only letters and be at least 3 characters.")
+    print("1. Registration failed: Username must contain only letters and be at least 3 characters.")
+    
+এখানে ইনপুট ভ্যারিয়াবল: username_input = "Aziz"
+
+🔍 ড্রাই রান (Line-by-Line Execution):
+লাইন ১: username_input = "Aziz"
+কী ঘটছে: username_input নামের ভ্যারিয়াবলে "Aziz" স্ট্রিং মানটি রাখা হলো।
 
 
-1. Registration success: Username is valid.
+লাইন ২: # and এবং not এর ব্যবহার
+কী ঘটছে: এটি একটি কমেন্ট (Comment)। পাইথন ইন্টারপ্রেটার এই লাইনটি স্কিপ বা এড়িয়ে যাবে।
+
+
+লাইন ৩: if username_input.isalpha() and not username_input.isspace() and len(username_input) >= 3:
+এখানে ৩টি শর্ত and ও not দিয়ে যুক্ত আছে। পাইথন এগুলো বাম থেকে ডানে একটি একটি করে মূল্যায়ন (evaluate) করবে:
+
+
+অংশ ১: username_input.isalpha()
+
+"Aziz" স্ট্রিংটিতে শুধু লেটার/বর্ণ আছে (কোনো সংখ্যা বা স্পেস নেই)।
+
+ফলাফল: True
+
+অংশ ২: not username_input.isspace()
+
+প্রথমে username_input.isspace() চেক হবে। "Aziz" শুধুই স্পেস নয়, তাই এটি False দেবে।
+
+এর সামনে not থাকায় not False উল্টে গিয়ে ফলাফল হবে: True
+
+
+অংশ ৩: len(username_input) >= 3
+
+"Aziz"-এর দৈর্ঘ্য বা অক্ষর সংখ্যা হলো 4 (A-z-i-z)।
+
+4 >= 3 শর্তটি সত্যি, তাই ফলাফল: True
+
+চূড়ান্ত শর্তের হিসেব:True and True and True $\rightarrow$ সবগুলো শর্ত সত্য হওয়ায় পুরো if স্টেটমেন্টের ফলাফল আসে True।
+
+লাইন ৪: print("1. Registration success: Username is valid.")
+কী ঘটছে: যেহেতু if-এর শর্তটি সত্য (True) হয়েছে, তাই পাইথন if-এর ভেতরের এই লাইনটি রান করবে এবং স্ক্রিনে আউটপুট দেখাবে।
+
+
+
 
 
 
@@ -469,7 +509,46 @@ else:
 
 3. Password strong: Contains mixed character types.
 
+🔍 ড্রাই রান (Line-by-Line Execution):
 
+লাইন ১: password_input = "Admin123"
+password_input ভ্যারিয়াবলে "Admin123" মানটি সংরক্ষিত হলো।
+
+
+লাইন ৩: if not password_input.islower() and not password_input.isupper() and not password_input.isnumeric():
+এখানে ৩টি অংশ and দিয়ে যুক্ত। পাইথন একটি একটি করে অংশ হিসেব করবে:
+
+অংশ ১: not password_input.islower()
+
+.islower() দিয়ে দেখা হয় সবগুলো ক্যারেক্টারই ছোট হাতের (lowercase) কি না।
+
+"Admin123"-এ বড় হাতের A এবং সংখ্যা আছে, তাই সব ছোট হাতের নয় ফলাফল False।
+
+সামনে not থাকায় not False উল্টে গিয়ে হলো: True
+
+
+অংশ ২: not password_input.isupper()
+
+.isupper() দিয়ে দেখা হয় সবগুলো ক্যারেক্টারই বড় হাতের (uppercase) কি না।
+
+
+"Admin123"-এ ছোট হাতের অক্ষর এবং সংখ্যা আছে, তাই সব বড় হাতের নয়  ফলাফল False।
+
+সামনে not থাকায় not False উল্টে গিয়ে হলো: True
+
+
+অংশ ৩: not password_input.isnumeric()
+
+.isnumeric() দিয়ে দেখা হয় সবগুলো ক্যারেক্টারই সংখ্যা কি না।
+
+"Admin123"-এ লেটার বা বর্ণও আছে, তাই সব সংখ্যা নয়  ফলাফল False।
+
+সামনে not থাকায় not False উল্টে গিয়ে হলো: True
+
+চূড়ান্ত শর্তের হিসেব:True and True and True সবগুলো অংশ সত্য হওয়ায় if শর্তটির চূড়ান্ত ফলাফল এলো True।
+
+লাইন ৪: print("3. Password strong: Contains mixed character types.")
+যেহেতু if শর্ত সত্য হয়েছে, তাই পাইথন এই লাইনটি এক্সিকিউট করবে।
 
 
 অফিসিয়াল ইমেইল এবং ফোন নম্বর চেক (and + or + not)
@@ -484,7 +563,43 @@ if (contact_email.endswith("@company.com") or contact_phone.isnumeric()) and not
 else:
     print("4. Verification failed: Provide a valid company email or phone number.")
 
-4. Verification passed: Contact information accepted.
+
+contact_email ও contact_phone ভ্যারিয়াবল দুটিতে দেওয়া স্ট্রিং মান দুটি সংরক্ষিত হলো।
+
+
+লাইন ৪: if (contact_email.endswith("@company.com") or contact_phone.isnumeric()) and not (contact_email == "" and contact_phone == ""):
+
+এই বড় if শর্তটির মূলত দুইটি প্রধান অংশ রয়েছে যা মাঝখানে and দিয়ে যুক্ত:
+
+
+বন্ধনীর ভেতরে দুটি উপ-শর্ত or দিয়ে যুক্ত:
+
+contact_email.endswith("@company.com"): ইমেইলটি কি "@company.com" দিয়ে শেষ হয়েছে?
+
+"employee@company.com" চেক করে দেখা গেল এটি সত্য $\rightarrow$ Truecontact_phone.isnumeric(): ফোন নম্বরে কি শুধুই সংখ্যা আছে?
+
+"01700000000" চেক করে দেখা গেল এটিও সত্য  True
+
+ব্র্যাকেটের হিসাব: True or True $\rightarrow$ or-এর নিয়মে যেকোনো একটি সত্য হলেই পুরো অংশ সত্য হয়। তাই প্রথম অংশের ফলাফল এলো True।
+
+
+দ্বিতীয় অংশ: not (contact_email == "" and contact_phone == "")
+ব্র্যাকেটের ভেতরের অংশ: (contact_email == "" and contact_phone == "")
+
+contact_email == ""  False (কারণ ইমেইলে মান আছে)
+contact_phone == ""  False (কারণ ফোনে মান আছে)
+False and False ফলাফল False (অর্থাৎ দুটিই খালি—এই কথাটি মিথ্যা)।
+
+
+ব্র্যাকেটের বাইরের not:
+
+not False উল্টে গিয়ে ফলাফল এলো True (অর্থাৎ দুইটিই একসংগে খালি নয়—এই শর্তটি পূরণ হয়েছে)।
+
+দুইটি অংশের চূড়ান্ত সমন্বয়:
+(প্রথম অংশ) and (দ্বিতীয় অংশ)
+
+True and True  দুটি প্রধান অংশই সত্য হওয়ায় if-এর ভেতরের চূড়ান্ত ফলাফল এলো True।
+
 
 
 
