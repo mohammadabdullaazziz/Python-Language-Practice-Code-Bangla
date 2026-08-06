@@ -1259,6 +1259,123 @@ rstripped_text = text.rstrip():
 
 
 
+পাইথনের startswith() মেথডটি খুবই চমৎকার এবং কাজের একটি স্ট্রিং মেথড। এর মূল কাজ হলো—কোনো টেক্সট বা স্ট্রিং নির্দিষ্ট কোনো শব্দ বা অক্ষর দিয়ে শুরু হয়েছে কি না তা চেক করা।
+
+এটি শর্ত সত্য হলে True এবং মিথ্যা হলে False ফেরত দেয়।
+
+
+text = "Hello Python"
+
+# চেক করা হচ্ছে টেক্সটটি "Hello" দিয়ে শুরু হয়েছে কি না
+print(text.startswith("Hello"))  # Output: True
+
+# চেক করা হচ্ছে টেক্সটটি "Python" দিয়ে শুরু হয়েছে কি না
+print(text.startswith("Python"))  # Output: False (কারণ এটি শেষাংশ, শুরুতে নেই)
+
+
+
+
+বড় হাতের ও ছোট হাতের অক্ষর (Case-Sensitive):
+পাইথনে startswith() পুরোপুরি কেস-সেন্সিটিভ (Case-sensitive)। অর্থাৎ ছোট ও বড় হাতের অক্ষর মিলিয়ে গেলে এটি False দেবে:
+
+text = "Hello Python"
+
+print(text.startswith("hello"))  # Output: False (h ছোট হাতের হওয়ায় মিলেনি)
+print(text.startswith("Hello"))  # Output: True
+
+
+
+একাধিক শব্দ বা অপশনের যেকোনো একটি দিয়ে শুরু হয়েছে কি না চেক করা
+
+
+filename = "report_2026.pdf"
+
+# ফাইলটি কি "report" অথবা "document" যেকোনো একটি দিয়ে শুরু হয়েছে?
+if filename.startswith(("report", "document")):
+    print("এটি একটি বৈধ রিপোর্ট ফাইল!")
+else:
+    print("অন্য কোনো ফাইল।")
+
+# Output: এটি একটি বৈধ রিপোর্ট ফাইল!
+
+
+
+
+নির্দিষ্ট সূচক (Index) থেকে শুরু করা:যে স্ট্রিংয়ের কত নম্বর ইনডেক্স বা পজিশন থেকে চেক করা শুরু করবে:
+
+text = "The Python Programming"
+
+# ৫ নম্বর ইনডেক্স ("Python") থেকে শুরু হয়েছে কি না চেক করা
+print(text.startswith("Python", 4))   # Output: True
+
+
+
+
+
+
+endswith() হলো startswith()-এর ঠিক বিপরীত। এর মূল কাজ হলো—কোনো স্ট্রিং বা টেক্সট নির্দিষ্ট কোনো শব্দ বা অক্ষর দিয়ে শেষ হয়েছে কি না তা চেক করা।
+
+এটি শর্ত মিললে True এবং না মিললে False ফেরত দেয়।
+
+text = "Hello Python"
+
+# চেক করা হচ্ছে টেক্সটটি "Python" দিয়ে শেষ হয়েছে কি না
+print(text.endswith("Python"))  # Output: True
+
+# চেক করা হচ্ছে টেক্সটটি "Hello" দিয়ে শেষ হয়েছে কি না
+print(text.endswith("Hello"))   # Output: False (কারণ এটি শুরুতে আছে, শেষে নয়)
+
+
+বাস্তব জীবনের সেরা ব্যবহার (File Extension চেক করা):
+বাস্তব জীবনে ফাইল টাইপ যেমন—.pdf, .png, .jpg ইত্যাদি যাচাই করতে endswith() সবচেয়ে বেশি ব্যবহৃত হয়:
+
+
+filename = "my_photo.png"
+
+if filename.endswith(".png"):
+    print("এটি একটি ছবি (PNG File)")
+else:
+    print("এটি ছবির ফাইল নয়")
+
+# Output: এটি একটি ছবি (PNG File)
+
+
+
+একাধিক এক্সটেনশন বা শব্দ চেক করা (Tuple দিয়ে):
+একসাথে একাধিক অপশন যেমন .jpg, .jpeg, বা .png দিয়ে শেষ হয়েছে কি না চেক করতে মানগুলোকে একটি Tuple ()-এর ভেতরে দিতে হয়:
+
+filename = "document.pdf"
+
+# ফাইলটির শেষে .jpg, .png অথবা .pdf আছে কি না
+if filename.endswith((".jpg", ".png", ".pdf")):
+    print("ফাইল ফরম্যাট গ্রহণযোগ্য (Valid File)")
+else:
+    print("অনুমোদিত ফরম্যাট নয়!")
+
+# Output: ফাইল ফরম্যাট গ্রহণযোগ্য (Valid File)
+
+
+কেস-সেন্সিটিভিটি (Case Sensitivity) সামলানো:
+endswith() কেস-সেন্সিটিভ, তাই .JPG এবং .jpg আলাদা হিসেবে গণ্য হয়। এই সমস্যা এড়াতে আগে .lower() ব্যবহার করা ভালো:
+
+
+filename = "image.JPG"
+
+# আগে ছোট হাতের অক্ষরে রূপান্তর করে শেষে চেক করা
+is_jpg = filename.lower().endswith(".jpg")
+
+print(is_jpg)  # Output: True
+
+
+"python".startswith("py")  True (শুরুতে py আছে)
+"python".endswith("on") True (শেষে on আছে)
+
+
+
+
+
+
+
 
 text = "Python"
 
