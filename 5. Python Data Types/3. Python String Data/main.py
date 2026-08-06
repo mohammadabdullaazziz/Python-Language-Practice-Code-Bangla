@@ -711,11 +711,12 @@ is_only_letters = text.isalpha():
 কারণ Hello এবং Python এর মাঝখানে একটি খালি জায়গা বা স্পেস (Space) আছে। পাইথনের কাছে স্পেস কোনো বর্ণ/অক্ষর নয়। তাই মাঝখানে স্পেস থাকলেও isalpha() সরাসরি False দিয়ে দেয়।
 
 
-text = "hello python"
 
-result = text.isalpha()
-print(result)
-false kno
+text = "hello python"
+char = text.strip().isalpha()
+
+print(char)  # Output: False (কারণ মাঝখানের স্পেস থেকেই গেছে)
+
 
 False আসছে কারণ text.isalpha() শুধু তখনই True দেয় যখন পুরো স্ট্রিংয়ের সব character letter হয়, আর hello python-এ মাঝখানে একটা space আছে । output False
 
@@ -723,6 +724,18 @@ text = "python"
 
 result = text.isalpha()
 print(result)     output True
+
+
+মাঝখানের স্পেস সহ সব স্পেস সরাতে হলে replace(" ", "") ব্যবহার করতে হবে:
+
+
+text = "hello python"
+
+# মাঝখানের সব স্পেস খালি করে দেওয়া হলো
+char = text.replace(" ", "").isalpha()
+
+print(char)  # Output: True
+
 
 
 
@@ -884,6 +897,17 @@ is_all_space = text.isspace()
 # ৩. f-string ব্যবহার করে  আউটপুট প্রিন্ট 
 print(f"Original Text: '{text}'")
 print(f"Is the text space only?: {is_all_space}")
+
+
+
+🛠️ স্ট্রিংয়ের ভেতরে স্পেস আছে কি না তা চেক করার সহজ উপায়
+কোনো টেক্সটের ভেতরে অন্তত একটি স্পেস আছে কি না, তবে in কিওয়ার্ড ব্যবহার করতে হয়:
+
+text = "Abdullah Aziz"
+
+has_space = " " in text
+
+print(has_space)  # Output: True
 
 
 
