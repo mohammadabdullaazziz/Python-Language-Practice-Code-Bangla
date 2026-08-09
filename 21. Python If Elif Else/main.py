@@ -250,31 +250,6 @@ else:
 
 
 
-mark = float(input("Enter your mark: "))
-
-if mark >= 90 and mark <= 100:
-    print("Golden A+")
-elif mark >= 80 and mark <= 89.999:
-    print("A+")
-elif mark >= 70 and mark <= 79.999:
-    print("A grade")
-elif mark >= 60 and mark <= 69.999:
-    print("A-")
-elif mark >= 50 and mark <= 59.999:
-    print("B grade")
-elif mark >= 40 and mark <= 49.999:
-    print("C")
-elif mark >= 33 and mark <= 39.999:
-    print("You passed")
-elif mark >= 0 and mark <= 32.999:
-    print("You failed")
-else:
-    print("Invalid Input! Please enter a number between 0 to 100.")
-
-
-
-
-
 
 
 
@@ -322,6 +297,158 @@ print("Invalid Input!"): যদি উপরে উল্লেখ করা দ
 পরীক্ষার সর্বোচ্চ নম্বর তো ১০০,? তাই কোনো শিক্ষার্থী কি ১০২ পেতে পারে? অবশ্যই না!প্রোগ্রামটি এভাবে ধাপে ধাপে কাজ করে:
 ইনপুট : 102পাইথন প্রথম শর্তে গিয়ে চেক করল: 102 > 100  True (হ্যাঁ, ১০২ তো ১০০-এর চেয়ে বড়!)যেহেতু or-এর আগের শর্তটি সত্যি হয়ে গেছে, তাই পাইথন নিশ্চিত হয়ে গেল যে এটি একটি ভুল বা অবৈধ ইনপুট।
 ফলে পাইথন নিচের কোনো গ্র্যাডিং (A+, B, C) চেক না করে সরাসরি স্ক্রিনে আউটপুট দেখিয়ে দেয়: Invalid Input!
+
+
+
+
+while True:
+    try:
+        user_input = input("Enter your marks (or type 'exit' to quit): ")
+        
+        # ইউজার যদি ফাকা রাখে বা এন্টার চাপে
+        if user_input.strip() == "":
+            print("❌ Error: Input cannot be empty. Please enter a number.\n")
+            continue
+            
+        # ইউজার যদি বের হতে চায়
+        if user_input.lower() == "exit":
+            print("Program closed. Goodbye!")
+            break
+
+        # স্ট্রিংকে float-এ রূপান্তর করার চেষ্টা
+        marks = float(user_input)
+
+        # নেগেটিভ বা ১০০ এর বেশি দিলে রোধ করা
+        if marks < 0 or marks > 100:
+            print("❌ Invalid Input! Marks must be between 0 and 100.\n")
+        elif marks >= 90:
+            print("Your grade is: Golden A+\n")
+        elif marks >= 80:
+            print("Your grade is: A+\n")
+        elif marks >= 70:
+            print("Your grade is: A\n")
+        elif marks >= 60:
+            print("Your grade is: A-\n")
+        elif marks >= 50:
+            print("Your grade is: B\n")
+        elif marks >= 40:
+            print("Your grade is: C\n")
+        elif marks >= 33:
+            print("Your grade is: Passed\n")
+        else:
+            print("Your grade is: Fail\n")
+            
+        # সঠিক গ্রেড আসার পর লুপ ভেঙে বের হয়ে যাওয়া (চাইলে বারবার দেওয়ার জন্য এটি সরাতে পারেন)
+        break
+
+    except ValueError:
+        # ইউজার যদি 'abc' বা অন্য কোনো অক্ষর টাইপ করে
+        print("❌ Error: Please type only numbers, not letters or symbols!\n")
+
+
+🔍 কোডটি যেভাবে আপনার সব সমস্যা সমাধান করবে:
+
+ফাঁকা বা এন্টার দিলে (strip() == ""): ইউজার কিছু না লিখে শুধু এন্টার চাপলে প্রোগ্রাম সুন্দরভাবে সতর্ক করবে এবং আবার ইনপুট চাইতে পারবে।
+
+abc বা অক্ষর টাইপ করলে (except ValueError): পাইথন সাধারণ অবস্থায় float("abc") পেলে ক্র্যাশ করে লাল রঙের এরর দেখায়। কিন্তু এখানে try-except ব্যবহার করায় প্রোগ্রাম ক্র্যাশ না করে সুন্দর একটি সতর্কবার্তা দেবে।
+
+Negative বা অতিরিক্ত সংখ্যা দিলে (marks < 0 or marks > 100): মাইনাস সংখ্যা বা ১০০ এর বেশি দিলে তা ধরে ফেলবে এবং ইনভ্যালিড দেখাবে।
+
+বারবার ইনপুট নেওয়ার সুযোগ (while True): ইউজার ভুল করলে প্রোগ্রাম কেটে বন্ধ হয়ে যাবে না, বরং ঠিকমতো সঠিক নম্বর ইনপুট না দেওয়া পর্যন্ত সে আবার লেখার সুযোগ পাবে।
+
+
+
+
+try:
+    user_input = input("Enter your marks: ")
+    
+    # ইউজার ফাঁকা রাখলে বা এন্টার চাপলে
+    if user_input.strip() == "":
+        print("❌ Error: Input cannot be empty!")
+        
+    else:
+        # স্ট্রিংকে float-এ রূপান্তর করা (এখানে abc দিলে ValueError আসবে)
+        marks = float(user_input)
+
+        # শর্ত চেক
+        if marks > 100 or marks < 0:
+            print("❌ Invalid Input! Please enter a number between 0 to 100.")
+        elif marks >= 90:
+            print("Your grade is: Golden A+")
+        elif marks >= 80:
+            print("Your grade is: A+")
+        elif marks >= 70:
+            print("Your grade is: A")
+        elif marks >= 60:
+            print("Your grade is: A-")
+        elif marks >= 50:
+            print("Your grade is: B")
+        elif marks >= 40:
+            print("Your grade is: C")
+        elif marks >= 33:
+            print("Your grade is: Passed")
+        else:
+            print("Your grade is: Fail")
+
+except ValueError:
+    # ইউজার 'abc' বা অন্য কোনো অক্ষর টাইপ করলে এটি ধরবে
+    print("❌ Error: Please type only numbers, not letters!")
+
+
+🔍 এই কোডটি যেভাবে কাজ করবে:
+
+try-except: ইউজার যদি abc বা অন্য কোনো অক্ষর লেখে, তবে পাইথন ক্র্যাশ না করে সরাসরি except ValueError: এ চলে যাবে এবং সুন্দর করে বলে দেবে যে শুধু সংখ্যা লিখতে।
+
+user_input.strip() == "": ইউজার কিছু না লিখে ফাঁকা এন্টার দিলে ধরে ফেলবে।
+
+marks > 100 or marks < 0: ১০০ এর বেশি বা নেগেটিভ সংখ্যা দিলে ইনভ্যালিড দেখাবে।
+
+
+
+
+try: (চেষ্টা করে দেখা)
+কাজ কী: পাইথন try: এর ভেতরে থাকা কোডগুলো রান করার চেষ্টা করে।
+
+সহজ ভাষায়: পাইথনকে বলা হয়— "এই কোডগুলো রান করো। যদি সবকিছু ঠিকঠাক থাকে, তবে করো। 
+আর যদি কোনো ঝামেলা বা এরর বাঁধে, তাহলে ঘাবড়ানোর কিছু নেই, সোজা except-এর কাছে চলে যাও।"
+
+try:
+    marks = float(user_input) # এখানে ইউজার 'abc' দিলে float() সেটাকে সংখ্যা বানাতে পারে না এবং সাথে সাথে এরর দেয়।
+
+
+except ValueError: (নির্দিষ্ট ভুল ধরে ফেলা)
+কাজ কী: try ব্লকের ভেতরে কোনো ভুল বা এরর ঘটলে পাইথন প্রোগ্রাম বন্ধ না করে এই except ব্লকে চলে আসে এবং সেখানে যা বলা থাকে তাই করে।
+
+ValueError মানে কী?
+
+পাইথনে বিভিন্ন ধরনের এরর হয়। যেমন: যদি কোনো অক্ষরকে জোর করে সংখ্যা বানাতে চাওায়া হয় (float("abc")), তখন পাইথন যে এররটি দেয় সেটির নাম ValueError।
+
+তাই except এর পাশে নির্দিষ্ট করে বলে দেওয়া হয়েছে ValueError: — যার অর্থ হলো: "যদি কেউ সংখ্যা বাদে অন্য কিছু (যেমন অক্ষর বা প্রতীক) লিখে ফেলে 
+এবং float() সেটি রূপান্তর করতে গিয়ে ValueError খায়, তবে তুমি এই ব্লকের কোডগুলো চালাবে।"
+
+
+except ValueError:
+    print("❌ Error: Please type only numbers, not letters!")
+
+
+
+এখানে ValueError এর জায়গায় চাইলেই নিজের ইচ্ছেমতো অন্য কোনো নাম (যেমন: Error বা অন্য কিছু) দেওয়া যাবে না।
+
+📌 ValueError কেন নিজের মতো বদলানো যায় না?
+
+পাইথনে বিভিন্ন ধরনের ভুল বা এররের জন্য নির্দিষ্ট কিছু নাম আগে থেকেই ঠিক করা থাকে (এগুলোকে বলা হয় Built-in Exceptions)।
+পাইথন নিজেই বোঝে কোন কাজের জন্য কোন এররটি দিতে হবে।
+
+যখন একটি অক্ষর বা শব্দকে (যেমন: "abc") জোর করে সংখ্যা বানাতে যান (float("abc")), তখন পাইথনের সিস্টেম অনুযায়ী এটি একটি ValueError।
+
+পাইথন যখন এই নির্দিষ্ট এররটি খায়, তখন সে খোঁজে যে কোডে কোথাও except ValueError: লেখা আছে কি না।
+
+যদি সেখানে নিজের ইচ্ছেমতো অন্য কিছু (যেমন: except WrongInput:) লিখে রাখা হয়, তখন পাইথন কনফিউজড হয়ে যাবে এবং নিজেই
+একটি নতুন এরর (NameError: name 'WrongInput' is not defined) দেখিয়ে প্রোগ্রাম বন্ধ করে দেবে!
+
+
+
+
 
 
 
