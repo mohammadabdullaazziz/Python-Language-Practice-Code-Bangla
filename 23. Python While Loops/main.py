@@ -33,6 +33,17 @@ while: শর্ত সত্যি হলে ভেতরে ঢুকে ক�
 
 পরিবর্তন/বৃদ্ধি (Update/Increment): প্রতি ধাপে গণনা কতটা করে বাড়বে (যেমন: count = count + 1)।
 
+count = 0        # ১. Initialization (শুরু বা প্রাথমিক মান)
+
+while count < 5: # ২. Condition (শর্ত)
+    print("Hello World")
+    print(count)
+    count += 1   # ৩. Update / Increment (মান পরিবর্তন বা বাড়ানো)
+
+
+
+
+
 
 
 
