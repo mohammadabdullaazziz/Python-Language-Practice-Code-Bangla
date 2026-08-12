@@ -196,6 +196,69 @@ else:
 
 
 
+try:
+    user_input = input("Enter Month Name First 3 Word: ")
+
+    # ১. ইউজার ফাঁকা রাখলে বা শুধু এন্টার চাপলে
+    if user_input.strip() == "":
+        print("❌ Error: Input cannot be empty!")
+        
+    else:
+        # ২. ইউজার সংখ্যা দিলে (যেমন: 123) সেটি চেক করার জন্য int() দিয়ে ট্রাই করা
+        # যদি সংখ্যা দেয়, তবে এখানে ValueError আসবে এবং except ব্লকে চলে যাবে
+        if user_input.strip().isdigit():
+            print("❌ Invalid Input! Numbers are not allowed.")
+        else:
+            # সঠিক নিয়মে প্রথম ৩ অক্ষর নিয়ে ক্যাপিটালাইজ করা
+            month_name = user_input.strip().capitalize()
+
+            if month_name == "Jan":
+                print("January")
+            elif month_name == "Feb":
+                print("February")
+            elif month_name == "Mar":
+                print("March")
+            elif month_name == "Apr":
+                print("April")
+            elif month_name == "May":
+                print("May")
+            elif month_name == "Jun":
+                print("June")
+            elif month_name == "Jul":
+                print("July")
+            elif month_name == "Aug":
+                print("August")
+            elif month_name == "Sep":
+                print("September")
+            elif month_name == "Oct":
+                print("October")
+            elif month_name == "Nov":
+                print("November")
+            elif month_name == "Dec":
+                print("December")
+            else:
+                print("BYE")
+
+except ValueError:
+    print("❌ Invalid Input! Please enter a valid month abbreviation.")
+
+
+
+🔍 কোডটি যেভাবে কাজ করবে:
+
+ফাঁকা বা স্পেস দিলে (user_input.strip() == ""): ইউজার কিছু না লিখে এন্টার দিলে ধরে ফেলবে।
+
+সংখ্যা দিলে (isdigit()): ইউজার যদি কোনো সংখ্যা (12, 50) ইনপুট দেয়, তবে প্রোগ্রাম সাথে সাথে ধরে ফেলবে এবং ইনভ্যালিড দেখাবে (কারণ মাসের নামে কোনো সংখ্যা থাকে না)।
+
+abc বা অন্য কিছু দিলে: আপনার দেওয়া শর্তের সাথে না মিললে সোজা else এ গিয়ে BYE প্রিন্ট করবে।
+
+ক্যান্সেল বা অন্য সমস্যা: পাইথনে কোড রান করার সময় হঠাৎ Cancel বা ক্লোজ করতে চাইলে (EOFError) সেটিও ক্র্যাশ হওয়া থেকে রক্ষা পাবে।
+
+
+
+
+
+
 
 
 
