@@ -1124,8 +1124,8 @@ while i <= 10:
 
 
 
-i = 1
 
+i = 1
 while i <= 20:
     if i % 3 == 0:
         print(i)
@@ -1133,50 +1133,61 @@ while i <= 20:
 
 এখানে লুপটি ১ থেকে ২০ পর্যন্ত চলবে (i <= 20), তবে if শর্তের ভেতরে থাকা i % 3 === 0-এর কারণে শুধু সেই সংখ্যাগুলোই প্রিন্ট হবে যেগুলো ৩ দিয়ে নিঃশেষে বিভাজ্য (অর্থাৎ ৩-এর নামতার সংখ্যাগুলো)।
 
-📝 ড্রাই রান (Dry Run):
+প্রতিটা লাইনের কাজ (Line by Line)
 
-i = 1: 1 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 2।
+লাইন	            কাজ
+i = 1	            শুরুতে i এর মান 1
+while i <= 20:	    যতক্ষণ i ২০ এর কম বা সমান, ততক্ষণ ভিতরে ঢুকবে
+if i % 3 == 0:	    i কে ৩ দিয়ে ভাগ করলে ভাগশেষ ০ হয় কিনা চেক করছে (মানে i ৩ এর গুণিতক কিনা)
+print(i)	        উপরের শর্ত সত্যি হলেই শুধু i print হবে
+i += 1	            i কে ১ বাড়ানো হচ্ছে (এটা if এর বাইরে, তাই সবসময় চলে)
 
-i = 2: 2 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 3।
 
-i = 3: 3 % 3 == 0? হ্যাঁ। প্রিন্ট হবে 3। i বেড়ে হবে 4।
 
-i = 4: 4 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 5।
+Iteration 1  → i=1  → while(1<=20)=True  → if(1%3==0)=False → print হয় না → i হলো 2
 
-i = 5: 5 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 6।
+Iteration 2  → i=2  → while(2<=20)=True  → if(2%3==0)=False → print হয় না → i হলো 3
 
-i = 6: 6 % 3 == 0? হ্যাঁ। প্রিন্ট হবে 6। i বেড়ে হবে 7।
+Iteration 3  → i=3  → while(3<=20)=True  → if(3%3==0)=True  → print হয়: 3  → i হলো 4
 
-i = 7: 7 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 8।
+Iteration 4  → i=4  → while(4<=20)=True  → if(4%3==0)=False → print হয় না → i হলো 5
 
-i = 8: 8 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 9।
+Iteration 5  → i=5  → while(5<=20)=True  → if(5%3==0)=False → print হয় না → i হলো 6
 
-i = 9: 9 % 3 == 0? হ্যাঁ। প্রিন্ট হবে 9। i বেড়ে হবে 10।
+Iteration 6  → i=6  → while(6<=20)=True  → if(6%3==0)=True  → print হয়: 6  → i হলো 7
 
-i = 10: 10 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 11।
+Iteration 7  → i=7  → while(7<=20)=True  → if(7%3==0)=False → print হয় না → i হলো 8
 
-i = 11: 11 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 12।
+Iteration 8  → i=8  → while(8<=20)=True  → if(8%3==0)=False → print হয় না → i হলো 9
 
-i = 12: 12 % 3 == 0? হ্যাঁ। প্রিন্ট হবে 12। i বেড়ে হবে 13।
+Iteration 9  → i=9  → while(9<=20)=True  → if(9%3==0)=True  → print হয়: 9  → i হলো 10
 
-i = 13: 13 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 14।
+Iteration 10 → i=10 → while(10<=20)=True → if(10%3==0)=False → print হয় না → i হলো 11
 
-i = 14: 14 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 15।
+Iteration 11 → i=11 → while(11<=20)=True → if(11%3==0)=False → print হয় না → i হলো 12
 
-i = 15: 15 % 3 == 0? হ্যাঁ। প্রিন্ট হবে 15। i বেড়ে হবে 16।
+Iteration 12 → i=12 → while(12<=20)=True → if(12%3==0)=True  → print হয়: 12 → i হলো 13
 
-i = 16: 16 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 17।
+Iteration 13 → i=13 → while(13<=20)=True → if(13%3==0)=False → print হয় না → i হলো 14
 
-i = 17: 17 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 18।
+Iteration 14 → i=14 → while(14<=20)=True → if(14%3==0)=False → print হয় না → i হলো 15
 
-i = 18: 18 % 3 == 0? হ্যাঁ। প্রিন্ট হবে 18। i বেড়ে হবে 19।
+Iteration 15 → i=15 → while(15<=20)=True → if(15%3==0)=True  → print হয়: 15 → i হলো 16
 
-i = 19: 19 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 20।
+Iteration 16 → i=16 → while(16<=20)=True → if(16%3==0)=False → print হয় না → i হলো 17
 
-i = 20: 20 % 3 == 0? না। কিছু প্রিন্ট হবে না। i বেড়ে হবে 21।
+Iteration 17 → i=17 → while(17<=20)=True → if(17%3==0)=False → print হয় না → i হলো 18
 
-i = 21: 21 <= 20? শর্ত মিথ্যা। লুপ থেমে গেল।
+Iteration 18 → i=18 → while(18<=20)=True → if(18%3==0)=True  → print হয়: 18 → i হলো 19
 
+Iteration 19 → i=19 → while(19<=20)=True → if(19%3==0)=False → print হয় না → i হলো 20
+
+Iteration 20 → i=20 → while(20<=20)=True → if(20%3==0)=False → print হয় না → i হলো 21
+
+Loop থামার চেষ্টা → i=21 → while(21<=20)=False → Loop থেমে যায়
+
+
+চূড়ান্ত আউটপুট
 
 3
 6
@@ -1184,6 +1195,16 @@ i = 21: 21 <= 20? শর্ত মিথ্যা। লুপ থেমে গ�
 12
 15
 18
+সংক্ষিপ্ত সারাংশ
+
+মোট Iteration হয়েছে: 20 বার (i=1 থেকে i=20 পর্যন্ত)
+
+while শর্ত প্রতিবার শুধু i ২০ এর মধ্যে আছে কিনা তা চেক করেছে — এটা ২০ বারই True ছিল
+
+if শর্ত চেক করেছে i তিন দিয়ে ভাগ যায় কিনা — এটা মাত্র ৬ বার True হয়েছে (3, 6, 9, 12, 15, 18 এর বেলায়)
+
+তাই মোট print হয়েছে ৬টা সংখ্যা: 3, 6, 9, 12, 15, 18 ৩ এর নামতার প্রথম ৬টা সংখ্যা (3×1, 3×2, 3×3, 3×4, 3×5, 3×6)।
+
 
 
 
@@ -1684,3 +1705,395 @@ while i <= 20:
 এখানে প্রারম্ভিক মান i = 2 এবং sum = 0 নিয়ে লুপটি শুরু হয়েছে। লুপটি i <= 20 থাকা পর্যন্ত চলবে এবং প্রতিবারে i এর মান ২ করে বাড়বে (i += 2)।
 
 প্রতিটি ঘূর্ণনে (Iteration) বর্তমান জোড় সংখ্যা i-কে sum-এর সাথে যোগ করা হচ্ছে (sum += i) এবং প্রতি ধাপে সংখ্যাটি ও তৎকালীন মোট যোগফল (sum) প্রিন্ট করা হচ্ছে।
+
+
+
+
+
+
+i = 1
+while i <= 10:
+    if i % 2 == 0:
+        print(i, "জোড়")
+    i += 1
+
+কী ঘটছে:
+
+i <= 10 → comparison operator, loop কতবার চলবে ঠিক করছে
+i % 2 == 0 → modulo দিয়ে ভাগশেষ বের করে, == দিয়ে তুলনা করছে জোড় কিনা
+
+
+2 জোড়
+4 জোড়
+6 জোড়
+8 জোড়
+10 জোড়
+
+
+
+
+
+Logical AND (and) ব্যবহার করে
+
+i = 1
+while i <= 20 and i != 15:
+    print(i)
+    i += 1
+
+কী ঘটছে:
+
+i <= 20 এবং (and) i != 15 — দুইটা শর্তই সত্যি থাকতে হবে loop চলার জন্য
+!= মানে "সমান না" (not equal)
+যখনই i হয়ে যাবে 15, তখন দ্বিতীয় শর্ত (i != 15) মিথ্যা হয়ে যাবে, তাই and এর কারণে পুরো শর্তটাই মিথ্যা হয়ে যাবে, loop থেমে যাবে
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+
+15 এ পৌঁছানোর আগেই loop থেমে গেছে, কারণ and এর দুইটা শর্তের একটাও মিথ্যা হলেই পুরোটা মিথ্যা হয়ে যায়।
+
+
+
+Logical OR (or) ব্যবহার করে
+
+count = 0
+stop = False
+
+while count < 5 or stop == False:
+    print(count)
+    count += 1
+    if count == 3:
+        stop = True
+⚠️ এটা একটু জটিল, তাই সহজ উদাহরণ দিয়ে or বুঝি:
+
+x = 1
+y = 10
+
+while x < 5 or y > 20:
+    print(x, y)
+    x += 1
+    y -= 1
+
+কী ঘটছে:
+
+or মানে যেকোনো একটা শর্ত সত্যি হলেই পুরোটা সত্যি হয়ে যাবে
+x < 5 (True থাকবে যতক্ষণ x, 5 এর কম) or y > 20 (এটা কখনোই সত্যি হবে না, কারণ y শুরুই হয়েছে 10 দিয়ে, কমতে থাকবে)
+
+x=1, y=10 → (1<5 True) or (10>20 False) → True → print(1,10) → x=2, y=9
+
+x=2, y=9  → (2<5 True) or (9>20 False)  → True → print(2,9)  → x=3, y=8
+
+x=3, y=8  → (3<5 True) or (8>20 False)  → True → print(3,8)  → x=4, y=7
+
+x=4, y=7  → (4<5 True) or (7>20 False)  → True → print(4,7)  → x=5, y=6
+
+x=5, y=6  → (5<5 False) or (6>20 False) → False → থামে
+
+1 10
+2 9
+3 8
+4 7
+
+
+Arithmetic Operators (+, -, *, /) মিলিয়ে 
+
+num = 2
+power = 1
+
+while power <= 100:
+    print(f"2^{num-1} = {power}")
+    power = power * 2
+    num += 1
+    
+কী ঘটছে:
+
+* দিয়ে প্রতিবার গুণ করে power বাড়ছে (২ এর গুণিতক আকারে)
+<= দিয়ে চেক হচ্ছে ১০০ পার হয়ে গেছে কিনা
+
+power=1  → 1<=100 True → print → power=2
+
+power=2  → 2<=100 True → print → power=4
+
+power=4  → 4<=100 True → print → power=8
+...
+power=64 → 64<=100 True → print → power=128
+
+power=128 → 128<=100 False → থামে 
+
+2^0 = 1
+2^1 = 2
+2^2 = 4
+2^3 = 8
+2^4 = 16
+2^5 = 32
+2^6 = 64
+
+
+Comparison + Logical NOT (not)
+
+found = False
+number = 1
+
+while not found:
+    if number % 7 == 0 and number % 5 == 0:
+        print(f"{number} হলো 7 আর 5 এর সাধারণ গুণিতক")
+        found = True
+    number += 1
+
+কী ঘটছে:
+
+not found → found যতক্ষণ False থাকবে, not False = True, তাই loop চলতেই থাকবে
+and দিয়ে দুইটা শর্ত (৭ দিয়ে ভাগ যায় এবং ৫ দিয়ে ভাগ যায়) একসাথে চেক হচ্ছে
+যখন উভয় শর্ত সত্যি হবে, found = True হয়ে যাবে, তখন not found = not True = False, loop থেমে যাবে 
+
+35 হলো 7 আর 5 এর সাধারণ গুণিতক
+
+
+
+সব একসাথে মিলিয়ে (Comprehensive Example)
+
+total = 0
+i = 1
+
+while i <= 30 and total < 50:
+    if i % 3 == 0 or i % 5 == 0:
+        total += i
+        print(f"i={i}, যোগ হলো, total এখন {total}")
+    i += 1
+
+print("চূড়ান্ত total:", total)
+
+
+এখানে ব্যবহৃত অপারেটর:
+
+<= এবং and → দুইটা শর্ত মিলিয়ে loop এর সীমা ঠিক করা
+
+% এবং == এবং or → ৩ অথবা ৫ এর গুণিতক কিনা চেক করা
+
++= → arithmetic, total বাড়ানো
+
+i=1  → 1%3==0(F) or 1%5==0(F) → যোগ হয় না
+
+i=2  → 2%3==0(F) or 2%5==0(F) → যোগ হয় না
+
+i=3  → 3%3==0(T) → যোগ হয়, total=3
+
+i=5  → 5%5==0(T) → যোগ হয়, total=8
+
+i=6  → 6%3==0(T) → যোগ হয়, total=14
+...
+
+এভাবে চলতে থাকবে যতক্ষণ না i ৩০ পার হয় অথবা total ৫০ এর বেশি হয়ে যায় (and শর্তের একটা মিথ্যা হলেই থামবে)।
+
+
+
+এগুলো backend এ সবচেয়ে বেশি ব্যবহার হবে — যেমন:
+
+if user_age >= 18:
+    allow_access = True
+
+if password != confirm_password:
+    return {"error": "পাসওয়ার্ড মিলছে না"}
+
+
+
+
+Logical Operators (and, or, not)
+
+এগুলোও প্রতিদিন লাগবে — validation, permission check এ:
+
+if user.is_active and user.is_verified:
+    allow_login = True
+
+if not user.has_permission:
+    return {"error": "অনুমতি নেই"}
+
+
+
+✅ % (Modulo) — মাঝেমাঝে লাগে, তবে খুব বেশি না
+
+বাস্তব backend কাজে % কম দেখা যায়, তবে এই ধরনের জায়গায় লাগতে পারে:
+
+# Pagination এ কোন পেজে আছি বের করতে
+if total_items % items_per_page != 0:
+    total_pages += 1
+
+# ID অনুযায়ী কোনো জিনিস distribute করতে (load balancing)
+server_index = user_id % total_servers
+
+
+
+
+# Retry logic - যতক্ষণ না সফল হয়, চেষ্টা করতে থাকা
+attempts = 0
+success = False
+
+while attempts < 3 and not success:
+    success = try_connect_to_database()
+    attempts += 1
+
+if not success:
+    print("৩ বার চেষ্টা করেও কানেক্ট হলো না")
+
+এখানে যা হচ্ছে:
+
+attempts < max_attempts → সর্বোচ্চ কতবার চেষ্টা করা যাবে
+not login_success → যতক্ষণ সফল না হয়
+and → দুইটা শর্তই সত্যি থাকতে হবে (চেষ্টার সুযোগ বাকি থাকতে হবে এবং এখনো সফল না হওয়া)
+
+
+
+
+
+
+# পেজ ভিত্তিক ডেটা আনতে থাকা (pagination) যতক্ষণ না সব ডেটা শেষ হয়
+has_more_data = True
+page = 1
+
+while has_more_data:
+    data = fetch_data_from_api(page)
+    if len(data) == 0:
+        has_more_data = False
+    else:
+        process(data)
+        page += 1
+
+
+
+
+correct_password = "python123"
+attempts = 0
+max_attempts = 3
+login_success = False
+
+while attempts < max_attempts and not login_success:
+    entered_password = input("পাসওয়ার্ড দাও: ")
+    
+    if entered_password == correct_password:
+        login_success = True
+        print("লগিন সফল!")
+    else:
+        attempts += 1
+        remaining = max_attempts - attempts
+        print(f"ভুল পাসওয়ার্ড। বাকি সুযোগ: {remaining}")
+
+if not login_success:
+    print("অ্যাকাউন্ট সাময়িকভাবে লক করা হলো")
+
+এখানে যা হচ্ছে:
+
+attempts < max_attempts → সর্বোচ্চ কতবার চেষ্টা করা যাবে
+not login_success → যতক্ষণ সফল না হয়
+and → দুইটা শর্তই সত্যি থাকতে হবে (চেষ্টার সুযোগ বাকি থাকতে হবে এবং এখনো সফল না হওয়া)
+
+
+
+
+
+
+connected = False
+retry_count = 0
+max_retries = 5
+
+while not connected and retry_count < max_retries:
+    print(f"সংযোগের চেষ্টা #{retry_count + 1}")
+    
+    # এখানে ধরে নিচ্ছি সংযোগ হচ্ছে কিনা (বাস্তবে database/API call হতো)
+    connected = (retry_count == 3)  # ধরা যাক ৪র্থ চেষ্টায় সফল হয়
+    
+    if not connected:
+        retry_count += 1
+
+if connected:
+    print("সংযোগ সফল হয়েছে!")
+else:
+    print("সংযোগ ব্যর্থ, সব চেষ্টা শেষ")
+
+বাস্তব ব্যবহার: Backend সার্ভার যখন কোনো Database বা External API এর সাথে সংযোগ করতে ব্যর্থ হয়, তখন এভাবে বারবার চেষ্টা (retry) করা হয়, একটা নির্দিষ্ট সীমা পর্যন্ত।
+
+
+
+
+
+valid_email = False
+
+while not valid_email:
+    email = input("ইমেইল দাও: ")
+    
+    if "@" in email and "." in email:
+        valid_email = True
+        print("ইমেইল গ্রহণযোগ্য")
+    else:
+        print("সঠিক ইমেইল দাও (যেমন example@mail.com)")
+
+    বাস্তব ব্যবহার: যেকোনো signup/registration form এ ইউজার সঠিক তথ্য না দেওয়া পর্যন্ত বারবার জিজ্ঞেস করা।
+
+
+
+
+
+Rate Limiting Simulation (কতবার API Call করা যাবে)
+
+api_calls_made = 0
+max_calls_per_minute = 5
+time_passed = 0  # সেকেন্ড ধরে নিচ্ছি
+
+while api_calls_made < max_calls_per_minute:
+    print(f"API কল #{api_calls_made + 1} করা হলো")
+    api_calls_made += 1
+    time_passed += 12  # প্রতিটা কলে ধরে নিচ্ছি ১২ সেকেন্ড লাগছে
+
+if api_calls_made >= max_calls_per_minute:
+    print("সর্বোচ্চ সীমা শেষ, আরও অপেক্ষা করতে হবে")
+
+বাস্তব ব্যবহার: Backend এ প্রায়ই limit দেওয়া থাকে একজন ইউজার প্রতি মিনিটে/ঘণ্টায় কতবার কোনো action করতে পারবে (যেমন OTP পাঠানো, login চেষ্টা করা)।
+
+
+
+
+Order Processing Queue (একটা একটা করে কাজ শেষ করা)
+
+pending_orders = 5
+processed_orders = 0
+
+while pending_orders > 0:
+    processed_orders += 1
+    pending_orders -= 1
+    print(f"অর্ডার #{processed_orders} প্রসেস হলো, বাকি আছে {pending_orders}টা")
+
+print("সব অর্ডার প্রসেস হয়ে গেছে")
+
+বাস্তব ব্যবহার: Backend এ যখন একটা queue (সারি) থাকে (যেমন pending orders, pending emails), তখন সেগুলো একটা একটা করে শেষ না হওয়া পর্যন্ত process করা হয়।
+
+
+
+
+Balance Check with Withdrawal (Banking System এর মতো)
+
+balance = 1000
+withdrawal_requests = [200, 300, 600]  # ধরা যাক এগুলো একের পর এক আসছে
+index = 0
+
+while index < len(withdrawal_requests):
+    amount = withdrawal_requests[index]
+    
+    if amount <= balance:
+        balance -= amount
+        print(f"{amount} টাকা তোলা হলো, নতুন ব্যালেন্স: {balance}")
+    else:
+        print(f"{amount} টাকা তোলা যাবে না, পর্যাপ্ত ব্যালেন্স নেই")
+    
+    index += 1
+
+বাস্তব ব্যবহার: ব্যাংকিং বা পেমেন্ট সিস্টেমে একের পর এক transaction validate করে balance আপডেট করা।
