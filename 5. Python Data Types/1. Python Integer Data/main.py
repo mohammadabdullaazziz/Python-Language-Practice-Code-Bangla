@@ -1115,6 +1115,20 @@ print(result.is_integer())   # আউটপুট: True (কারণ দশম�
 
 
 
+যদি সংখ্যাটি -16 হয়, তবে পাইথনের cmath মডিউল ব্যবহার করলে একদম নিখুঁত এবং সুন্দর একটি পূর্ণসংখ্যার কাল্পনিক ফলাফল পাবেন!
+
+
+import cmath
+
+num = -16
+result = cmath.sqrt(num)
+
+print(result)
+
+
+
+
+
 
  
 
