@@ -455,3 +455,62 @@ print("My name is {}, I am {} years old and my height is {:.2f} feet.".format(na
 দ্বিতীয় খালি ঘর {}-এ গিয়ে বসবে দ্বিতীয় ভেরিয়েবল অর্থাৎ age।
 
 তৃতীয় খালি ঘর {}-এ গিয়ে বসবে তৃতীয় ভেরিয়েবল অর্থাৎ height।
+
+
+
+
+
+
+# ১৫টি আইটেমের নাম
+i1 = "Miniket Rice (5kg)"
+i2 = "Mustard Oil (1L)"
+i3 = "Masoor Dal (1kg)"
+i4 = "Sugar (1kg)"
+i5 = "Salt (1kg)"
+i6 = "Rupchanda Oil (2L)"
+i7 = "Aata (2kg)"
+i8 = "Teaser Tea (400g)"
+i9 = "Powder Milk (500g)"
+i10 = "Onion (1kg)"
+i11 = "Garlic (500g)"
+i12 = "Ginger (500g)"
+i13 = "Turmeric Powder"
+i14 = "Chili Powder"
+i15 = "Dish Wash Liquid"
+
+# ১৫টি আইটেমের দাম
+p1 = "340.00 tk"
+p2 = "220.00 tk"
+p3 = "130.00 tk"
+p4 = "115.00 tk"
+p5 = "42.00 tk"
+p6 = "330.00 tk"
+p7 = "95.00 tk"
+p8 = "125.00 tk"
+p9 = "410.00 tk"
+p10 = "75.00 tk"
+p11 = "90.00 tk"
+p12 = "110.00 tk"
+p13 = "60.00 tk"
+p14 = "65.00 tk"
+p15 = "85.00 tk"
+
+# পাইথনে প্রিন্ট করার জন্য f-string ব্যবহার করা হয় (জাভাস্ক্রিপ্টের ব্যাকটিক ` ` এর মতো)
+print(f"""Product Name              | Price
+--------------------------------------
+{i1.ljust(25, ".")} | {p1}
+{i2.ljust(25, ".")} | {p2}
+{i3.ljust(25, ".")} | {p3}
+{i4.ljust(25, ".")} | {p4}
+{i5.ljust(25, ".")} | {p5}
+{i6.ljust(25, ".")} | {p6}
+{i7.ljust(25, ".")} | {p7}
+{i8.ljust(25, ".")} | {p8}
+{i9.ljust(25, ".")} | {p9}
+{i10.ljust(25, ".")} | {p10}
+{i11.ljust(25, ".")} | {p11}
+{i12.ljust(25, ".")} | {p12}
+{i13.ljust(25, ".")} | {p13}
+{i14.ljust(25, ".")} | {p14}
+{i15.ljust(25, ".")} | {p15}
+--------------------------------------""")
