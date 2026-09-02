@@ -78,6 +78,13 @@ del colors[1]          # ১ নম্বর ইনডেক্স ডিলি�
 colors.clear()         # সম্পূর্ণ লিস্ট খালি হয়ে যাবে: []
 
 
+colors = ["Red", "Green", "Blue", "Yellow"]
+removed_item = colors.pop(0)
+
+print(colors)         # আউটপুট: ['Green', 'Blue', 'Yellow']
+print(removed_item)   # আউটপুট: Red (মুছে যাওয়া জিনিসটি আলাদা হয়ে হাতে চলে এল)
+
+
 
 
 ৩. খোঁজাখুঁজি ও সাজানো (Searching & Sorting)
