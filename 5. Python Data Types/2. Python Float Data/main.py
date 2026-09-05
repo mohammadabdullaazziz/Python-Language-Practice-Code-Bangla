@@ -11,11 +11,11 @@ float হলো Python-এর দশমিক সংখ্যা (Floating-point
 x = 3.14159265358979323846
 print(x)  # 3.141592653589793 (এমনিতেই কিছু digit কেটে দেখায়)
 
+
 15 ঘর পর্যন্ত দেখানোর পদ্ধতি — f-string দিয়ে
 x = 1 / 3
 
 print(f"{x:.15f}")  # 0.333333333333333
-
 
 
 x = 2 ** 0.5  # বর্গমূল ২
@@ -23,11 +23,25 @@ x = 2 ** 0.5  # বর্গমূল ২
 print(f"{x:.15f}")  # 1.414213562373095
 
 
+
+
 import math
 
 pi_value = math.pi
 print(f"Pi: {pi_value:.15f}")  # Pi: 3.141592653589793
 
+আমরা সাধারণত বৃত্তের হিসাব করার সময় মুখে মুখে বলি পাই ($\pi$)-এর মান ৩.১৪ বা ২২/৭।
+কিন্তু গণিতের হিসেবে এই মানটা কিন্তু শেষ হয় না—দশমিকের পর চলতেই থাকে (যেমন: ৩.১৪১৫৯২৬৫... এভাবে হাজার হাজার ঘর পর্যন্ত যেতে পারে)।
+পাইথনে একটা বিল্ট-ইন মডিউল আছে যার নাম math। এই math মডিউলের ভেতরে পাই ($\pi$)-এর এই নিখুঁত মানটা আগে থেকেই সেভ করা আছে।
+
+import math
+
+pi_value = math.pi
+print(pi_value)
+
+তখন পাইথন কম্পিউটার মেমরি থেকে ওই পাই-এর বিশাল মানটা বের করে এনে আপনাকে দেয়, যার সাধারণ মান দেখতে এমন লাগে: 3.141592653589793।
+
+আর এর সাথে যখন :.15f যোগ করা হয় , তখন পাইথনকে নির্দেশ দেন: "পাই-এর ওই বড় মানটার দশমিকের পর থেকে একদম গুনে গুনে ১৫ ঘর পর্যন্ত আমাকে দেখাও।"
 
 
 y = 22 / 7  # ভগ্নাংশ
@@ -36,7 +50,36 @@ print(f"{y:.15f}")  # 3.142857142857143
 
 
 
+
+
 round() দিয়েও করা যায় (কিন্তু একটু ভিন্ন আচরণ)
+
+দশমিকের ঘর ছোট করার জন্য পাইথনের round() ফাংশনও ব্যবহার করা যায়। তবে এর কাজ করার ধরনে ফ-স্ট্রিং (:.15f) এর চেয়ে একটি গুরুত্বপূর্ণ পার্থক্য আছে।
+
+round() বনাম f-string-এর মূল পার্থক্য
+f-string (:.2f): এটি সংখ্যাটির আসল মানের কোনো পরিবর্তন করে না। এটি শুধু সংখ্যাটিকে প্রিন্ট করার সময় বা 
+দেখার সময় টেক্সট বা স্ট্রিং হিসেবে দশমিকের ঘর কমিয়ে দেখায়। মেমরিতে আসল বড় সংখ্যাটি ঠিকই থেকে যায়।
+
+round() ফাংশন: এটি সংখ্যাটির মানকে সরাসরি বদলে বা রাউন্ড করে একটি নতুন ফ্লোট (float) সংখ্যা হিসেবে রিটার্ন করে।
+
+x = 3.1415926535
+
+# ১. f-string ব্যবহার করে (শুধু দেখার রূপ পরিবর্তন)
+print(f"{x:.2f}")  # আউটপুট: 3.14 (এটি একটি স্ট্রিং)
+
+# ২. round() ফাংশন ব্যবহার করে (আসল মানটাই ছোট হয়ে যায়)
+result = round(x, 2)
+print(result)       # আউটপুট: 3.14 (এটি একটি সংখ্যা বা float)
+
+
+round() নিয়ে একটি মজার ও জরুরি তথ্য (Banker's Rounding)
+পাইথনের round() ফাংশন সাধারণ গণিতের নিয়মের চেয়ে একটু ভিন্নভাবে কাজ করতে পারে। দশমিকের পর যদি ঠিক .5 থাকে,
+তবে পাইথন সবসময় কাছের জোড় সংখ্যাটির দিকে রাউন্ড করে। একে Banker's Rounding বলে।
+
+যেমন: round(2.5) করলে উত্তর আসবে 2 (কারণ ২ একটি জোড় সংখ্যা)।
+
+আবার round(3.5) করলে উত্তর আসবে 4 (কারণ ৪ একটি জোড় সংখ্যা)।
+
 
 x = 1 / 3
 
@@ -107,7 +150,11 @@ print(sys.getsizeof(x))  # আউটপুট দেখাবে: 24 (Bytes)
 
 
 
+
 Float এর সীমা ও বিশেষ মান
+
+কম্পিউটারে যেকোনো ডেটা বা সংখ্যা রাখার একটা নির্দিষ্ট সীমা থাকে। পাইথনে একটি ফ্লোট (দশমিক) সংখ্যা কত বড় হতে পারে এবং শূন্যের কাছাকাছি কত ছোট হতে পারে,
+তা জানার জন্য sys মডিউলের ভেতরে float_info.max এবং float_info.min ব্যবহার করা হয়।
 
 import sys
 
@@ -115,19 +162,1079 @@ import sys
 print(sys.float_info.max)   # 1.7976931348623157e+308
 print(sys.float_info.min)   # 2.2250738585072014e-308
 
-# বিশেষ মান
-infinity = float('inf')      # অসীম (∞)
-neg_inf  = float('-inf')     # ঋণাত্মক অসীম (-∞)
-not_num  = float('nan')      # NaN = Not a Number
+import sys
 
-print(infinity)    # inf
-print(neg_inf)     # -inf
-print(not_num)     # nan
+# ১. পাইথন যে সর্বোচ্চ বড় ফ্লোট সংখ্যাটি মনে রাখতে পারে, তা ভেরিয়েবলে রাখা
+max_limit = sys.float_info.max
+
+# ২. পাইথন শূন্যের ঠিক ওপরে যে সবচেয়ে ক্ষুদ্রতম পজিটিভ ফ্লোট সংখ্যাটি মাপতে পারে, তা ভেরিয়েবলে রাখা
+min_limit = sys.float_info.min
+
+print("সর্বোচ্চ ফ্লোট মান:", max_limit)
+print("সর্বনিম্ন ফ্লোট মান:", min_limit)
+
+
+১. max_limit (সর্বোচ্চ মান):
+কম্পিউটার দশমিক সংখ্যা হিসেবে এর চেয়ে বড় কোনো সংখ্যা প্রসেস করতে পারে না। আপনি যদি এর চেয়েও বড় কোনো সংখ্যা নিয়ে গাণিতিক হিসাব করতে যান,
+তখন পাইথন এটিকে আর সংখ্যা হিসেবে রাখতে পারে না—সেটাকে সোজা inf (Infinity বা অসীম) বানিয়ে ফেলে (ওভারফ্লো হয়ে যায়)।
+
+২. min_limit (সর্বনিম্ন মান):
+এটি কিন্তু কোনো নেগেটিভ বা ঋণাত্মক সংখ্যা নয়! এটি হলো শূন্যের ঠিক ঠিক ওপরে থাকা সবচেয়ে ক্ষুদ্রতম ধনাত্মক (positive) দশমিক সংখ্যা, 
+যা কম্পিউটার নিখুঁতভাবে মাপতে পারে। এর চেয়েও ছোট মাপা যায় না, ছোট করতে গেলে কম্পিউটার সেটিকে সরাসরি 0.0 বানিয়ে ফেলে (আন্ডারফ্লো হয়ে যায়)।
+
+ব্যাকএন্ডে এটি কেন দরকার হয়?
+বড় বড় ফিন্যান্সিয়াল ক্যালকুলেশন, ডেটা প্রসেসিং বা গেম ডেভেলপমেন্টের সময় সার্ভার যেন ওভারফ্লো হয়ে ক্র্যাশ না করে,
+সেজন্য অনেক সময় লজিক দিয়ে চেক করতে হয় যে সংখ্যাটি এই সীমার (max এবং min) ভেতরে আছে কি না।
+
+
+
+
+-----
+
+# বিশেষ মান
+
+
+১. অসীম কোনটা? (Infinite)
+পাইথনে বা গণিতে যেগুলোর কোনো শেষ বা নির্দিষ্ট মান নেই, সেগুলোকে অসীম বলা হয়।
+
+আমরা যে দুটি মান নিয়ে কাজ করেছি:
+
+float('inf') (পজিটিভ ইনফিনিটি বা ধনাত্মক অসীম)
+
+float('-inf') (নেগেটিভ ইনফিনিটি বা ঋণাত্মক অসীম)
+
+কেন এটি অসীম: কারণ এই সংখ্যাগুলো অসীম পর্যন্ত বিস্তৃত। এগুলোর কোনো নির্দিষ্ট শেষ সীমা নেই।
+
+২. সসীম কোনটা? (Finite)
+যেসব সংখ্যার একটি নির্দিষ্ট বা সীমাবদ্ধ মান আছে (অর্থাৎ যা অসীম নয়), সেগুলোকে সসীম বলা হয়।
+
+আমরা প্রতিদিন কোডিংয়ে যেসব সাধারণ সংখ্যা ব্যবহার করি:
+
+যেমন: 10, 45.5, 0, -7, 9999 ইত্যাদি।
+
+কেন এটি সসীম: কারণ এদের একটি নির্দিষ্ট শেষ বা মান আছে। পাইথনে কোনো সংখ্যা সসীম কি না তা চেক করার জন্য math.isfinite() ফাংশন ব্যবহার করা হয়।
+
+
+
+
+
+
+পাইথনে inf, -inf এবং nan—এই তিনটি বিশেষ মান সব সময় বাধ্যতামূলকভাবে ফ্লোট (float) ডেটা টাইপেরই হয়ে থাকে।
+
+print(type(float('inf')))  # আউটপুট: <class 'float'>
+print(type(float('nan')))  # আউটপুট: <class 'float'>
+
+# ভেরিয়েবলের নাম নিজের ইচ্ছেমতো পরিবর্তন করা হলো
+positive_limit = float('inf')      
+negative_limit = float('-inf')     
+missing_data   = float('nan')      
+
+print("Positive limit:", positive_limit)
+print("Negative limit:", negative_limit)
+print("Missing data value:", missing_data)
+
+# ডেটা টাইপ চেক
+print("Type of missing_data:", type(missing_data)) # আউটপুট: <class 'float'>
+
+
+কোডে বা পাইথনে 'inf' দিয়ে মূলত Infinity (ইনফিনিটি বা অসীম) বোঝানো হয়।
+
+সহজ কথায়:অর্থ: এটি এমন একটি মান যার কোনো শেষ বা নির্দিষ্ট সীমা নেই (গণিতের infty প্রতীকের মতো)।কেন ব্যবহার করা হয়? 
+প্রোগ্রামিং বা ব্যাকএন্ড লজিক লেখার সময় অনেক সময় কোনো কিছুর সর্বোচ্চ বা সর্বনিম্ন সীমা নির্ধারণ করার জন্য এটি কাজে লাগে
+(যেমন: কোনো ডেটাবেজ বা লিস্ট থেকে সবচেয়ে ছোট সংখ্যা খোঁজার শুরুতে প্রাথমিক মান হিসেবে float('inf') ধরে নেওয়া হয়)।
+
+
+এখানে float('-inf') দিয়ে মূলত Negative Infinity (ঋণাত্মক অসীম বা -infty বোঝানো হয়।
+সহজ ভাষায়:অর্থ: এটি ধনাত্মক অসিমের ঠিক উল্টো, অর্থাৎ ঋণাত্মক দিকে যার কোনো শেষ বা সীমা নেই।কেন ব্যবহার করা হয়?
+প্রোগ্রামিংয়ে যখন কোনো ডেটা বা লিস্ট থেকে সবচেয়ে বড় সংখ্যাটি খুঁজে বের করতে হয়, 
+তখন লজিক শুরু করার আগে প্রাথমিক মান হিসেবে সবচেয়ে ছোট বা ঋণাত্মক অসীম (float('-inf')) ধরে নেওয়া হয়,
+যাতে যেকোনো বড় সংখ্যা পেলেই সেটি সহজে আপডেট হয়ে যায়।সংক্ষেপে, float('-inf') হলো কম্পিউটারের ভাষায় ঋণাত্মক অসীম।
+
+
+এখানে float('nan') দিয়ে মূলত NaN (Not a Number) বা অবাস্তব/অনির্ণেয় সংখ্যা বোঝানো হয়।
+
+সহজ ভাষায়:
+
+অর্থ: Not a Number—অর্থাৎ এটি কোনো সাধারণ সংখ্যা নয়। গণিতে যেমন কিছু অনির্ণেয় হিসাব আছে (যেমন: শূন্যকে শূন্য দিয়ে ভাগ করা), পাইথন সেগুলোকে nan হিসেবে দেখায়।
+
+কেন ব্যবহার করা হয়? ব্যাকএন্ড বা ডেটা প্রসেসিংয়ের সময় সবচেয়ে বেশি কাজে লাগে।
+কোনো একটা ডেটাবেজ থেকে হাজার হাজার ইউজারের বয়স বা দামের ডেটা আনা হচ্ছে, 
+কিন্তু কোনো একটি ইউজারের ক্ষেত্রে সেই তথ্যটি নেই (মিসিং)। তখন কোড যেন ক্র্যাশ না করে, সেই ফাঁকা বা মিসিং জায়গায় float('nan') বসিয়ে দেওয়া হয়।
+
+
+কিছু পণ্যের দামের একটি তালিকা আছে এবং সেখান থেকে সবচেয়ে কম দামের (minimum price) পণ্যটি খুঁজে বের করতে হবে।
+
+# ১. শুরুতে সর্বনিম্ন দাম হিসেবে ইনফিনিটি বা অসীম ধরে নেওয়া হলো
+min_price = float('inf')
+
+# পণ্যের দামের একটি তালিকা (List)
+product_prices = [450, 120, 890, 50, 300]
+
+# লুপ চালিয়ে সবচেয়ে কম দাম খোঁজা হচ্ছে
+for price in product_prices:
+    if price < min_price:
+        min_price = price  # যদি বর্তমান দামটি ছোট হয়, তবে সেটিই নতুন min_price হবে
+
+print("সবচেয়ে কম দাম (Minimum Price):", min_price)
+
+
+কেন এখানে float('inf') ব্যবহার করা হলো?
+লুপ শুরু করার আগে আমরা জানি না তালিকার সবচেয়ে ছোট সংখ্যাটি কত।
+
+তাই min_price-এর প্রাথমিক মান এমন একটি সংখ্যা ধরে নিতে হবে, যা তালিকার যেকোনো সাধারণ সংখ্যার চেয়ে বড় হবে।
+
+যেহেতু float('inf') মানে অসীম (সবচেয়ে বড়), তাই তালিকার প্রথম যে সংখ্যাটিই (450) চেক করা হোক না কেন,
+সেটি ইনফিনিটির চেয়ে ছোট হবে এবং সহজেই min_price-এ সেট হয়ে যাবে। এর ফলে কোডটি খুব নিখুঁতভাবে কাজ করে।
+
+
+শর্টেস্ট পাথ বা দূরত্ব খোঁজা (Shortest Path / Routing)
+ব্যাকএন্ডে কোনো ম্যাপ অ্যাপ, জিপিএস বা নেটওয়ার্ক রাউটিংয়ের কাজ করার সময় বিভিন্ন জায়গার দূরত্ব বা খরচ মাপতে হয়। সবচেয়ে কম খরচে বা দূরত্বে যাওয়ার পথ খুঁজতে গেলে এই কৌশল লাগে।
+
+
+# শুরুতে সব সার্ভার বা রাস্তার দূরত্ব অসীম (infinity) ধরে নেওয়া হলো
+shortest_distance = float('inf')
+
+# বিভিন্ন রুটের বা সার্ভারের দূরত্ব (কিমি বা মিলিিসেকেন্ডে)
+route_distances = [120, 45, 300, 15, 85]
+
+for distance in route_distances:
+    if distance < shortest_distance:
+        shortest_distance = distance  # কম দূরত্ব পেলে সেটি আপডেট হবে
+
+print("সবচেয়ে কম দূরত্ব (Shortest Distance):", shortest_distance)
+
+কেন কাজে লাগে: আমরা জানি না কোন রাস্তাটি সবচেয়ে ছোট। তাই ইনিশিয়াল মান হিসেবে ইনফিনিটি ধরে নিলে যেকোনো আসল দূরত্বই তার চেয়ে ছোট হবে এবং সহজেই প্রথম রুটটি সেট হয়ে যাবে।
+
+
+
+
+সার্ভারের সবচেয়ে কম রেসপন্স টাইম (Minimum Server Latency) খোঁজা
+আপনার ব্যাকএন্ড অ্যাপ্লিকেশনে একাধিক সার্ভার চলতে পারে। ইউজারের রিকোয়েস্ট পাঠানোর জন্য
+কোন সার্ভারটি সবচেয়ে দ্রুত কাজ করছে (যেকি না লেটেন্সি বা সময় সবচেয়ে কম নেয়) তা বের করতে এটি লাগে।
+
+
+# শুরুতে সর্বনিম্ন ল্যাটেন্সি ইনফিনিটি ধরে নেওয়া হলো
+min_latency = float('inf')
+
+# বিভিন্ন সার্ভারের রেসপন্স টাইম (মিলিিসেকেন্ডে)
+server_response_times = [125, 450, 85, 320, 210]
+
+for latency in server_response_times:
+    if latency < min_latency:
+        min_latency = latency
+
+print("সবচেয়ে দ্রুতগতির সার্ভারের ল্যাটেন্সি:", min_latency, "ms")
+
+কেন কাজে লাগে: এখানেও উদ্দেশ্য হলো সর্বনিম্ন মান খুঁজে বের করা। ইনফিনিটি ব্যবহার করার কারণে কোডকে আলাদা করে কোনো প্রথম মান দিয়ে হার্ডকোড (hardcode) করতে হয় না।
+
+
+
+ই-কমার্স ব্যাকএন্ডে সবচেয়ে কম শিপিং কস্ট খোঁজা
+ধরুন, আপনার ই-কমার্স সাইটে একটি অর্ডার শিপ করার জন্য একাধিক কুরিয়ার সার্ভিস বা সাপ্লায়ারের এপিআই (API) থেকে রেট আনা হচ্ছে। 
+আপনার ব্যাকএন্ডের কাজ হলো সবচেয়ে কম খরচের কুরিয়ারটি সিলেক্ট করা।
+
+# শুরুতে সর্বনিম্ন শিপিং খরচ অসীম ধরে নেওয়া হলো
+cheapest_shipping = float('inf')
+
+# বিভিন্ন কুরিয়ার সার্ভিসের চার্জ (টাকায়)
+courier_rates = [150, 80, 250, 65, 110]
+
+for rate in courier_rates:
+    if rate < cheapest_shipping:
+        cheapest_shipping = rate
+
+print("সবচেয়ে কম শিপিং খরচ:", cheapest_shipping)
+
+কেন কাজে লাগে: নতুন রেটগুলো আসার আগে কোনো নির্দিষ্ট সংখ্যা (যেমন 0 বা 100) দিয়ে ইনিশিয়ালাইজ করলে সমস্যা হতে পারে 
+(যদি এমন হয় যে কোনো রেটই শূন্য না)। তাই float('inf') ব্যবহার করলে যেকোনো বৈধ রেটই প্রথম ধাপে সহজে সেট হয়ে যায়।
+
+
+
+
+ক্লাউড সার্ভারে সর্বনিম্ন রিসোর্স ব্যবহার (Resource Optimization)
+ব্যাকএন্ডে যখন  কোনো মাইক্রোসার্ভিস বা ক্লাউড সার্ভার (AWS/Docker) ম্যানেজ করা হবে,
+তখন দেখতে হতে পারে কোন সার্ভারে প্রসেসর বা মেমোরি ব্যবহার (CPU/Memory load) সবচেয়ে কম, যাতে নতুন রিকোয়েস্টটি সেখানে পাঠানো যায়।
+
+
+# শুরুতে সর্বনিম্ন সিপিইউ লোড ইনফিনিটি ধরে নেওয়া হলো
+lowest_cpu_load = float('inf')
+
+# বিভিন্ন সার্ভারের সিপিইউ ব্যবহারের শতকরা হার (%)
+server_loads = [78.5, 42.1, 95.0, 31.4, 60.0]
+
+for load in server_loads:
+    if load < lowest_cpu_load:
+        lowest_cpu_load = load
+
+print("সবচেয়ে কম ব্যবহৃত সার্ভারের লোড:", lowest_cpu_load, "%")
+
+কেন কাজে লাগে: এখানেও উদ্দেশ্য হলো একটি ডাইনামিক তালিকার ভেতর থেকে সর্বনিম্ন মানটি নিখুঁতভাবে খুঁজে বের করা।
+
+
+ডেটাবেজ কুয়েরি অপ্টিমাইজেশন (Database Query Execution Cost)
+ব্যাকএন্ডে কোনো জটিল কুয়েরি (SQL Query) রান করার সময় ডেটাবেজ ইঞ্জিন অনেক সময় একাধিক এক্সিকিউশন প্ল্যান তৈরি করে।
+কোন প্ল্যানটি চালালে সার্ভারের উপর চাপ বা প্রসেসিং কস্ট সবচেয়ে কম পড়বে, তা বের করতে এই কৌশল ব্যবহার করা হয়।
+
+# শুরুতে কুয়েরি প্ল্যানের খরচ অসীম ধরে নেওয়া হলো
+min_query_cost = float('inf')
+
+# বিভিন্ন এক্সিকিউশন প্ল্যানের কস্ট বা খরচ (মিলিিসেকেন্ড বা রিসোর্স ইউনিট)
+execution_plans = [45.2, 12.8, 89.5, 5.4, 30.1]
+
+for cost in execution_plans:
+    if cost < min_query_cost:
+        min_query_cost = cost
+
+print("সবচেয়ে কম খরচের কুয়েরি প্ল্যান:", min_query_cost)
+
+কেন কাজে লাগে: ডেটাবেজ অপ্টিমাইজাররা নিখুঁতভাবে সবচেয়ে সস্তা বা দ্রুততম এক্সিকিউশন পাথ বেছে নেওয়ার জন্য এই মিনিমাম কস্ট ইনিশিয়ালাইজেশন পদ্ধতি ব্যবহার করেন।
+
+
+
+গ্রাফ অ্যালগরিদম ও নেটওয়ার্ক রাউটিং (Dijkstra's Algorithm)
+আপনি যদি কখনো নেটওয়ার্ক রাউটিং, সোশ্যাল নেটওয়ার্কে কমন কানেকশন বা ম্যাপের শর্টেস্ট পাথ অ্যালগরিদম (যেমন Dijkstra's Algorithm) নিয়ে ব্যাকএন্ডে কাজ করেন, 
+তবে সেখানে প্রতিটি ডেস্টিনেশনের ইনিশিয়াল দূরত্ব float('inf') সেট করা বাধ্যতামূলক।
+
+
+# ডেটাবেজ বা গ্রাফে বিভিন্ন নোডের প্রাথমিক দূরত্ব অসীম ধরে নেওয়া হলো
+node_distances = {
+    'Server_A': 0,       # নিজের দূরত্ব নিজে শূন্য
+    'Server_B': float('inf'),
+    'Server_C': float('inf')
+}
+
+# নতুন কোনো ছোট রুট বা দূরত্ব পাওয়া গেলে এটি আপডেট হবে
+new_discovered_distance = 45
+
+if new_discovered_distance < node_distances['Server_B']:
+    node_distances['Server_B'] = new_discovered_distance
+
+print("Server_B এর আপডেট হওয়া দূরত্ব:", node_distances['Server_B'])
+
+
+কেন কাজে লাগে: শুরুতে গন্তব্যের দূরত্ব অজানা থাকায় ইনফিনিটি সেট না করলে কোড ভুল রুট ক্যালকুলেট করতে পারত।
+
+
+সিস্টেম লগে সবচেয়ে পুরোনো (Oldest) টাইমস্ট্যাম্প খুঁজে বের করা
+ব্যাকএন্ড সার্ভারের বাগ বা এরর ট্র্যাক করার জন্য লগ ফাইল বিশ্লেষণ করতে হয়। কোন লগটি সবচেয়ে আগে (Oldest) তৈরি হয়েছিল তা বের করতে টাইমস্ট্যাম্পের ওপর এই মিনিমাম লজিক চালানো হয়।
+
+
+# শুরুতে পুরোনো টাইমস্ট্যাম্প ইনফিনিটি ধরে নেওয়া হলো
+oldest_timestamp = float('inf')
+
+# সার্ভারের বিভিন্ন লগের টাইমস্ট্যাম্প (Unix Timestamp)
+log_timestamps = [1718000500, 1718000100, 1718000900]
+
+for ts in log_timestamps:
+    if ts < oldest_timestamp:
+        oldest_timestamp = ts
+
+print("সবচেয়ে পুরোনো লগের টাইমস্ট্যাম্প:", oldest_timestamp)
+
+
+কেন কাজে লাগে: টাইমস্ট্যাম্পের ক্ষেত্রে ছোট সংখ্যাটি হলো অতীতের (oldest) সময়। তাই ইনফিনিটি দিয়ে ইনিশিয়ালাইজ করলে প্রথম যে লগটিই পাওয়া যাবে, সেটিই সহজে সেট হয়ে যাবে।
+
+
+
+পেজিনেশন বা অফসেট লিমিট ভ্যালিডেশন (Pagination Min ID)
+ডাটাবেজ থেকে হাজার হাজার রেকর্ড একসাথে লোড না করে পেজ ধরে ধরে (LIMIT/OFFSET) ডেটা আনার সময় কোনো নির্দিষ্ট ক্যাটাগরির সবচেয়ে ছোট আইডি বা রেকর্ড ট্র্যাক করতে এটি লাগে।
+
+# শুরুতে সর্বনিম্ন আইডি ইনফিনিটি ধরে নেওয়া হলো
+min_record_id = float('inf')
+
+# বর্তমান ব্যাচে ফেচ করা রেকর্ডগুলোর আইডি
+fetched_ids = [105, 102, 110, 101]
+
+for record_id in fetched_ids:
+    if record_id < min_record_id:
+        min_record_id = record_id
+
+print("এই ব্যাচের সবচেয়ে ছোট বা প্রথম আইডি:", min_record_id)
+
+
+
+রেট লিমিটার এবং থ্রটল কন্ট্রোল (Rate Limiting / Time Window)
+ব্যাকএন্ডে কোনো এপিআই (API) সুরক্ষিত রাখতে Rate Limiter ব্যবহার করা হয়, যাতে কোনো ক্লায়েন্ট খুব দ্রুত বারবার রিকোয়েস্ট পাঠিয়ে সার্ভার ডাউন করে দিতে না পারে। 
+পরবর্তী রিকোয়েস্ট আসার নির্ধারিত সময় বা কাউন্ট চেক করার লজিকেও এটি লাগে।
+
+
+# শুরুতে পরবর্তী রিকোয়েস্টের জন্য ন্যূনতম অপেক্ষার সময় অসীম ধরে নেওয়া হলো
+min_wait_time = float('inf')
+
+# বিভিন্ন রুলের চেক করা ওয়েটিং টাইম (সেকেন্ডে)
+waiting_times = [30, 5, 15, 60]
+
+for t in waiting_times:
+    if t < min_wait_time:
+        min_wait_time = t
+
+print("সবচেয়ে কম অপেক্ষার সময় (Minimum Wait Time):", min_wait_time, "seconds")
+
+কেন কাজে লাগে: কোন রুলের কারণে ক্লায়েন্টকে সবচেয়ে কম সময় অপেক্ষা করতে হবে, তা খুঁজে বের করতে এই মিনিমাম লজিক নিখুঁতভাবে কাজ করে।
+
+
+
+ইনভেন্টরি বা স্টক ম্যানেজমেন্ট (Minimum Stock Threshold Warning)
+ই-কমার্স ব্যাকএন্ডে বিভিন্ন ওয়্যারহাউস বা গুদামে কোনো পণ্যের স্টক ফুরিয়ে আসছে কি না বা কোন গুদামে স্টক সবচেয়ে কম আছে, তা ট্র্যাক করতে এটি ব্যবহার করা হয়।
+
+# শুরুতে সর্বনিম্ন স্টক ইনফিনিটি ধরে নেওয়া হলো
+lowest_stock_quantity = float('inf')
+
+# বিভিন্ন ওয়্যারহাউসে থাকা একটি নির্দিষ্ট পণ্যের স্টক পরিমাণ
+warehouse_stocks = [45, 12, 120, 5, 80]
+
+for stock in warehouse_stocks:
+    if stock < lowest_stock_quantity:
+        lowest_stock_quantity = stock
+
+print("কোনো একটি ওয়্যারহাউসে থাকা সর্বনিম্ন স্টক:", lowest_stock_quantity)
+
+কেন কাজে লাগে: স্টক অ্যালার্ট সিস্টেম ট্রিগার করার জন্য কোন গুদামে স্টক সবচেয়ে কম রয়েছে তা খুঁজে বের করতে এই ইনিশিয়ালাইজেশন পদ্ধতি অত্যন্ত কার্যকর।
+
+
+
+float('-inf')   
+float('-inf') ব্যবহার করা হয় সবচেয়ে বেশি বা সর্বোচ্চ (Maximum) মান খুঁজে বের করার জন্য।
+
+
+ই-কমার্স সাইটে সর্বোচ্চ পণ্যের রেটিং (Maximum Product Rating) খোঁজা
+ধরুন, ব্যাকএন্ডে একটি ই-কমার্স প্রোডাক্টের অনেকগুলো ইউজারের দেওয়া রিভিউ রেটিং (৫ এর মধ্যে) আছে। সেখান থেকে সবচেয়ে বেশি বা সর্বোচ্চ রেটিংটি বের করতে হবে।
+
+
+# শুরুতে সর্বোচ্চ রেটিং ঋণাত্মক অসীম বা -inf ধরে নেওয়া হলো
+max_rating = float('-inf')
+
+# ইউজারের দেওয়া বিভিন্ন রেটিংয়ের তালিকা
+product_ratings = [4.2, 3.8, 4.9, 4.5, 5.0]
+
+for rating in product_ratings:
+    if rating > max_rating:
+        max_rating = rating  # যদি বর্তমান রেটিংটি বড় হয়, তবে সেটিই নতুন max_rating হবে
+
+print("সবচেয়ে বেশি রেটিং (Maximum Rating):", max_rating)
+
+কেন কাজে লাগে: লুপ শুরু করার আগে আমরা জানি না সর্বোচ্চ রেটিং কত। তাই -inf ধরে নিলে তালিকার প্রথম রেটিংটিই (4.2) সেটির চেয়ে বড় হবে এবং সহজে সেট হয়ে যাবে।
+
+
+সার্ভারের সর্বোচ্চ ট্রাফিক বা পিক লোড (Peak Server Load) ট্র্যাক করা
+ব্যাকএন্ডে কোনো সার্ভারের পারফরম্যান্স মনিটর করার সময় দেখতে হতে পারে একদিনের মধ্যে কোন ঘণ্টায় সবচেয়ে বেশি ইউজারের রিকোয়েস্ট (Peak Traffic) এসেছিল।
+
+# শুরুতে সর্বোচ্চ ট্রাফিক -inf ধরে নেওয়া হলো
+peak_traffic = float('-inf')
+
+# বিভিন্ন ঘণ্টার রিকোয়েস্ট সংখ্যা (প্রতি ঘণ্টায় ট্রাফিক)
+hourly_requests = [1200, 3500, 2200, 4800, 1500]
+
+for requests in hourly_requests:
+    if requests > peak_traffic:
+        peak_traffic = requests
+
+print("সার্ভারের সর্বোচ্চ বা পিক ট্রাফিক (Peak Traffic):", peak_traffic)
+
+কেন কাজে লাগে: সর্বোচ্চ মান বের করার ক্ষেত্রে এই ইনিশিয়ালাইজেশন টেকনিকটি শতভাগ নির্ভুলভাবে কাজ করে।
+
+
+
+সর্বোচ্চ নম্বর বা হাইয়েস্ট মার্কস খোঁজা
+স্কুল বা কলেজের রেজাল্ট প্রসেসিংয়ের ব্যাকএন্ডে অনেকগুলো নম্বরের মধ্য থেকে সর্বোচ্চ নম্বরটি খুঁজে বের করার জন্য এটি ব্যবহার করা হয়।
+
+# শুরুতে সর্বোচ্চ নম্বর ঋণাত্মক অসীম ধরে নেওয়া হলো
+highest_score = float('-inf')
+
+# শিক্ষার্থীদের পাওয়া নম্বরের তালিকা
+scores = [75, 82, 91, 60, 88]
+
+for score in scores:
+    if score > highest_score:
+        highest_score = score
+
+print("সবচেয়ে বেশি নম্বর (Highest Score):", highest_score)
+
+
+
+সবচেয়ে বেশি বিক্রয় বা হাইয়েস্ট সেলস খোঁজা
+একটি দোকানের দৈনিক বিক্রির হিসাব থেকে কোন দিন সবচেয়ে বেশি বিক্রি হয়েছে তা বের করার জন্য এই লজিকটি কাজে লাগে।
+
+# শুরুতে সর্বোচ্চ বিক্রি -inf ধরে নেওয়া হলো
+max_sales = float('-inf')
+
+# বিভিন্ন দিনের বিক্রির পরিমাণ (টাকায়)
+daily_sales = [12000, 25000, 18000, 30000, 15000]
+
+for sale in daily_sales:
+    if sale > max_sales:
+        max_sales = sale
+
+print("সবচেয়ে বেশি বিক্রি (Max Sales):", max_sales)
+
+
+সর্বোচ্চ তাপমাত্রা বা হাইয়েস্ট টেম্পারেচার খোঁজা
+আবহাওয়ার ডেটা নিয়ে কাজ করার সময় সপ্তাহের বিভিন্ন দিনের মধ্যে সবচেয়ে গরমের দিন বা সর্বোচ্চ তাপমাত্রা খুঁজে বের করতে এটি লাগে।
+
+
+# শুরুতে সর্বোচ্চ তাপমাত্রা -inf ধরে নেওয়া হলো
+highest_temp = float('-inf')
+
+# বিভিন্ন দিনের তাপমাত্রা (সেলসিয়াসে)
+temperatures = [32, 35, 38, 30, 40]
+
+for temp in temperatures:
+    if temp > highest_temp:
+        highest_temp = temp
+
+print("সবচেয়ে বেশি তাপমাত্রা (Highest Temperature):", highest_temp)
+
+
+ভিডিওর সর্বোচ্চ ভিউ (Max Video Views) খোঁজা
+আপনার ইউটিউব চ্যানেলের বিভিন্ন ভিডিওর ভিউগুলোর মধ্য থেকে কোন ভিডিওটিতে সবচেয়ে বেশি ভিউ হয়েছে, তা বের করার জন্য এই লজিক ব্যবহার করা যায়।
+
+
+# শুরুতে সর্বোচ্চ ভিউ ঋণাত্মক অসীম ধরে নেওয়া হলো
+max_views = float('-inf')
+
+# বিভিন্ন ভিডিওর ভিউ সংখ্যা
+views_list = [1500, 4200, 8900, 3100, 6200]
+
+for views in views_list:
+    if views > max_views:
+        max_views = views
+
+print("সবচেয়ে বেশি ভিউ (Max Views):", max_views)
+
+
+গাড়ির সর্বোচ্চ গতি (Highest Speed) খোঁজা
+কোনো ট্রিপে একটি গাড়ি বিভিন্ন সময়ে সর্বোচ্চ কত গতিতে চলেছে, তার একটি তালিকা থেকে সবচেয়ে বেশি গতি বা স্পিড বের করতে এটি কাজে লাগে।
+
+# শুরুতে সর্বোচ্চ গতি -inf ধরে নেওয়া হলো
+highest_speed = float('-inf')
+
+# গাড়ির বিভিন্ন সময়ের গতি (কমি/ঘণ্টা)
+speeds = [60, 95, 110, 80, 125]
+
+for speed in speeds:
+    if speed > highest_speed:
+        highest_speed = speed
+
+print("সবচেয়ে বেশি গতি (Highest Speed):", highest_speed, "km/h")
+
+যতবারই কোনো তালিকার ভেতর থেকে সবচেয়ে বড় বা সর্বোচ্চ মান (Maximum) বের করার প্রয়োজন হবে, ঠিক ততবারই লুপের আগে এই float('-inf') কৌশলটি ব্যবহার করতে হবে।
+
+
+গেমে সর্বোচ্চ স্কোর বা হাই স্কোর (High Score) খোঁজা
+যদি কোনো গেম তৈরি করা হয়, তবে সেখানে বিভিন্ন রাউন্ডের স্কোরের মধ্যে সবচেয়ে বেশি বা সর্বোচ্চ স্কোরটি বের করতে এই লজিকটি কাজে লাগে।
+
+
+# শুরুতে সর্বোচ্চ স্কোর ঋণাত্মক অসীম ধরে নেওয়া হলো
+highest_score = float('-inf')
+
+# গেমের বিভিন্ন রাউন্ডের স্কোর
+game_scores = [45, 120, 300, 210, 95]
+
+for score in game_scores:
+    if score > highest_score:
+        highest_score = score
+
+print("সবচেয়ে বেশি স্কোর বা হাই স্কোর:", highest_score)
+
+
+সবচেয়ে বেশি মাসিক আয় (Highest Monthly Income) খোঁজা
+বিভিন্ন মাসের আয়ের হিসাব থেকে কোন মাসে সবচেয়ে বেশি টাকা আয় হয়েছে, তা খুঁজে বের করার জন্য এটি ব্যবহার করা যেতে পারে।
+
+
+# শুরুতে সর্বোচ্চ আয় -inf ধরে নেওয়া হলো
+max_income = float('-inf')
+
+# বিভিন্ন মাসের আয়ের পরিমাণ (টাকায়)
+monthly_incomes = [25000, 45000, 30000, 60000, 40000]
+
+for income in monthly_incomes:
+    if income > max_income:
+        max_income = income
+
+print("সবচেয়ে বেশি আয়:", max_income)
+
+যতবারই  কোডে কোনো লিস্ট বা তালিকা থেকে সবচেয়ে বড় বা সর্বোচ্চ মান (Maximum) খুঁজে বের করার দরকার পড়বে,
+ততবারই আপনি চোখ বন্ধ করে এই float('-inf') টেকনিকটি ব্যবহার করা যাবে
+
+
+ই-কমার্স সাইটে সর্বোচ্চ ডিসকাউন্ট বা ছাড় (Max Discount) খোঁজা
+অনলাইন শপে বিভিন্ন পণ্যের ওপর দেওয়া ছাড়ের তালিকা থেকে সবচেয়ে বড় ছাড়ের অফারটি খুঁজে বের করতে এটি ব্যবহার করা হয়।
+
+# শুরুতে সর্বোচ্চ ছাড় ঋণাত্মক অসীম ধরে নেওয়া হলো
+max_discount = float('-inf')
+
+# বিভিন্ন পণ্যের ডিসকাউন্ট পার্সেন্টেজ (%)
+discounts = [10, 25, 5, 50, 30]
+
+for discount in discounts:
+    if discount > max_discount:
+        max_discount = discount
+
+print("সবচেয়ে বেশি ডিসকাউন্ট বা ছাড়:", max_discount, "%")
+
+
+
+আপলোড করা ফাইলের সর্বোচ্চ সাইজ (Max File Size) চেক করা
+ব্যাকএন্ডে ইউজারের আপলোড করা বিভিন্ন ফাইলের মেগাবাইট (MB) সাইজগুলোর মধ্য থেকে সবচেয়ে বড় সাইজের ফাইলটি কত, তা ট্র্যাক করতে এটি কাজে লাগে।
+
+# শুরুতে সর্বোচ্চ ফাইলের সাইজ -inf ধরে নেওয়া হলো
+max_file_size = float('-inf')
+
+# বিভিন্ন ফাইলের সাইজ (মেগাবাইটে)
+file_sizes_mb = [12, 45, 120, 8, 75]
+
+for size in file_sizes_mb:
+    if size > max_file_size:
+        max_file_size = size
+
+print("সবচেয়ে বড় ফাইলের সাইজ:", max_file_size, "MB")
+
+ইনফিনিটি (inf), নেগেটিভ ইনফিনিটি (-inf) এবং ন্যান (nan) নিয়ে আমাদের এই ফান্ডামেন্টাল ধারণাগুলো এখন একদম পানির মতো পরিষ্কার!
+
+
+
+float('nan')   
+float('nan') ব্যবহার করা হয় মিসিং, ফাঁকা বা অনির্ণেয় ডেটা (Missing or Invalid Data) হ্যান্ডেল করার জন্য।
+
+ব্যাকএন্ডে যখন কোনো ডেটাবেজ বা এপিআই (API) থেকে ডেটা নিয়ে কাজ করা হয়, তখন অনেক সময় কিছু ফিল্ড ফাঁকা থাকতে পারে। 
+সেই ফাঁকা জায়গাগুলোতে কোড যেন ক্র্যাশ না করে, তাই NaN ব্যবহার করা হয়।
+
+
+ইউজারের মিসিং ডেটা হ্যান্ডেল করা (Missing User Data)
+ধরুন, ব্যাকএন্ডে ইউজারের প্রোফাইল ডেটা লোড হচ্ছে। কোনো একজন ইউজারের বয়স (Age) ডেটাবেজে নেই। তখন সেই ফাঁকা জায়গায় nan বসিয়ে দেওয়া হয়।
+
+import math
+
+# ইউজারের বয়স, যেখানে একটি বয়স মিসিং বা দেওয়া নেই
+user_ages = [25, 30, float('nan'), 22, 28]
+
+for age in user_ages:
+    # চেক করা হচ্ছে বয়সটি NaN কি না
+    if math.isnan(age):
+        print("সতর্কতা: এই ইউজারের বয়স ডেটা মিসিং আছে!")
+    else:
+        print("ইউজারের বয়স:", age)
+
+কেন কাজে লাগে: আমরা আগের নিয়মে জেনেছি age == float('nan') লিখলে কাজ করে না, তাই ব্যাকএন্ডে মিসিং ডেটা ধরতে সবসময় math.isnan() ব্যবহার করতে হয়।
+
+
+
+গড় স্কোর বের করার সময় মিসিং ডেটা বাদ দেওয়া (Skipping Missing Values)
+শিক্ষার্থীদের পরীক্ষার খাতার স্কোর থেকে গড় (Average) বের করার ব্যাকএন্ড লজিক তৈরি করছেন। কিন্তু কোনো খাতা জমা না পড়ায় সেখানে স্কোরের জায়গায় nan আছে।
+
+
+import math
+
+student_scores = [80, 90, float('nan'), 85, 95]
+
+valid_scores = []
+
+for score in student_scores:
+    # যদি স্কোরটি NaN না হয়, কেবল তখনই সেটি কাউন্ট করব
+    if not math.isnan(score):
+        valid_scores.append(score)
+
+print("সঠিক বা ভ্যালিড স্কোরগুলোর তালিকা:", valid_scores)
+print("মোট ভ্যালিড স্কোর সংখ্যা:", len(valid_scores))
+
+
+কেন কাজে লাগে: ব্যাকএন্ডে হিসাব-নিকাশ করার সময় মিসিং ডেটা (nan) চলে আসলে পুরো প্রোগ্রাম ভুল ফলাফল দিতে পারে বা এরর দেখাতে পারে। 
+তাই math.isnan() দিয়ে মিসিং ডেটাগুলোকে ফিল্টার করে আলাদা করে ফেলা হয়।
+
+
+ই-কমার্স পণ্যের গড় দাম বের করার সময় মিসিং ডেটা বাদ দেওয়া
+অনলাইন শপে বিভিন্ন পণ্যের তালিকা থেকে গড় দাম (Average Price) বের করার সময় কোনো পণ্যের দাম ডেটাবেজে না থাকলে (nan থাকলে) হিসাব ভুল হতে পারে। তাই nan বাদ দিয়ে হিসাব করতে হয়।
+
+import math
+
+# কিছু পণ্যের দাম, যার মধ্যে কয়েকটি মিসিং (NaN)
+product_prices = [1200, 4500, float('nan'), 3200, float('nan')]
+
+total_price = 0
+valid_count = 0
+
+for price in product_prices:
+    # যদি দামটি NaN না হয়, কেবল তখনই যোগ করব
+    if not math.isnan(price):
+        total_price += price
+        valid_count += 1
+
+# গড় দাম বের করা
+average_price = total_price / valid_count
+print("সঠিক বা ভ্যালিড পণ্যের গড় দাম:", average_price)
+
+কেন কাজে লাগে: ব্যাকএন্ডে অংকের হিসাব করার সময় ভুলবশত nan চলে আসলে পুরো প্রোগ্রাম ক্র্যাশ করতে পারে বা ভুল রেজাল্ট দিতে পারে। এই চেকটি সেই ঝুঁকি দূর করে।
+
+
+
+আইওটি (IoT) সেন্সর ডেটা মনিটরিং
+ব্যাকএন্ডে কোনো ফিজিক্যাল ডিভাইস বা সেন্সর (যেমন: তাপমাত্রা মাপার সেন্সর) থেকে যখন ডেটা আসে, তখন মাঝে মাঝে সিগন্যাল ফেইল করার কারণে ডেটা মিসিং বা করাপ্টেড হয়ে nan হয়ে যায়।
+
+
+import math
+
+# বিভিন্ন সময়ের সেন্সর থেকে আসা তাপমাত্রা রিডিং
+sensor_temperatures = [28.5, 30.2, float('nan'), 29.1, float('nan')]
+
+for temp in sensor_temperatures:
+    if math.isnan(temp):
+        print("সতর্কতা: সেন্সর সিগন্যাল মিসিং (NaN detected)! লগ ফাইল চেক করুন।")
+    else:
+        print("স্বাভাবিক তাপমাত্রা:", temp)
+
+
+কেন কাজে লাগে: সার্ভার বা ডিভাইস মনিটরিং সিস্টেমগুলোতে ঠিক কোন সময়ে ডেটা লস বা মিসিং হয়েছে, তা ট্র্যাক করতে এই লজিকটি নিয়মিত ব্যবহার করা হয়।
+
+----------
 
 # পরীক্ষা করা
+এগুলো হলো পাইথনে কোনো সংখ্যা আসলেই অসীম (inf) কিনা বা মিসিং ডেটা (nan) কিনা—তা চেক করার জন্য সবচেয়ে সঠিক ও প্রফেশনাল পদ্ধতি।
+
 import math
 print(math.isinf(infinity))   # True
 print(math.isnan(not_num))    # True
+
+
+math.isinf(infinity) এর উদাহরণ
+আগের আলোচনাগুলোতে দেখেছি যে float('inf') বা float('-inf') ব্যবহার করে কোনো বড় বা ছোট সংখ্যা খোঁজা হয়। 
+এখন কোনো একটি ভেরিয়েবলের মান আসলেই ইনফিনিটি বা অসীম হয়ে গেছে কি না, তা যাচাই করার জন্য math.isinf() ব্যবহার করা হয়।
+
+
+import math
+
+# একটি ভেরিয়েবল যার মান পজিটিভ ইনফিনিটি
+infinity_value = float('inf')
+
+# চেক করা হচ্ছে এটি ইনফিনিটি কি না
+if math.isinf(infinity_value):
+    print("হ্যাঁ, এটি একটি ইনফিনিটি (Infinity) মান!")
+else:
+    print("এটি সাধারণ কোনো সংখ্যা।")
+
+আউটপুট আসবে: হ্যাঁ, এটি একটি ইনফিনিটি (Infinity) মান!
+
+কেন ব্যবহার করা হয়: ব্যাকএন্ড লজিকে অনেক সময় হিসাব করতে গিয়ে সংখ্যা অনেক বেড়ে যেতে পারে (Overflow)। তখন সংখ্যাটি অসীম বা ইনফিনিটি হয়ে গেছে কিনা,
+তা চেক করে প্রোগ্রামকে সুরক্ষিত রাখতে এই ফাংশনটি কাজে লাগে।
+
+
+math.isnan(not_num) এর উদাহরণ
+আমরা এটিও জানি যে NaN মানে হলো "Not a Number" বা মিসিং/ভুল ডেটা। কোনো ডেটা NaN কি না তা চেক করতে সরাসরি == কাজ করে না, তাই math.isnan() ব্যবহার করতে হয়।
+
+import math
+
+# একটি ভেরিয়েবল যেখানে কোনো ডেটা নেই বা NaN আছে
+not_num = float('nan')
+
+# চেক করা হচ্ছে এটি NaN কি না
+if math.isnan(not_num):
+    print("সতর্কতা: এটি একটি NaN (Not a Number) বা মিসিং ডেটা!")
+else:
+    print("এটি একটি সঠিক সংখ্যা।")
+
+আউটপুট আসবে: সতর্কতা: এটি একটি NaN (Not a Number) বা মিসিং ডেটা!
+
+কেন ব্যবহার করা হয়: ডেটাবেজ বা এপিআই থেকে যখন কোনো ডেটা প্রসেস করা হয়, তখন মাঝেমধ্যে ভ্যালু মিসিং থাকতে পারে।
+কোড যেন সেই করাপ্টেড ডেটার কারণে ক্র্যাশ না করে, তাই এই চেকটি ব্যবহার করে সেগুলোকে হ্যান্ডেল করা হয়।
+
+math.isinf() চেক করে মানটি ইনফিনিটি কি না।
+
+math.isnan() চেক করে মানটি মিসিং বা ন্যান কি না।
+
+
+
+math.isinf() 
+
+এপিআই ক্যালকুলেশনে সংখ্যা বেশি বড় হয়ে যাওয়া (Overflow Check)
+ব্যাকএন্ডে কোনো জটিল হিসাব-নিকাশ (যেমন: সুদের হার বা বড় কোনো রিসোর্স ক্যালকুলেশন) করার সময় সংখ্যা যদি কম্পিউটারের ধারণক্ষমতার বাইরে চলে যায়, 
+তবে পাইথন সেটিকে স্বয়ংক্রিয়ভাবে inf বানিয়ে ফেলে। ডেটাবেজে সেভ করার আগে এটি চেক করা জরুরি।
+
+
+import math
+
+# ব্যাকএন্ডে একটি হিসাবের ফলাফল
+result_value = 10.0 ** 308 * 10  # এটি পাইথনে ওভারফ্লো হয়ে infinity হয়ে যাবে
+
+# চেক করা হচ্ছে ফলাফলটি ইনফিনিটি হয়ে গেছে কি না
+if math.isinf(result_value):
+    print("সতর্কতা: হিসাবটি অনেক বড় হয়ে গেছে (Overflow)! ডেটাবেজে সেভ করা যাবে না।")
+else:
+    print("হিসাবের ফলাফল সঠিক আছে:", result_value)
+
+কেন কাজে লাগে: কোড যেন হুট করে ক্র্যাশ না করে বা ডেটাবেজে ভুলভাল ইনফিনিটি মান সেভ না হয়, সেজন্য এই চেকটি ব্যাকএন্ডকে সুরক্ষিত রাখে।
+
+
+
+শর্টেস্ট পাথ বা ডেস্টিনেশন রিচ করতে পারা চেক করা
+গন্তব্যে পৌঁছানোর পর চেক করা হয় যে সার্ভার বা নোডের দূরত্ব এখনো inf আছে কি না। যদি দূরত্ব এখনো inf থাকে, তার মানে সেখানে পৌঁছানো সম্ভব হয়নি।
+
+
+import math
+
+# একটি নির্দিষ্ট সার্ভারের দূরত্ব (শুরুতে inf ছিল, কিন্তু কোনো রুট পাওয়া যায়নি)
+server_distance = float('inf')
+
+# চেক করা হচ্ছে সার্ভারটি আনরিচএবল বা অনাগম্য কি না
+if math.isinf(server_distance):
+    print("সতর্কতা: এই সার্ভারের সাথে কোনো সংযোগ স্থাপন করা সম্ভব হয়নি (Unreachable)!")
+else:
+    print("সার্ভারের দূরত্ব:", server_distance)
+
+কেন কাজে লাগে: রাউটিং অ্যালগরিদমে কোনো গন্তব্য ব্লকড বা অসম্ভব হলে তা বুঝতে এই math.isinf() চেকটি ব্যবহার করা হয়।
+
+
+কানেকশন টাইমআউট লিমিট চেক করা (Timeout Configuration)
+ব্যাকএন্ড সার্ভারে কোনো থার্ড-পার্টি এপিআই কল করার সময় টাইমআউট লিমিট অসীম (inf) হয়ে গেছে কি না তা চেক করা হয়, যাতে সার্ভার চিরকাল ঝুলিয়ে না থাকে।
+
+
+
+import math
+
+# Connection timeout limit configured in the system
+timeout_limit = float('inf')
+
+# Check if the timeout is set to infinity
+if math.isinf(timeout_limit):
+    print("Warning: Connection timeout is set to infinity. Applying default 30-second limit for safety.")
+else:
+    print("Timeout limit is set to:", timeout_limit, "seconds")
+
+
+
+
+ডাইনামিক প্রাইসিং বা হিসাবেররর চেক করা (Pricing Calculation)
+ই-কমার্স ব্যাকএন্ডে ডিসকাউন্ট বা প্রাইস মাল্টিপ্লায়ার হিসাব করার সময় কোনো কারণে মান অসীম হয়ে গেলে তা আটকানোর লজিক।
+
+import math
+
+# Dynamic price calculation resulting from an extreme multiplier
+final_price = 500.0 * float('inf')
+
+# Check if the price calculation went out of bounds (Infinity)
+if math.isinf(final_price):
+    print("Error: Price calculation resulted in infinity! Transaction rejected.")
+else:
+    print("Calculated final price:", final_price)
+
+
+
+
+
+math.isnan()
+
+ব্যাকএন্ড ডেভেলপমেন্ট বা ডেটা প্রসেসিংয়ের সময় ডেটা মিসিং বা করাপ্টেড হয়ে গেছে কি না তা যাচাই করার জন্য math.isnan() করা হয়
+
+
+ইউজারের পেমেন্ট অ্যামাউন্ট ভ্যালিডেশন (Payment Amount Validation)
+ই-কমার্স ব্যাকএন্ডে পেমেন্ট প্রসেস করার সময় ইউজারের দেওয়া অ্যামাউন্টটি সঠিক আছে কি না, নাকি সিস্টেমের কোনো ভুলের কারণে সেটি মিসিং বা NaN হয়ে গেছে তা চেক করা হয়।
+
+
+import math
+
+# Payment amount received from the frontend API
+payment_amount = float('nan')
+
+# Check if the payment amount is missing or invalid
+if math.isnan(payment_amount):
+    print("Error: Invalid payment amount (NaN detected)! Transaction cannot be processed.")
+else:
+    print("Processing payment of:", payment_amount)
+
+
+
+ইউজার প্রোফাইল আপডেট বা এডিট করা (Profile Update Validation)
+ইউজার যখন তার প্রোফাইল আপডেট করেন, তখন কোনো অপশনাল ফিল্ড ফাঁকা থাকলে বা ডেটা করাপ্টেড হলে তা ডেটাবেজে সেভ হওয়ার আগে চেক করা হয়।
+
+
+import math
+
+# User's updated weight profile (could be missing or not provided)
+user_weight = float('nan')
+
+# Check if the weight data is missing
+if math.isnan(user_weight):
+    print("Notice: User weight data is not provided. Skipping database update for this field.")
+else:
+    print("Updating user weight to:", user_weight)
+
+
+
+ইনভেন্টরি বা স্টক পরিমাণ চেক করা (Stock Quantity Validation)
+ই-কমার্স ব্যাকএন্ডে গুদামে পণ্যের স্টক কত আছে তা দেখার সময় যদি ডেটা করাপ্টেড বা মিসিং থাকে, তবে কোড যেন ক্র্যাশ না করে সেজন্য এটি হ্যান্ডেল করা হয়।
+
+
+import math
+
+# Stock quantity of a product retrieved from the inventory system
+stock_quantity = float('nan')
+
+# Check if the stock count is missing
+if math.isnan(stock_quantity):
+    print("Warning: Stock quantity data is missing (NaN)! Setting default stock to 0.")
+else:
+    print("Available stock quantity:", stock_quantity)
+
+
+
+প্রোডাক্ট রেটিং বা রিভিউ চেক করা (Product Rating Validation)
+অনলাইন শপে কোনো পণ্যের রিভিউ স্কোর চেক করার সময় যদি কোনো রেটিং ডেটা না থাকে (nan থাকে), তখন সিস্টেম সেটিকে আলাদাভাবে হ্যান্ডেল করে।
+
+
+import math
+
+# Average rating score of a product from the database
+product_rating = float('nan')
+
+# Check if the rating is invalid or missing
+if math.isnan(product_rating):
+    print("Notice: No ratings available yet for this product.")
+else:
+    print("Product average rating:", product_rating)
+
+
+
+
+ডেলিভারি দূরত্ব বা ডিসট্যান্স চেক করা (Delivery Distance Validation)
+ই-কমার্স ব্যাকএন্ডে কোনো অর্ডারের ডেলিভারি দূরত্ব (Distance) হিসাব করার সময় যদি ম্যাপ এপিআই থেকে সঠিক ডেটা না আসে (nan আসে), তখন ম্যানুয়াল রিভিউয়ের জন্য ফ্ল্যাগ সেট করতে এটি লাগে।
+
+import math
+
+# Delivery distance calculated by the routing service
+delivery_distance = float('nan')
+
+# Check if the delivery distance is missing or invalid
+if math.isnan(delivery_distance):
+    print("Error: Could not calculate delivery distance (NaN)! Assigning for manual review.")
+else:
+    print("Calculated delivery distance:", delivery_distance, "km")
+
+
+ইউজারের ওয়ালেট ব্যালেন্স চেক করা (Wallet Balance Validation)
+ব্যাকএন্ডে ইউজারের ওয়ালেট বা অ্যাকাউন্ট থেকে টাকা কাটার আগে চেক করা হয় যে ব্যালেন্সের ডেটাটি সঠিক আছে কি না, নাকি সিস্টেমের ভুলের কারণে মিসিং বা NaN হয়ে গেছে।
+
+import math
+
+# User's wallet balance fetched from the database
+wallet_balance = float('nan')
+
+# Check if the wallet balance data is corrupted or missing
+if math.isnan(wallet_balance):
+    print("Warning: Wallet balance data is corrupted or missing (NaN)! Defaulting balance to 0.0.")
+else:
+    print("Available wallet balance:", wallet_balance)
+
+
+
+
+
+
+math.isfinite()
+এটি দিয়ে কোনো সংখ্যা সাধারণ ও সসীম (Finite) কি না, তা চেক করা হয়।
+
+ট্রানজ্যাকশন অ্যামাউন্ট ভ্যালিডেশন (Finite Check)
+ব্যাকএন্ডে কোনো পেমেন্ট বা ট্রানজ্যাকশন অ্যামাউন্ট প্রসেস করার আগে নিশ্চিত হতে হয় যে মানটি কোনো ইনফিনিটি (inf) বা মিসিং ডেটা (nan) নয়, বরং একটি সাধারণ ও সঠিক সংখ্যা (Finite Number) কিনা।
+
+import math
+
+# Transaction amount received from an external API
+transaction_amount = 2500.50
+
+# Check if the amount is a valid finite number (neither inf nor nan)
+if math.isfinite(transaction_amount):
+    print("Valid: The transaction amount is a normal, finite number. Processing payment...")
+else:
+    print("Error: Invalid number detected (it's either infinity or NaN)! Transaction failed.")
+
+
+কেন কাজে লাগে: কোডে যখন আপনি নিশ্চিত হতে চান যে সংখ্যাটি ইনফিনিটি বা ন্যান-এর জঞ্জাল মুক্ত এবং একদম সাধারণ
+একটি কাজের উপযোগী সংখ্যা, তখন math.isfinite() ব্যবহার করা হয়। এটি একই সাথে inf এবং nan দুটোকেই ব্লক করে দেয়!
+
+
+
+
+সার্ভার সিপিইউ লোড মনিটরিং (CPU Load Monitoring)
+ব্যাকএন্ড সার্ভারের পারফরম্যান্স ট্র্যাক করার সময় সিপিইউ ব্যবহারের হার (CPU usage rate) সবসময় একটি নির্দিষ্ট সসীম সংখ্যা হওয়া উচিত। 
+কোনো টেকনিক্যাল গ্লিচের কারণে এটি যদি হঠাৎ inf বা nan হয়ে যায়, তবে সার্ভার অ্যালার্ট ট্রিগার করার জন্য এটি চেক করা হয়।
+
+import math
+
+# CPU usage percentage received from the system monitor
+cpu_usage = 78.5
+
+# Check if the CPU usage value is a normal finite number
+if math.isfinite(cpu_usage):
+    print("System Status: CPU usage is normal at", cpu_usage, "%")
+else:
+    print("Alert: CPU usage data is corrupted (infinity or NaN detected)! Check server health.")
+
+
+
+
+কুপন ডিসকাউন্ট ক্যালকুলেশন (Discount Calculation Validation)
+ই-কমার্স ব্যাকএন্ডে কোনো প্রোমো কোড বা কুপনের ডিসকাউন্ট ভ্যালু হিসাব করার পর নিশ্চিত হওয়া যে ফলাফলটি কোনো গণিতগত ভুল বা ইনফিনিটি তৈরি করেনি।
+
+
+import math
+
+# Calculated discount amount for an order
+discount_amount = 150.0
+
+# Check if the calculated discount is a valid finite number
+if math.isfinite(discount_amount):
+    print("Success: Valid discount amount applied:", discount_amount)
+else:
+    print("Error: Invalid discount calculation result! Defaulting discount to 0.")
+
+
+
+
+
+math.isfinite() এর সুবিধা হলো এটি একাই inf, -inf এবং nan—এই তিনটি ঝামেলা একসাথে চেক করে বলে দিতে পারে ডেটাটি একদম নিখুঁত সাধারণ সংখ্যা (Finite) কি না।
+
+
+ব্যাকএন্ডে কোনো যানবাহনের গতিবেগ (Speed) প্রসেস করার সময় সেন্সর বা ক্যালকুলেশনের ভুলে তিন ধরনের সমস্যা হতে পারে:
+
+মান অনেক বেড়ে গিয়ে inf হতে পারে।
+
+নেগেটিভ বা উল্টো দিকে অসীম হিসাব হয়ে -inf হতে পারে।
+
+অথবা সেন্সর ফেইল করে ডেটা মিসিং হয়ে nan হতে পারে।
+
+math.isfinite() ব্যবহার করলে আলাদা করে তিনটি জিনিস চেক করার কোনো প্রয়োজন নেই; এটি একাই এই তিনটির যেকোনো একটি থাকলেই তা ধরে ফেলবে।
+
+import math
+
+# ব্যাকএন্ডে রিসিভ হওয়া স্পিড ডেটা (এখানে টেস্ট করার জন্য আপনি মান পরিবর্তন করে দেখতে পারেন)
+current_speed = float('nan')  # এটি inf, -inf বা nan যাই হোক না কেন math.isfinite কাজ করবে
+
+# একাই চেক করে দেখছে ডেটাটি নিখুঁত সাধারণ সসীম (finite) সংখ্যা কি না
+if math.isfinite(current_speed):
+    print("Success: Speed data is normal and valid:", current_speed, "km/h")
+else:
+    print("Alert: Invalid speed data detected! It contains either infinity (-inf/+inf) or missing data (NaN).")
+
+কেন এটি দারুণ কাজের?
+
+যদি  math.isfinite() ব্যবহার না করা হত, তবে আলাদা করে লিখতে হতো:
+
+if math.isinf(current_speed)
+
+if math.isnan(current_speed)
+
+কিন্তু math.isfinite() ব্যবহার করায় কোড অনেক ছোট, পরিচ্ছন্ন এবং প্রফেশনাল হয়েছে—যা ব্যাকএন্ড ডেভেলপমেন্টের জন্য দারুণ একটি অভ্যাস!
+
+
+
+ব্যাংক লোন ইন্টারেস্ট ক্যালকুলেশন (Bank Loan Interest Calculation)
+ব্যাংকিং ব্যাকএন্ডে লোন বা ঋণের সুদের হার হিসাব করার সময় ভুল ডেটা বা ওভারফ্লোর কারণে ফলাফল inf, -inf বা nan হয়ে যেতে পারে। 
+কাস্টমারকে ফাইনাল ফিগার দেখানোর আগে math.isfinite() দিয়ে একসাথে সব এজ-কেস চেক করে নেওয়া হয়।
+
+
+
+import math
+
+# Calculated interest amount (testing with an invalid NaN/Infinity scenario)
+calculated_interest = float('inf')
+
+# Check if the result is a clean, normal finite number (safely blocks inf, -inf, and nan all at once)
+if math.isfinite(calculated_interest):
+    print("Success: Calculated interest is valid:", calculated_interest)
+else:
+    print("Error: Calculation failed! The interest value is corrupted (contains infinity or NaN).")
+
+
+ক্লাউড সার্ভার স্টোরেজ ইউজেজ চেক (Cloud Storage Usage Check)
+ক্লাউড ব্যাকএন্ডে কোনো ইউজারের ফাইল আপলোডের পর রিমেইনিং স্টোরেজ স্পেস মাপার সময় যদি সিস্টেম ফেইল করে, তবে ত্রুটিপূর্ণ ডেটা এড়াতে এই চেকটি ব্যবহার করা হয়।
+
+
+import math
+
+# Remaining storage space in gigabytes (testing with negative infinity)
+remaining_storage = float('-inf')
+
+# Single check to ensure the storage value is completely free of inf, -inf, or nan
+if math.isfinite(remaining_storage):
+    print("Storage status update successful. Remaining space:", remaining_storage, "GB")
+else:
+    print("Alert: Storage metric error! Invalid data format detected (inf, -inf, or nan).")
+
+আলাদা আলাদা করে isinf() বা isnan() চেক না লিখে শুধু এই একটিমাত্র ফাংশন (math.isfinite()) ব্যবহার করলেই তিন ধরনের বিপদ থেকে একবারে মুক্তি পাওয়া যায়।
+
+
+রাইড-শেয়ারিং ফেয়ার ক্যালকুলেশন (Ride-Sharing Fare Calculation)
+উবার বা পাঠাওয়ের মতো রাইড-শেয়ারিং ব্যাকএন্ডে ট্রাফিক ডেটা বা জিপিএস সিগন্যালের গ্লিচের কারণে ভাড়ার পরিমাণ অনেক সময় nan বা ইনফিনিটি হয়ে যেতে পারে।
+কাস্টমারকে ইনভয়েস দেখানোর আগে এটি ভ্যালিডেশন করা বাধ্যতামূলক।
+
+
+
+import math
+
+# Calculated ride fare (testing with a corrupt NaN value)
+ride_fare = float('nan')
+
+# Single check to ensure the fare is a safe, normal finite number (blocks inf, -inf, and nan)
+if math.isfinite(ride_fare):
+    print("Invoice generated successfully. Total fare:", ride_fare)
+else:
+    print("Error: Fare calculation failed due to invalid data (inf, -inf, or nan)! Please retry.")
+
+
+
+সাবস্ক্রিপশন রিনিউয়াল ডেট কাউন্টডাউন (Subscription Expiry Calculation)
+ব্যাকএন্ডে কোনো ইউজারের সাবস্ক্রিপশনের বাকি দিনগুলো হিসাব করার সময় যদি নেগেটিভ লজিক বা সিস্টেম ওভারফ্লোর কারণে -inf চলে আসে,
+তবে ইউজারকে ভুল মেসেজ দেখানো থেকে বাঁচাতে এই চেকটি ব্যবহার করা হয়।
+
+
+
+import math
+
+# Remaining days for subscription expiry (testing with negative infinity)
+remaining_days = float('-inf')
+
+# Check if the remaining days value is a normal, finite number
+if math.isfinite(remaining_days):
+    print("Subscription active. Days remaining:", remaining_days)
+else:
+    print("System Warning: Subscription duration metric is corrupted (contains inf, -inf, or nan).")
+
+
+
+ই-কমার্স শিপিং ওয়েট ক্যালকুলেশন (Shipping Weight Validation)
+অনলাইন শপের ব্যাকএন্ডে কোনো প্রোডাক্টের শিপিং চার্জ বা ওজন হিসাব করার সময় সেন্সর 
+বা স্কেল থেকে ভুল ডেটা এসে যদি মান inf বা nan হয়ে যায়, তবে সঠিক শিপিং ফি নির্ধারণের আগে তা ব্লক করতে হয়।
+
+import math
+
+# Calculated package weight from the automated weighing scale
+package_weight = float('inf')
+
+# Check if the package weight is a valid, normal finite number
+if math.isfinite(package_weight):
+    print("Package weight verified:", package_weight, "kg. Calculating shipping fee...")
+else:
+    print("Error: Invalid package weight detected (contains inf, -inf, or nan)! Manual check required.")
+
+
+
+
+অ্যানালিটিক্স কনভার্শন রেট চেক (Conversion Rate Tracking)
+মার্কেটিং বা ইউজার অ্যানালিটিক্স ব্যাকএন্ডে কোনো ক্যাম্পেইনের কনভার্শন রেট (Conversion Rate) হিসাব করার সময়
+যদি ভিজিটর শূন্য হয়ে যায় এবং ভুলবশত ডেটা করাপ্টেড হয়ে nan বা ইনফিনিটি হয়ে যায়, 
+তখন ড্যাশবোর্ডে ভুল রিপোর্ট যাওয়া থেকে রোধ করতে এই চেকটি করা হয়।
+
+import math
+
+# Calculated conversion rate for an ad campaign
+conversion_rate = float('nan')
+
+# Single check to ensure the conversion rate metric is completely safe and finite
+if math.isfinite(conversion_rate):
+    print("Campaign conversion rate updated successfully:", conversion_rate, "%")
+else:
+    print("Analytics Warning: Conversion rate metric is corrupted (inf, -inf, or nan). Skipping report update.")
+
+
+
+
 
 
 
@@ -138,13 +1245,6 @@ print(f'Is int: {isinstance(num1, float)}')
 
 print(f'Is type int {type(num1) == float}')
 
-
-
-
-💰 টাকার হিসাব → ৯৯.৯৯ টাকা
-🌡️ তাপমাত্রা → ৩৬.৫°C
-📏 উচ্চতা → ৫.৮ ফুট
-⚖️ ওজন → ৬৫.৫ কেজি
 
 
 
