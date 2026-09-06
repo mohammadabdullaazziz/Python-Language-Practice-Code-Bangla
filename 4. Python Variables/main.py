@@ -514,3 +514,19 @@ print(f"""Product Name              | Price
 {i14.ljust(25, ".")} | {p14}
 {i15.ljust(25, ".")} | {p15}
 --------------------------------------""")
+
+
+
+
+name = "Abdullah"
+age = 30
+height = 5.22
+married = False
+account = 12.3214123
+
+print(f'{"Field".ljust(10)} | {"Value".rjust(7)}')
+print('-' * 22)
+print(f"{'Name'.ljust(10)} | {name.rjust(10)}")
+print(f"{'Height'.ljust(10)} | {format(height, '.1f').rjust(5)}")
+print(f"{"Account".ljust(10)} |   ${format(account, '.3f').rjust(5)}")
+print(f"{'Married'.ljust(10)} | {'Yes' if married else 'No'.rjust(4)}")
