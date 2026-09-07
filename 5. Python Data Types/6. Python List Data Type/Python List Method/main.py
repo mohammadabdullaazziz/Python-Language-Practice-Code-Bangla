@@ -78,6 +78,42 @@ del colors[1]          # ১ নম্বর ইনডেক্স ডিলি�
 colors.clear()         # সম্পূর্ণ লিস্ট খালি হয়ে যাবে: []
 
 
+all_files = ["photo1.jpg", "document.pdf", "document.png", "photos.jpg", "notes.png", "banner.jpg"]
+
+kk = all_files.remove("photo1.jpg")
+
+print(all_files)
+
+print(kk) none kno return kore
+
+
+পাইথনের remove() মেথডটি ইন-প্লেস (In-place) কাজ করে। এটি লিস্ট থেকে আইটেম মুছে ফেলে, কিন্তু কোনো কিছু রিটার্ন করে না (বা টেকনিক্যালি এটি None রিটার্ন করে)।
+
+তাই যখন all_files.remove("photo1.jpg") করে সেটিকে kk ভ্যারিয়েবলে রাখতে চাইলেন, তখন kk-র ভেতর কোনো নতুন লিস্ট জমা হয়নি, জমা হয়েছে None।
+
+কোডে আসলে কী ঘটেছে?
+১. all_files.remove("photo1.jpg") কোডটি চলার সাথে সাথেই মূল all_files লিস্ট থেকে "photo1.jpg" সফলভাবে ডিলিট হয়ে গেছে। তাই print(all_files) দিলে আপনি আপডেট হওয়া লিস্টটি দেখতে পাচ্ছেন।
+২. কিন্তু kk ভ্যারিয়েবলটি remove() মেথডের রিটার্ন ভ্যালু ধরে রেখেছে, আর যেহেতু এই মেথড কিছু রিটার্ন করে না, তাই print(kk)-এ আউটপুট এসেছে None।
+
+আপনি যদি ডিলিট করার পরও লিস্টটি অন্য কোনো ভ্যারিয়েবলে রাখতে চান:
+remove() মেথড লিস্টের ওপর সরাসরি কাজ করে, নতুন কোনো লিস্ট তৈরি করে রিটার্ন করে না। তাই নতুন ভ্যারিয়েবলে রাখার নিয়ম হলো প্রথমে লিস্ট কপি করে নেওয়া অথবা লিস্ট কমপ্রহেনশন ব্যবহার করা।
+
+যেমন, যদি "photo1.jpg" বাদ দিয়ে বাকি ফাইলগুলো একটি নতুন লিস্টে রাখতে চান:
+
+all_files = ["photo1.jpg", "document.pdf", "document.png", "photos.jpg", "notes.png", "banner.jpg"]
+
+# লিস্ট কমপ্রহেনশন দিয়ে photo1.jpg বাদ দিয়ে নতুন লিস্ট তৈরি
+kk = [file for file in all_files if file != "photo1.jpg"]
+
+print("Updated original list:", all_files)
+print("New variable kk:", kk)
+
+পাইথনের অনেক বিল্ট-ইন মেথড (যেমন append(), remove(), sort()) এভাবেই সরাসরি মূল ডেটাকে পরিবর্তন করে এবং None রিটার্ন করে।
+
+
+
+
+
 colors = ["Red", "Green", "Blue", "Yellow"]
 removed_item = colors.pop(0)
 
