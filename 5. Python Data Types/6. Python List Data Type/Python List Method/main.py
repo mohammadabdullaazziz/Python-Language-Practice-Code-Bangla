@@ -589,6 +589,14 @@ Index 0: apple
 Index 1: banana
 Index 2: mango
 
+fruits = ["apple", "banana", "mango"]
+
+# লিস্ট কমপ্রিহেনশন ব্যবহার করে নতুন লিস্ট তৈরি করা হলো
+result = [f"Index {index}: {fruit}" for index, fruit in enumerate(fruits)]
+
+print(result)
+
+
 
 text = "Ali"
 
@@ -635,6 +643,16 @@ index-এর ভেতরে পুরো "Ali" লেখাটি দেখা�
 
 আর enumerate() ব্যবহার করা হয়ই কেবল এই অক্ষরগুলোর ইনডেক্স নম্বর (0, 1, 2) আলাদা করে বের করার জন্য।
 
+fruits = "apple"
+
+# লিস্ট কমপ্রিহেনশন ব্যবহার করে ফরম্যাট করা স্ট্রিংগুলোর একটি লিস্ট তৈরি করা হলো
+result = [f"{index} : {letter}" for index, letter in enumerate(fruits)]
+
+print(result)
+
+
+
+
 
 names = ['Abdullah', "Ebny", "Aziz"]
 
@@ -656,6 +674,28 @@ for index, name in enumerate(names, start=1):
 1 Abdullah
 2 Ebny
 3 Aziz
+
+
+
+names = ['Abdullah', "Ebny", "Aziz"]
+
+new_names = []
+
+for index, name in enumerate(names):
+  new_names.append(f'{index} : {name}')
+print(new_names)
+
+
+names = ['Abdullah', "Ebny", "Aziz"]
+
+new_names = [f'{index} : {name}' for index, name in enumerate(names)]
+
+print(new_names)
+
+
+names = ['Abdullah', "Ebny", "Aziz"]
+for index, name in enumerate(names, start= 1):
+  print(index, name)
 
 
 
@@ -692,6 +732,18 @@ for position, fruit in enumerate(fruits, start=1):
 1 Apple
 2 Banana
 3 Mango
+
+
+fruits = ["Apple", "Banana", "Mango"]
+
+# লিস্ট কমপ্রিহেনশন ব্যবহার করে নতুন লিস্ট তৈরি
+result = [f"{position} {fruit}" for position, fruit in enumerate(fruits, start=1)]
+
+print(result)
+
+
+
+
 
 
 colors = ["Lal", "Nil", "Sobuj"]
@@ -754,10 +806,58 @@ for ... in ...: পাইথনকে নির্দেশ দেয় যে এ
 
 
 
+colors = ["Lal", "Nil", "Sobuj"]
+
+# লিস্ট কমপ্রিহেনশন ব্যবহার করে নতুন লিস্ট তৈরি করা
+result = [f"{index} {color}" for index, color in enumerate(colors, start=1)]
+
+print(result)
+
+
+
+
 
 
 zip() ফাংশন (একাধিক লিস্ট একসাথে মেলানো)
+
 যখন কাছে দুই বা ততোধিক আলাদা লিস্ট বা ইটারেবল থাকে এবং সেগুলোকে পাশাপাশি বা হাত ধরাধরি করে একসাথে লুপ চালাতে, তখন zip() ব্যবহার করা হয়।
+
+
+names = ["Rahim", "Karim", "Sadia"]
+scores = [85, 90, 95]
+
+for name, score in zip(names, scores):
+    print(name, "পেয়েছে", score)
+
+
+
+names = ['abdullah', 'aziz', 'arman']
+scores = [85, 90, 100]
+
+# লিস্ট কমপ্রিহেনশন ব্যবহার করা হলো
+result = [f"{name} {score}" for name, score in zip(names, scores)]
+
+print(result)
+
+
+['abdullah 85', 'aziz 90', 'arman 100']
+
+"\n".join() ব্যবহার করে এক লাইনে কোড লিখে আউটপুট নিচে নিচে প্রিন্ট করা যায়:
+
+names = ['abdullah', 'aziz', 'arman']
+scores = [85, 90, 100]
+
+print("\n".join([f"{name} {score}" for name, score in zip(names, scores)]))
+
+
+abdullah 85
+aziz 90
+arman 100
+
+
+
+
+
 
 দুটি আলাদা লিস্টকে পাশাপাশি জোড়া লাগাতে zip() ব্যবহার করা হয়:
 
