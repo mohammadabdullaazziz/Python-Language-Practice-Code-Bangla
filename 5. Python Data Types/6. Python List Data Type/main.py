@@ -1432,6 +1432,53 @@ print(new_list)
 
 
 
+fruits = ["apple", "banana", "mango", 'yahama', 'yes']
+
+for i in range(len(fruits)):
+    print(i, fruits[i])  # এখানে কোনো টপল বা ব্র্যাকেট নেই
+
+
+
+
+fruits = ["apple", "banana", "mango", 'yahama', 'yes']
+
+new = [(i, fruits[i]) for i in range(len(fruits))]
+
+for item in new:
+  print(item)
+
+কেন ব্র্যাকেট আসবে?
+কারণ লিস্ট কম্প্রিহেনশনের ভেতরে  (i, fruits[i])। পাইথনে গোল ব্র্যাকেটের ভেতরে কমা দিয়ে একাধিক মান লিখলে সেটি একটি টপল (Tuple) হয়ে যায়। 
+আর পাইথন যখন কোনো টপল প্রিন্ট করে, তখন সেটি সবসময় ব্র্যাকেটসহ দেখায়।
+
+টপল (tuple) হওয়ায় পাইথন বাই-ডিফল্ট ব্র্যাকেটসহ দেখায়। কিন্তু  যদি প্রিন্ট করার সময় আনপ্যাক (unpack) করে দেন, তবে আর ব্র্যাকেট থাকবে না।
+
+যখন new লিস্টটি লুপ দিয়ে ঘুরাবেন, তখন দুটি ভ্যারিয়েবল (index, fruit) একসাথে রিসিভ করতে পারেন:
+
+
+fruits = ["apple", "banana", "mango", 'yahama', 'yes']
+
+new = [(i, fruits[i]) for i in range(len(fruits))]
+
+# এখানে index এবং fruit আলাদা করে নেওয়া হলো
+for index, fruit in new:
+    print(index, fruit)
+
+
+fruits = ["apple", "banana", "mango", 'yahama', 'yes']
+
+new = [(i, fruits[i]) for i in range(len(fruits))]
+
+for item in new:
+    print(*item)  # স্টার (*) দিলে টপলের ব্র্যাকেট আর প্রিন্ট হবে না
+
+
+
+
+
+
+
+
 ----
 শর্ত সাপেক্ষে মান বদলানো (if-else সহ)
 ধরা যাক, ১ থেকে ৫ পর্যন্ত সংখ্যাগুলোর মধ্যে জোড় সংখ্যাগুলোর জায়গায় "Even" এবং বেজোড় সংখ্যাগুলোর জায়গায় "Odd" বসাতে চাওয়া হলে।
