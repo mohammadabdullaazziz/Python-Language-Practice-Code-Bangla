@@ -82,6 +82,61 @@ print(city)   # আউটপুট: Rangpur
 এখানে person টপলের ৩টি মান ভেঙে name, age, এবং city—এই ৩টি আলাদা ভ্যারিয়েবলে চলে গেছে। এটাই হলো আনপ্যাকিং!
 
 
+
+Underscore (_) দিয়ে অপ্রয়োজনীয় মান উপেক্ষা করা (Advanced কিন্তু useful)
+
+যদি Tuple এর কোনো একটা মান তোমার দরকার না, তাহলে সেই জায়গায় _ (underscore) বসিয়ে "উপেক্ষা করছি" বোঝানো যায়:
+
+person = ("Abdullah", 30, "Rangpur")
+
+name, _, city = person   # বয়স (age) আমাদের দরকার নেই
+
+print(name)   # Abdullah
+print(city)   # Rangpur
+
+
+
+ইউজারের বেসিক ইনফো প্যাকিং
+
+# মানগুলো কমা দিয়ে লেখার সাথে সাথেই পাইথন এগুলোকে টপল বানিয়ে ফেলে
+user_info = "Abdullah", 30, "Cybersecurity Student", "Bangladesh"
+
+print(user_info)
+print(type(user_info))
+
+
+('Abdullah', 25, 'Cybersecurity Student', 'Bangladesh')
+
+
+স্থানাঙ্ক বা কোঅর্ডিনেট (Coordinates) প্যাকিং
+
+# জিওগ্রাফিক্যাল লোকেশন বা গ্রাফের পয়েন্ট প্যাকিং
+point = 12.5, 45.8
+
+print(point)
+print(type(point)) (12.5, 45.8)
+
+
+
+RGB কালার কোড আনপ্যাকিং
+
+# একটি কালার টপল
+rgb_color = (255, 128, 0)
+
+# ৩টি টপলের উপাদান ৩টি ভ্যারিয়েবলে আনপ্যাকিং করা হলো
+red, green, blue = rgb_color
+
+print("Red:", red)
+print("Green:", green)
+print("Blue:", blue)
+
+Red: 255
+Green: 128
+Blue: 0
+
+
+
+
 স্টার অপারেটর (*) দিয়ে অ্যাডভান্সড আনপ্যাকিং
 কখনও এমন হতে পারে যে, টপলে অনেকগুলো মান আছে, 
 কিন্তু সবগুলোর জন্য আলাদা ভ্যারিয়েবল লেখার দরকার নেই। তখন স্টার (*) ব্যবহার করা হয়।
@@ -198,6 +253,13 @@ Status: END
 
 
 
+
+---
+
+students = (("Rahim", 25), ("Karim", 22), ("Salma", 20))
+
+for name, age in students:
+    print(f"{name} এর বয়স {age}")-------
 
 
 
