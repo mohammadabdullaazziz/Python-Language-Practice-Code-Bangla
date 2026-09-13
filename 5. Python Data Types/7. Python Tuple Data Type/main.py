@@ -4,6 +4,10 @@ Tuple হলো List এর মতোই একটা ডেটা টাইপ 
 কিন্তু List আর Tuple এর মধ্যে সবচেয়ে বড় পার্থক্য হলো — Tuple তৈরি হওয়ার পর এর ভিতরের মান পরিবর্তন করা যায় না। 
 একে বলে immutable (অপরিবর্তনযোগ্য)। যেহেতু এটি পরিবর্তন করা যায় না, তাই এটি লিস্টের চেয়ে দ্রুত কাজ করে এবং মেমোরি কম নেয়। 
 
+Tuple লেখা হয় Round Bracket ( ) দিয়ে
+
+numbers = (1, 2, 3, 4, 5)
+
 
 লিস্ট থাকতে কেন টুপল ব্যবহার করা হয়?
 নিরাপত্তা (Data Safety): এমন কোনো ডেটা যা কোডের কোথাও হুট করে বদলে যাওয়ার কথা নয় 
@@ -11,9 +15,42 @@ Tuple হলো List এর মতোই একটা ডেটা টাইপ 
 
 মেমরি অপ্টিমাইজেশন: লিস্টের তুলনায় টুপল পাইথনের মেমরিতে কম জায়গা নেয় এবং এটি প্রসেস হতে কিছুটা কম সময় লাগে।
 
-ডিকশনারি কি (Dictionary Key): পাইথনে মিউটেবল ডেটা (যেমন লিস্ট) ডিকশনারির Key হতে পারে না, 
-কিন্তু ইমিউটেবল হওয়ায় টুপলকে গর্বের সাথে ডিকশনারির Key বানানো যায়।
 
+টপলের প্রধান বৈশিষ্ট্যসমূহ:
+১. অপরিবর্তনযোগ্য (Immutable):
+একটি টপল একবার তৈরি করে ফেললে এর ভেতরের কোনো উপাদান পরিবর্তন,
+নতুন করে যোগ বা ডিলিট করা যায় না। যেমন,চাইলে বলতে পারবেন না যে my_tuple[0] = 50—এটি করলে পাইথন এরর দেবে।
+২. ইনডেক্সিং (Indexed):
+লিস্ট বা স্ট্রিংয়ের মতো টপলের ইনডেক্সও সবসময় ০ (zero) থেকে শুরু হয়।
+৩. ডুপ্লিকেট মান অ্যালাউ করে:
+লিস্টের মতো টপলেও একই ডেটা একাধিকবার রাখা যায়।
+৪. একাধিক ডেটা টাইপ:
+একটি টপলের ভেতরে স্ট্রিং, ইন্টিজার, ফ্লট—সব ধরনের ডেটা একসাথে রাখা সম্ভব।
+
+
+# একটি টপল তৈরি করা হলো
+my_tuple = ("Apple", "Banana", "Mango", 100)
+
+# ইনডেক্স দিয়ে মান প্রিন্ট করা
+print(my_tuple[0])  # আউটপুট: Apple
+print(my_tuple[3])  # আউটপুট: 100
+
+
+Tuple কেন ব্যবহার করা হয় — ৩টা মূল কারণ
+ডেটা সুরক্ষিত রাখা — ভুলবশত পরিবর্তন হবে না
+List এর চেয়ে দ্রুত ও কম Memory নেয়
+Dictionary এর key হিসেবে ব্যবহার করা যায় (List যায় না)
+
+
+
+
+সবচেয়ে বেশি ব্যবহৃত ফিচার — Unpacking
+
+person = ("Abdullah", 30, "Rangpur")
+
+name, age, city = person
+print(name)  # Abdullah
+print(age)   # 30
 
 প্যাকিং এবং আনপ্যাকিং (Packing & Unpacking)
 পাইথনে এক বা একাধিক মান একসাথে কমা দিয়ে লিখে টুপলে রূপান্তর করাকে Packing বলে। যেমন: person = "Abdullah", 30, "Backend"।
@@ -202,6 +239,10 @@ friends = tuple(temp)
 
 print(friends)  # আউটপুট: ('Rahim', 'Barkat', 'Jabbar')
 
+
+
+pop()
+
 টিউপলের শেষ বা মাঝখান থেকে কোনো উপাদান মুছে ফেলা (remove বা pop ব্যবহার করে)
 ধরা যাক, নিজের কাছে কিছু পণ্যের দামের একটি টিউপল আছে, যেখান থেকে একটি ভুল দাম বাদ দিতে চাইলে।
 
@@ -219,6 +260,42 @@ prices = tuple(temp)
 print(prices)  # আউটপুট: (100, 250, 300)
 
 
+
+fruits = ("apple", "banana", "mango")
+
+# ধাপ ১: Tuple কে List এ রূপান্তর করা
+temp_list = list(fruits)
+
+# ধাপ ২: List এ pop() ব্যবহার করা
+removed_item = temp_list.pop()
+print(removed_item)   # mango
+
+# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
+fruits = tuple(temp_list)
+print(fruits)   # ('apple', 'banana')
+
+
+নির্দিষ্ট index থেকে সরানো
+
+
+numbers = (10, 20, 30, 40, 50)
+
+temp_list = list(numbers)      # Tuple → List
+removed = temp_list.pop(2)      # index 2 (30) সরানো হলো
+numbers = tuple(temp_list)      # আবার List → Tuple
+
+print(removed)   # 30
+print(numbers)   # (10, 20, 40, 50)
+
+
+numbers = (10, 20, 20, 30)
+
+print(numbers.count(20))   # 2  -> কতবার আছে গোনে
+print(numbers.index(30))   # 3  -> index খুঁজে দেয়
+
+
+
+append()
 
 টিউপলে নতুন কোনো উপাদান যোগ করা (append)
 
@@ -238,6 +315,48 @@ colors = tuple(temp)
 print(colors)  # আউটপুট: ('red', 'green', 'blue')
 
 
+Tuple এ নতুন item "যোগ" করতে — ২টা পদ্ধতি আছে 
+
+পদ্ধতি ১: List এ রূপান্তর করে, append করে, আবার Tuple এ ফেরানো
+
+fruits = ("apple", "banana", "mango")
+
+# ধাপ ১: Tuple কে List এ রূপান্তর
+temp_list = list(fruits)
+
+# ধাপ ২: List এ append করা
+temp_list.append("orange")
+
+# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
+fruits = tuple(temp_list)
+
+print(fruits)   # ('apple', 'banana', 'mango', 'orange')
+
+
+২: দুইটা Tuple কে + দিয়ে জোড়া লাগানো (সহজ ও দ্রুত পদ্ধতি)
+
+
+fruits = ("apple", "banana", "mango")
+
+fruits = fruits + ("orange",)    # ⚠️ খেয়াল করো, একটা item এর tuple বানাতে কমা লাগবে
+
+print(fruits)   # ('apple', 'banana', 'mango', 'orange')
+
+
+⚠️ সতর্কতা: এখানে ("orange") লিখলে হবে না (এটা শুধু string হয়ে যাবে), অবশ্যই ("orange",) লিখতে হবে — 
+শেষে কমা সহ, কারণ এটা তখনই একটা Tuple হিসেবে গণ্য হবে।
+
+print(type(("orange")))    # <class 'str'>   -> এটা tuple না!
+print(type(("orange",)))   # <class 'tuple'>  -> এটা tuple
+
+
+
+
+
+remove()
+remove() এর কাজ হলো নির্দিষ্ট মান খুঁজে বের করে সরিয়ে ফেলা, কিন্তু Tuple immutable হওয়ায় এর থেকে কিছু সরানো সম্ভব না।
+
+
 টিউপলের কোনো উপাদান ডুপ্লিকেট বা বাদ দেওয়া (remove ব্যবহার করে)
 cart = ("Laptop", "Mouse", "Keyboard", "Mouse")
 
@@ -252,6 +371,61 @@ cart = tuple(temp)
 
 print(cart)  # আউটপুট: ('Laptop', 'Keyboard', 'Mouse') 
 # (প্রথমে যে মাউসটি পেয়েছিল, সেটি রিমুভ হয়ে গেছে)
+
+
+
+fruits = ("apple", "banana", "mango")
+
+# ধাপ ১: Tuple কে List এ রূপান্তর
+temp_list = list(fruits)
+
+# ধাপ ২: List এ remove করা
+temp_list.remove("banana")
+
+# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
+fruits = tuple(temp_list)
+
+print(fruits)   # ('apple', 'mango')
+
+
+বিকল্প পদ্ধতি — List Comprehension দিয়ে নির্দিষ্ট মান বাদ দেওয়া (Advanced কিন্তু useful)
+
+fruits = ("apple", "banana", "mango")
+
+fruits = tuple(fruit for fruit in fruits if fruit != "banana")
+
+print(fruits)   # ('apple', 'mango')
+
+
+এখানে কী: এটা fruits এর প্রতিটা item চেক করছে, যেগুলো "banana" না, শুধু সেগুলোকেই নিয়ে একটা নতুন Tuple বানাচ্ছে। 
+এভাবে remove() ছাড়াই একইরকম ফলাফল পাওয়া যায়।
+
+
+একাধিক একই মান থাকলে কী হয় (List এর remove() এর আচরণ মনে করি)
+
+numbers = (1, 2, 3, 2, 4)
+
+temp_list = list(numbers)
+temp_list.remove(2)         # শুধু প্রথম 2 টাই সরাবে
+numbers = tuple(temp_list)
+
+print(numbers)   # (1, 3, 2, 4)  -> দ্বিতীয় 2 এখনো আছে
+
+⚠️ remove() (List এর ক্ষেত্রেও) শুধু প্রথম মিলে যাওয়া মান সরায়, সব একই মান না। এটা Tuple এ রূপান্তর করার পরও একই নিয়মে কাজ করবে।
+
+
+
+
+যদি সব একই মান বাদ দিতে (List Comprehension দিয়ে সহজ সমাধান)
+
+numbers = (1, 2, 3, 2, 4)
+
+numbers = tuple(n for n in numbers if n != 2)
+
+print(numbers)   # (1, 3, 4)  -> সবগুলো 2 বাদ পড়েছে
+
+
+
 
 
 টিউপলের মাঝখানে নতুন কোনো উপাদান ঢুকিয়ে দেওয়া (insert ব্যবহার করে)
@@ -269,6 +443,261 @@ temp.insert(1, "Medium")
 levels = tuple(temp)
 
 print(levels)  # আউটপুট: ('Easy', 'Medium', 'Hard')
+
+
+
+fruits = ("apple", "banana", "mango")
+
+# ধাপ ১: Tuple কে List এ রূপান্তর
+temp_list = list(fruits)
+
+# ধাপ ২: List এ insert করা
+temp_list.insert(1, "orange")
+
+# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
+fruits = tuple(temp_list)
+
+print(fruits)   # ('apple', 'orange', 'banana', 'mango')
+
+
+
+
+Tuple Comprehension বলে আসলে কিছু নেই!
+পাইথনে List Comprehension আর Dictionary Comprehension আছে, কিন্তু সরাসরি "Tuple Comprehension" বলে কিছু নেই। 
+যদি ( ) দিয়ে Comprehension এর মতো লিখা হয়, সেটা আসলে একটা Generator তৈরি করে, Tuple না।
+
+result = (n for n in range(5))
+print(type(result))   # <class 'generator'>  -> এটা Tuple না!
+
+
+
+
+numbers = []          # খালি list দিয়ে শুরু (Tuple সরাসরি খালি রেখে বাড়ানো যায় না)
+
+for n in range(1, 6):
+    numbers.append(n)
+
+numbers = tuple(numbers)   # শেষে Tuple এ রূপান্তর
+
+print(numbers)   # (1, 2, 3, 4, 5)
+
+
+
+এখন Comprehension দিয়ে (সংক্ষিপ্ত)
+
+numbers = tuple(n for n in range(1, 6))
+
+print(numbers)   # (1, 2, 3, 4, 5)
+
+
+লক্ষ্য রাখি — tuple(...) এর ভিতরে যে অংশটা লেখা হয়েছে (n for n in range(1, 6)), 
+সেটাই Comprehension এর মূল অংশ, শুধু [ ] এর বদলে tuple() ফাংশন দিয়ে মুড়ে দেওয়া হয়েছে।
+
+
+
+প্রতিটা সংখ্যার বর্গ (Square) নিয়ে Tuple বানানো
+আগে for loop দিয়ে
+
+
+numbers = (1, 2, 3, 4, 5)
+squares = []
+
+for n in numbers:
+    squares.append(n ** 2)
+
+squares = tuple(squares)
+
+print(squares)   # (1, 4, 9, 16, 25)
+
+
+এখন Comprehension দিয়ে
+
+numbers = (1, 2, 3, 4, 5)
+squares = tuple(n ** 2 for n in numbers)
+
+print(squares)   # (1, 4, 9, 16, 25)
+
+
+
+শুধু জোড় সংখ্যা নিয়ে Tuple বানানো (শর্ত/condition সহ)
+আগে for loop দিয়ে
+
+numbers = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+even_numbers = []
+
+for n in numbers:
+    if n % 2 == 0:
+        even_numbers.append(n)
+
+even_numbers = tuple(even_numbers)
+
+print(even_numbers)   # (2, 4, 6, 8, 10)
+
+
+এখন Comprehension দিয়ে
+
+numbers = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+even_numbers = tuple(n for n in numbers if n % 2 == 0)
+
+print(even_numbers)   # (2, 4, 6, 8, 10)
+
+
+
+String থেকে প্রতিটা অক্ষর নিয়ে Tuple বানানো
+আগে for loop দিয়ে
+
+text = "Rahim"
+letters = []
+
+for char in text:
+    letters.append(char)
+
+letters = tuple(letters)
+
+print(letters)   # ('R', 'a', 'h', 'i', 'm')
+
+
+
+এখন Comprehension দিয়ে
+
+text = "Rahim"
+letters = tuple(char for char in text)
+
+print(letters)   # ('R', 'a', 'h', 'i', 'm')
+
+
+
+দুইটা Tuple এর প্রতিটা item গুণ করে নতুন Tuple বানানো
+আগে for loop দিয়ে
+
+tuple1 = (1, 2, 3)
+tuple2 = (10, 20, 30)
+result = []
+
+for i in range(len(tuple1)):
+    result.append(tuple1[i] * tuple2[i])
+
+result = tuple(result)
+
+print(result)   # (10, 40, 90)
+
+
+
+এখন Comprehension দিয়ে (zip ব্যবহার করে)
+
+tuple1 = (1, 2, 3)
+tuple2 = (10, 20, 30)
+
+result = tuple(a * b for a, b in zip(tuple1, tuple2))
+
+print(result)   # (10, 40, 90)
+
+
+
+বড় হাতের অক্ষরে রূপান্তর করে Tuple বানানো
+আগে for loop দিয়ে
+
+
+
+names = ("rahim", "karim", "salma")
+upper_names = []
+
+for name in names:
+    upper_names.append(name.upper())
+
+upper_names = tuple(upper_names)
+
+print(upper_names)   # ('RAHIM', 'KARIM', 'SALMA')
+
+
+এখন Comprehension দিয়ে
+
+names = ("rahim", "karim", "salma")
+upper_names = tuple(name.upper() for name in names)
+
+print(upper_names)   # ('RAHIM', 'KARIM', 'SALMA')
+
+
+
+সবচেয়ে সহজ উদাহরণ — in দিয়ে চেক করা
+
+fruits = ("apple", "banana", "mango")
+
+print("banana" in fruits)   # True
+print("orange" in fruits)   # False
+
+
+not in দিয়ে বিপরীত চেক করা (নেই কিনা)
+
+fruits = ("apple", "banana", "mango")
+
+print("orange" not in fruits)   # True  -> সত্যিই নেই
+print("apple" not in fruits)    # False -> এটা আছে, তাই "নেই" মিথ্যা
+
+
+
+if এর সাথে ব্যবহার — বাস্তব উদাহরণ
+
+
+fruits = ("apple", "banana", "mango")
+
+search_item = "mango"
+
+if search_item in fruits:
+    print(f"{search_item} পাওয়া গেছে!")
+else:
+    print(f"{search_item} নেই।")
+
+
+
+fruits = ("apple", "banana", "mango")
+search_item = "mango"
+
+matched = tuple(fruit for fruit in fruits if fruit == search_item)
+
+if matched:
+    print(f"{search_item} পাওয়া গেছে!")
+else:
+    print(f"{search_item} নেই।")
+
+
+
+matched = tuple(fruit for fruit in fruits if fruit == search_item)
+
+এই লাইনটা fruits এর প্রতিটা item চেক করছে, যেগুলো search_item ("mango") এর সাথে মিলে যায়, শুধু সেগুলোকে নিয়ে একটা নতুন Tuple বানাচ্ছে।
+
+যদি "mango" পাওয়া যায়, matched হবে ("mango",) — এটা খালি না, তাই if matched: সত্যি (True) হবে
+যদি না পাওয়া যায়, matched হবে () — খালি Tuple, যেটা False হিসেবে গণ্য হয়
+
+
+
+Role Check করা
+
+allowed_roles = ("admin", "editor", "viewer")
+user_role = input("তোমার role লেখো: ")
+
+if user_role in allowed_roles:
+    print("অনুমতি আছে, প্রবেশ করতে পারো")
+else:
+    print("এই role এর অনুমতি নেই")
+
+
+এখন Comprehension দিয়ে
+
+allowed_roles = ("admin", "editor", "viewer")
+user_role = input("তোমার role লেখো: ")
+
+matched_roles = tuple(role for role in allowed_roles if role == user_role)
+
+if matched_roles:
+    print("অনুমতি আছে, প্রবেশ করতে পারো")
+else:
+    print("এই role এর অনুমতি নেই")
+
+
+
+
+
 
 টিউপলের সব মান একসাথে পরিবর্তন বা আপডেট করা (লুপ চালিয়ে)
 
