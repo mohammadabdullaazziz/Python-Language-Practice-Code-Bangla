@@ -345,6 +345,8 @@ print(another_tuple)
 
 
 
+
+
 Index দিয়ে Tuple এর item Access করা
 Tuple এও List এর মতোই index (0 থেকে শুরু) দিয়ে item access করা যায়।
 
@@ -356,22 +358,128 @@ print(fruits[0])   # apple
 print(fruits[2])   # mango
 
 
+
+fruits = "apple", "banana", "mango", "orange"
+
+fruits = fruits[3]
+
+print(fruits)
+
+
+fruits = "apple", "banana", "mango", "orange"
+
+kk = fruits[3]
+
+print(fruits)
+
+print(kk)
+
+
+fruits = "apple", "banana", "mango", "orange"
+
+kk = fruits[-2] 
+
+print(fruits)
+
+print(kk)
+
+
+
+
+
+
 numbers = (10, 20, 30, 40, 50)
 
 # ইনডেক্স দিয়ে উপাদান বের করা
 print(numbers[0])   # আউটপুট: 10
 print(numbers[-1])  # আউটপুট: 50 (শেষের উপাদান)
 
-# স্লাইসিং (নির্দিষ্ট অংশ কেটে নেওয়া)
-print(numbers[1:4]) # আউটপুট: (20, 30, 40)
+
+numbers = (10, 20, 30, 40, 50)
+
+numbers = numbers[3]
+
+print(numbers)
 
 
-Negative Index
 
-fruits = ("apple", "banana", "mango", "orange")
+numbers = (10, 20, 30, 40, 50)
 
-print(fruits[-1])   # orange (শেষ item)
-print(fruits[-2])   # mango  (শেষ থেকে দ্বিতীয়)
+numbers = numbers[-1]
+
+print(numbers)
+
+
+
+numbers = (10, 20, 30, 40, 50)
+
+kk = numbers[1]
+
+print(numbers)
+
+print(kk)
+
+
+
+numbers = (10, 20, 30, 40, 50)
+
+kk = numbers[-2]
+
+print(numbers)
+
+print(kk)
+
+
+
+
+
+
+Negative Index()
+
+
+numbers = (10, 20, 30, 40, 50)
+
+kk = numbers.index(20)
+
+print(numbers)
+
+print(kk)
+
+
+
+
+numbers = (10, 20, 30, 40, 50)
+
+kk = numbers.index(20) -len(numbers)
+
+print(numbers)
+
+print(kk)
+
+
+
+
+
+
+fruits = "apple", "banana", "mango", "orange"
+
+kk = fruits.index('banana')
+
+print(fruits)
+
+print(kk)
+
+
+
+fruits = "apple", "banana", "mango", "orange"
+
+kk = fruits.index('banana') -len(fruits)
+
+print(fruits)
+
+print(kk)
+
+
 
 
 
@@ -391,12 +499,58 @@ print(numbers[::-1])   # (60, 50, 40, 30, 20, 10)
 
 
 
+friends = ("Abdullah", "Aziz", "Arman", "Abdullah")
+
+friends = friends[0:2]
+
+print(friends)
+
+
+friends = ("Abdullah", "Aziz", "Arman", "Abdullah")
+
+kk = friends[0:2]
+
+print(friends)
+
+print(kk)
+
+
+
+friends = ("Abdullah", "Aziz", "Arman")
+
+friends = friends[::-1]
+
+print(friends)
+
+
+
+friends = ("Abdullah", "Aziz", "Arman")
+
+kk = friends[::-1]
+
+print(friends)
+
+print(kk)
+
+
+
+friends = ("Abdullah", "Aziz", "Arman", "Abdullah")
+
+del_friend = list(friends)
+
+del del_friend[3:]
+
+friends = tuple(del_friend)
+
+print(friends)
+
+
+
+
 Tuple এর দৈর্ঘ্য বের করা
 
 fruits = ("apple", "banana", "mango")
 print(len(fruits))  # 3
-
-
 
 
 
@@ -445,67 +599,61 @@ friends = tuple(temp)
 
 print(friends)  # আউটপুট: ('Rahim', 'Barkat', 'Jabbar')
 
+Reassign
 
+fruits = "apple", "banana", "mango", "orange", 'apple'
 
-pop()
+kk = list(fruits)
 
-টিউপলের শেষ বা মাঝখান থেকে কোনো উপাদান মুছে ফেলা (remove বা pop ব্যবহার করে)
-ধরা যাক, নিজের কাছে কিছু পণ্যের দামের একটি টিউপল আছে, যেখান থেকে একটি ভুল দাম বাদ দিতে চাইলে।
+kk[0] = 'cherry' 
 
-prices = (100, 250, 500, 300)
+fruits = tuple(kk)
 
-# ১. টিউপলকে লিস্টে রূপান্তর
-temp = list(prices)
-
-# ২. লিস্টের মেথড ব্যবহার করে ৫৫০ বা নির্দিষ্ট মান বাদ দেওয়া (এখানে ইনডেক্স ২ মানে 500 বাদ দিচ্ছি)
-temp.pop(2) 
-
-# ৩. আবার টিউপলে রূপান্তর
-prices = tuple(temp)
-
-print(prices)  # আউটপুট: (100, 250, 300)
+print(fruits)
 
 
 
-fruits = ("apple", "banana", "mango")
+clear()
 
-# ধাপ ১: Tuple কে List এ রূপান্তর করা
-temp_list = list(fruits)
+friends = ("Abdullah", "Aziz", "Arman")
 
-# ধাপ ২: List এ pop() ব্যবহার করা
-removed_item = temp_list.pop()
-print(removed_item)   # mango
+clean = list(friends)
 
-# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
-fruits = tuple(temp_list)
-print(fruits)   # ('apple', 'banana')
+clean.clear()
 
+friends = tuple(clean)
 
-নির্দিষ্ট index থেকে সরানো
+print(friends)
+
+print(type(friends))
 
 
-numbers = (10, 20, 30, 40, 50)
-
-temp_list = list(numbers)      # Tuple → List
-removed = temp_list.pop(2)      # index 2 (30) সরানো হলো
-numbers = tuple(temp_list)      # আবার List → Tuple
-
-print(removed)   # 30
-print(numbers)   # (10, 20, 40, 50)
 
 
-numbers = (10, 20, 20, 30)
-
-print(numbers.count(20))   # 2  -> কতবার আছে গোনে
-print(numbers.index(30))   # 3  -> index খুঁজে দেয়
 
 
 
 append()
 
 টিউপলে নতুন কোনো উপাদান যোগ করা (append)
+.append() মেথডের মূল কাজই হলো লিস্টের একদম শেষ বা লাস্ট পজিশনে নতুন কোনো উপাদান বা ডেটা যোগ করা।
 
 টিউপলে সরাসরি .append() কাজ করে না। তাই এই উপায়ে নতুন উপাদান যুক্ত করা যায়:
+
+
+
+friends = ("Abdullah", "Aziz", "Arman")
+
+clean = list(friends)
+
+clean[len(clean):] = ["Mohammad"]
+
+friends = tuple(clean)
+
+print(friends)
+
+
+
 
 colors = ("red", "green")
 
@@ -556,11 +704,93 @@ print(type(("orange")))    # <class 'str'>   -> এটা tuple না!
 print(type(("orange",)))   # <class 'tuple'>  -> এটা tuple
 
 
+friends = ("Abdullah", "Aziz", "Arman")
+
+clean = list(friends)
+
+clean.append("Ebny")
+
+friends = tuple(clean)
+
+print(friends)
+
+
+
+
+insert()
+
+টিউপলের মাঝখানে নতুন কোনো উপাদান ঢুকিয়ে দেওয়া (insert ব্যবহার করে)
+যদি লিস্টের শেষে নয়, বরং একদম মাঝখানে কোনো নির্দিষ্ট ইনডেক্সে নতুন ডেটা যুক্ত করতে 
+
+levels = ("Easy", "Hard")
+
+# ১. লিস্টে রূপান্তর
+temp = list(levels)
+
+# ২. ইনডেক্স ১ এ (মাঝখানে) "Medium" বসানো
+temp.insert(1, "Medium")
+
+# ৩. আবার টিউপলে রূপান্তর
+levels = tuple(temp)
+
+print(levels)  # আউটপুট: ('Easy', 'Medium', 'Hard')
+
+
+
+fruits = ("apple", "banana", "mango")
+
+# ধাপ ১: Tuple কে List এ রূপান্তর
+temp_list = list(fruits)
+
+# ধাপ ২: List এ insert করা
+temp_list.insert(1, "orange")
+
+# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
+fruits = tuple(temp_list)
+
+print(fruits)   # ('apple', 'orange', 'banana', 'mango')
+
+
+friends = ("Abdullah", "Aziz", "Arman")
+
+clean = list(friends)
+
+clean.insert(0, "Mohammad")
+
+friends = tuple(clean)
+
+print(friends)
+
+
+
+
+extend()
+পাইথনের tuple() বিল্ট-ইন ফাংশনটি সর্বোচ্চ একটি আর্গুমেন্ট (যেমন একটি লিস্ট বা ইটারেবল) গ্রহণ করতে পারে।
+.extend() এর মূল কাজই হলো দুটি লিস্টকে একসাথে জোড়া লাগোনো বা মার্জ (Merge) করা।
+
+
+friends = ("Abdullah", "Aziz", "Arman")
+new_friends = "Rokshana",
+
+# টপলকে লিস্টে রূপান্তর
+tuple_friends = list(friends)
+new_friends_list = list(new_friends)
+
+# extend দিয়ে দুটি লিস্ট একসাথে করা
+tuple_friends.extend(new_friends_list)
+
+# সংশোধনী: লিস্টকে আবার টপলে রূপান্তর করে মূল friends-এ রিঅ্যাসাইন করা
+friends = tuple(tuple_friends)
+
+print(friends)
+
 
 
 
 remove()
 remove() এর কাজ হলো নির্দিষ্ট মান খুঁজে বের করে সরিয়ে ফেলা, কিন্তু Tuple immutable হওয়ায় এর থেকে কিছু সরানো সম্ভব না।
+পাইথনের remove() মেথডটি ইন-প্লেস (In-place) কাজ করে। এটি লিস্ট থেকে আইটেম মুছে ফেলে, কিন্তু কোনো কিছু রিটার্ন করে না
+(বা টেকনিক্যালি এটি None রিটার্ন করে)।
 
 
 টিউপলের কোনো উপাদান ডুপ্লিকেট বা বাদ দেওয়া (remove ব্যবহার করে)
@@ -621,6 +851,211 @@ print(numbers)   # (1, 3, 2, 4)  -> দ্বিতীয় 2 এখনো আ�
 
 
 
+all_files = "photo1.jpg", "document.pdf", "document.png", "photos.jpg", "notes.png", "banner.jpg"
+
+removed_file = list(all_files)
+
+removed_file.remove("document.pdf")
+
+all_files = tuple(removed_file)
+
+print(all_files)
+
+
+
+all_files = "photo1.jpg", "document.pdf", "document.png", "photos.jpg", "notes.png", "banner.jpg"
+
+removed_file = list(all_files)
+
+# কম্প্রিহেনশন দিয়ে ফিল্টার করে নতুন লিস্ট তৈরি করা হলো
+new_result = [file for file in removed_file if file != "document.pdf"]
+
+# ভুল সংশোধন: یہاں removed_file এর বদলে new_result কে টপল বানাতে হবে
+all_files = tuple(new_result)
+
+print(all_files)
+
+
+
+
+
+
+
+
+
+
+
+
+
+pop()
+
+পাইথনে pop() হলো লিস্টের একটি বিল্ট-ইন মেথড (Method), যার কাজ হলো লিস্ট
+থেকে কোনো উপাদান বা আইটেম ইনডেক্স ধরে মুছে ফেলা এবং সেই মুছে ফেলা উপাদানটিকে ফিরিয়ে দেওয়া (return করা)।
+
+টিউপলের শেষ বা মাঝখান থেকে কোনো উপাদান মুছে ফেলা (remove বা pop ব্যবহার করে)
+ধরা যাক, নিজের কাছে কিছু পণ্যের দামের একটি টিউপল আছে, যেখান থেকে একটি ভুল দাম বাদ দিতে চাইলে।
+
+prices = (100, 250, 500, 300)
+
+# ১. টিউপলকে লিস্টে রূপান্তর
+temp = list(prices)
+
+# ২. লিস্টের মেথড ব্যবহার করে ৫৫০ বা নির্দিষ্ট মান বাদ দেওয়া (এখানে ইনডেক্স ২ মানে 500 বাদ দিচ্ছি)
+temp.pop(2) 
+
+# ৩. আবার টিউপলে রূপান্তর
+prices = tuple(temp)
+
+print(prices)  # আউটপুট: (100, 250, 300)
+
+
+
+fruits = ("apple", "banana", "mango")
+
+# ধাপ ১: Tuple কে List এ রূপান্তর করা
+temp_list = list(fruits)
+
+# ধাপ ২: List এ pop() ব্যবহার করা
+removed_item = temp_list.pop()
+print(removed_item)   # mango
+
+# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
+fruits = tuple(temp_list)
+print(fruits)   # ('apple', 'banana')
+
+
+নির্দিষ্ট index থেকে সরানো
+
+
+numbers = (10, 20, 30, 40, 50)
+
+temp_list = list(numbers)      # Tuple → List
+removed = temp_list.pop(2)      # index 2 (30) সরানো হলো
+numbers = tuple(temp_list)      # আবার List → Tuple
+
+print(removed)   # 30
+print(numbers)   # (10, 20, 40, 50)
+
+
+স্লাইসিং (Slicing) ব্যবহার করে হুবহু একই কাজ খুব সহজে
+
+colors = ("Red", "Green", "Blue", "Yellow")
+
+# ১. প্রথম উপাদানটি আলাদা করে ভ্যারিয়েবলে রাখা
+removed_item = colors[0]
+
+# ২. স্লাইসিং করে প্রথমটি বাদ দিয়ে বাকি অংশটুকু আবার colors-এ অ্যাসাইন (রিঅ্যাসাইন) করা
+colors = colors[1:]
+
+print(colors)         
+print(removed_item)
+
+
+
+
+colors = ("Red", "Green", "Blue", "Yellow")
+
+colors = list(colors)
+
+kk = colors.pop(0)
+
+colors = tuple(colors)
+
+print(colors)         
+
+
+
+colors = ("Red", "Green", "Blue", "Yellow")
+
+colors = list(colors)
+
+kk = colors.pop(0) # "Red" এখানে এসে জমা হয়েছে
+
+colors = tuple(colors)
+
+print("বাকি কালারগুলোর টপল:", colors) 
+print("আলাদা করা রঙটি (Red):", kk)
+
+
+
+
+count()
+
+.count() মেথডটি কোনো ডেটা পরিবর্তন করে না, এটি শুধু খুঁজে বের করে টপলের ভেতরে কোনো নির্দিষ্ট উপাদান কয়বার আছে। তাই এটি লিস্টের মতোই টপলে নিখুঁতভাবে কাজ করে।
+
+numbers = (10, 20, 20, 30)
+
+print(numbers.count(20))   # 2  -> কতবার আছে গোনে
+print(numbers.index(30))   # 3  -> index খুঁজে দেয়
+
+
+colors = ("Red", "Green", "Blue", "Red", "Yellow", "Red")
+
+# টপলে "Red" কয়বার আছে তা গোনা
+red_count = colors.count("Red")
+
+print(red_count)
+
+
+
+.sort() এবং .reverse() (টপলে সরাসরি কাজ করে না ❌)
+লিস্টের মতো আপনি সরাসরি colors.sort() বা colors.reverse() লিখতে পারবেন না। 
+লিখলে পাইথন এরর (Error) দেবে, কারণ এগুলো লিস্টের ভেতর ডেটাগুলোকে উল্টে বা সাজিয়ে মূল লিস্টকেই বদলে দেয় (যা টপলের পক্ষে অসম্ভব)।
+
+তবে টপল দিয়ে এই কাজগুলো করার বিকল্প বা অলটারনেটিভ উপায় রয়েছে:
+
+
+colors = ("Red", "Green", "Blue", "Yellow")
+
+# স্লাইসিং দিয়ে রিভার্স করা
+reversed_colors = colors[::-1]
+
+print(reversed_colors)
+
+
+
+টপল সর্ট বা সাজানোর বিকল্প (sorted() ফাংশন ব্যবহার করে):
+টপলকে সরাসরি .sort() না করে পাইথনের বিল্ট-ইন sorted() ফাংশন ব্যবহার করতে হয়। এটি টপলকে প্রথমে লিস্ট বানিয়ে বা সাজিয়ে আবার নতুন টপল বানাতে সাহায্য করে:
+
+numbers = (5, 2, 9, 1, 5)
+
+# sorted() ব্যবহার করে সর্ট করা এবং পুনরায় টপলে রূপান্তর করা
+sorted_numbers = tuple(sorted(numbers))
+
+print(sorted_numbers)
+
+
+
+
+এই ফাংশনগুলো (len, max, min, sum) লিস্টের মতো টপলেও হুবহু একইভাবে এবং সরাসরি কাজ করে।
+
+
+len()
+
+numbers = (10, 20, 30, 40)
+print(len(numbers))  # আউটপুট: 4
+
+
+max() (সবচেয়ে বড় মান বের করা)
+
+numbers = (15, 88, 3, 42)
+print(max(numbers))  # আউটপুট: 88
+
+
+min() (সবচেয়ে ছোট মান বের করা)
+
+numbers = (15, 88, 3, 42)
+print(min(numbers))  # আউটপুট: 3
+
+
+sum() (সব উপাদানের যোগফল বের করা - শর্ত হলো উপাদানগুলো সংখ্যা হতে হবে)
+
+numbers = (10, 20, 30)
+print(sum(numbers))  # আউটপুট: 60
+
+
+
+
 
 যদি সব একই মান বাদ দিতে (List Comprehension দিয়ে সহজ সমাধান)
 
@@ -630,40 +1065,103 @@ numbers = tuple(n for n in numbers if n != 2)
 
 print(numbers)   # (1, 3, 4)  -> সবগুলো 2 বাদ পড়েছে
 
+টপল থেকে নির্দিষ্ট কোনো মান বা উপাদান (এখানে: 2) ফিল্টার করে বাদ দেওয়া হয়েছে।
+
+ফিল্টারিং বা শর্ত প্রয়োগ (n for n in numbers if n != 2): এটি একটি জেনারেটর এক্সপ্রেশন। 
+পাইথন এখানে numbers টপলের প্রতিটি উপাদান (n) ধরে চেক করেছে। শর্ত দেওয়া হয়েছে যে, 
+n-এর মান যদি 2-এর সমান না হয় (if n != 2), কেবল সেগুলোকে রাখা হবে। এর মানে দাঁড়াল—টপলে যতগুলো 2 ছিল, সেগুলোকে ছেঁটে ফেলা হয়েছে।
+
+টপলে রূপান্তর (tuple(...)): ফিল্টার করার পর যে মানগুলো (1, 3, 4) অবশিষ্ট ছিল, সেগুলোকে tuple() ফাংশন দিয়ে আবার একটি নতুন টপলে রূপান্তর করা হয়েছে।
+
+রিঅ্যাসাইন (numbers = ...): নতুন তৈরি হওয়া টপলটিকে আগের numbers ভ্যারিয়েবেইলেই আবার এসাইন (রিঅ্যাসাইন) করে দেওয়া হয়েছে।
+
+ফলাফলস্বরূপ, মূল টপল থেকে সব কয়টি 2 চিরতরে মুছে গিয়ে আউটপুটে শুধু (1, 3, 4) প্রিন্ট হয়েছে! এটি টপল বা লিস্ট থেকে নির্দিষ্ট ডেটা ফিল্টার করার আধুনিক একটি উপায়।
+
+
+---------------
+
+
+# এটি একটি টিউপল
+my_tuple = ("Apple", "Banana", "Mango")
+
+# list() কনস্ট্রাক্টর ব্যবহার করে এটিকে লিস্ট বানিয়ে ফেলা হলো
+my_list = list(my_tuple)
+
+print(my_list)
+print(type(my_list))  # আউটপুট: <class 'list'>
 
 
 
 
-টিউপলের মাঝখানে নতুন কোনো উপাদান ঢুকিয়ে দেওয়া (insert ব্যবহার করে)
-যদি লিস্টের শেষে নয়, বরং একদম মাঝখানে কোনো নির্দিষ্ট ইনডেক্সে নতুন ডেটা যুক্ত করতে 
 
-levels = ("Easy", "Hard")
+numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+new_result = []
 
-# ১. লিস্টে রূপান্তর
-temp = list(levels)
+numbers = list(numbers)
+new_result = list(new_result)
 
-# ২. ইনডেক্স ১ এ (মাঝখানে) "Medium" বসানো
-temp.insert(1, "Medium")
+for x in numbers:
+  result = x * 2
+  new_result.append(result)
+new_result = tuple(new_result)
+numbers = tuple(numbers)
 
-# ৩. আবার টিউপলে রূপান্তর
-levels = tuple(temp)
+print(numbers)
+print(new_result)
 
-print(levels)  # আউটপুট: ('Easy', 'Medium', 'Hard')
+Comprehension :
+numbers = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+new_result = tuple(x * 2 for x in numbers)
+print(new_result)
+  
 
 
 
-fruits = ("apple", "banana", "mango")
 
-# ধাপ ১: Tuple কে List এ রূপান্তর
-temp_list = list(fruits)
 
-# ধাপ ২: List এ insert করা
-temp_list.insert(1, "orange")
+লিস্ট বা রেঞ্জের মতো টপল দিয়েও  খুব সহজেই এই কাজটি করা যাবে। এর জন্য প্রথজাব ১ থেকে ৫ পর্যন্ত সংখ্যাগুলো দিয়ে একটি টপল বানিয়ে নিতে হবে, এরপর লুপটি তার ওপর চালাতে হবে।
 
-# ধাপ ৩: আবার Tuple এ ফিরিয়ে আনা
-fruits = tuple(temp_list)
+numbers = (1, 2, 3, 4, 5)
 
-print(fruits)   # ('apple', 'orange', 'banana', 'mango')
+for i in numbers:
+    print(i)
+
+লিস্ট কম্প্রিহেনশনের স্টাইলটি ব্যবহার করেই টপল বানানোর নিয়মরীতি হলো tuple() ফাংশনের ভেতরে জেনারেটর এক্সপ্রেশনটি পাস করা:
+
+new_result = tuple(i for i in range(1, 6))
+
+print(new_result)
+
+
+
+
+
+
+
+fruits = ('banana', 'mango', 'cherry', 'apple')
+
+# for fruit in (fruits):
+#   print(fruit)
+  
+# new_fruits = tuple(fruit for fruit in fruits)
+
+# for item in new_fruits:
+#   print(item)
+
+# print(item)
+
+  
+  
+fruits = ('banana', 'mango', 'cherry', 'apple')
+# for i in range(len(fruits)):
+#     print(i, fruits[i])
+  
+new_fruits = tuple((i, fruits[i]) for i in range(len(fruits)))
+
+for index, item in new_fruits:
+  print(index, item)
+
+
 
 
 
@@ -678,26 +1176,22 @@ print(type(result))   # <class 'generator'>  -> এটা Tuple না!
 
 
 
-numbers = []          # খালি list দিয়ে শুরু (Tuple সরাসরি খালি রেখে বাড়ানো যায় না)
+number = []  # খালি list দিয়ে শুরু (Tuple সরাসরি খালি রেখে বাড়ানো যায় না)
 
 for n in range(1, 6):
-    numbers.append(n)
+  number.append(n * 2)
+number = tuple(number) # শেষে Tuple এ রূপান্তর
+print(number)
+print(type(number))
 
-numbers = tuple(numbers)   # শেষে Tuple এ রূপান্তর
+number = tuple(n * 2 for n in range(1, 6))
 
-print(numbers)   # (1, 2, 3, 4, 5)
-
-
-
-এখন Comprehension দিয়ে (সংক্ষিপ্ত)
-
-numbers = tuple(n for n in range(1, 6))
-
-print(numbers)   # (1, 2, 3, 4, 5)
-
+print(number)
 
 লক্ষ্য রাখি — tuple(...) এর ভিতরে যে অংশটা লেখা হয়েছে (n for n in range(1, 6)), 
 সেটাই Comprehension এর মূল অংশ, শুধু [ ] এর বদলে tuple() ফাংশন দিয়ে মুড়ে দেওয়া হয়েছে।
+
+
 
 
 
