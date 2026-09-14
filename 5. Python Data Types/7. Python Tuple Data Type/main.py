@@ -481,7 +481,52 @@ print(kk)
 
 
 
+~~~~~~~~~~~~~~~~~~~~~
+V.V.I
+tuple_number = (10, 20,30, 40)
 
+pp = tuple_number(1)
+
+print(tuple_number) 
+
+
+tuple_names = 'abdullah', 'aziz', 'arman'
+
+pp = tuple_names(1)
+
+print(tuple_names)
+
+এখানে এরর আসার কারণ হলো পাইথনে ফার্স্ট ব্র্যাকেট () এবং থার্ড ব্র্যাকেট []-এর কাজ সম্পূর্ণ আলাদা।
+
+কেন এরর দিচ্ছে (tuple_number(1))?
+আপনি যখন tuple_number(1) লিখেছেন, তখন পাইথন ভেবেছে tuple_number একটি ফাংশন এবং 1 পাস করে এটিকে কল (Call) করতে চাচ্ছেন।
+কিন্তু tuple_number তো কোনো ফাংশন নয়, এটি একটি টপল ডেটা। যে কারণে পাইথন TypeError: 'tuple' object is not callable নামের এরর দিয়ে দেয়।
+
+সঠিক নিয়মটি কী?
+টপল বা লিস্ট—উভয় ক্ষেত্রেই কোনো নির্দিষ্ট ইনডেক্সের উপাদান 
+(যেমন ১ নম্বর পজিশনের মান) পাওয়ার জন্য থার্ড ব্র্যাকেট [] ব্যবহার করতে হয়। পাইথনে ইনডেক্সিং বা পজিশন বোঝানোর জন্য স্কয়ার ব্র্যাকেট বা থার্ড ব্র্যাকেট বাধ্যতামূলক।
+
+
+numbers = [10, 20, 30, 40]
+
+ll = numbers[0] = 100
+
+print(numbers)
+
+print(ll) 100
+
+
+tuple_names = 'abdullah', 'aziz', 'arman'
+
+added_names = list(tuple_names)
+
+added_names[0] = 'mohammad'
+
+tuple_names = tuple(added_names)
+
+print(tuple_names)
+
+~~~~~~~~~
 
 
 Slicing (Tuple এর একটা অংশ বের করা)
