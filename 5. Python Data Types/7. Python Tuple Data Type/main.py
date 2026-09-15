@@ -1328,6 +1328,112 @@ print(new_name)
 
 
 
+fruits = ["apple", "banana", "mango", "cherry", 'desktop', 'phone']
+
+new_fruits = [f for f in fruits if 'a' in f]
+
+# for f in fruits:
+#   if 'a' in f:
+#     new_fruits.append(f)
+    
+print(new_fruits)
+
+print('------------ Tuple----------------------')
+
+
+mixed_tuple = ("apple", "banana", "mango", "cherry", 'desktop', 'phone')
+
+add_fruits = tuple(f for f in mixed_tuple if 'a' in f)
+
+# for f in mixed_tuple:
+#   if 'a' in f:
+#     add_fruits.append(f)
+# add_fruits = tuple(add_fruits)
+
+print(add_fruits)
+
+
+
+
+product_price = [100, 205, 300, 405]
+
+final_price = [prices + 5 for prices in product_price]
+
+# for prices in product_price:
+#   final_price.append(prices + 5)
+  
+print(final_price)
+
+print('------------ Tuple----------------------')
+
+product_price = (100, 205, 300, 405)
+
+# এক লাইনে জেনারেটর এক্সপ্রেশন দিয়ে সরাসরি টপল তৈরি
+fixed_prices = tuple(prices + 5 for prices in product_price)
+
+for prices in product_price:
+  fixed_prices.append(prices + 5)
+
+fixed_prices = tuple(fixed_prices)
+
+print(fixed_prices)
+
+
+
+
+raw_names = ("  rahim ", "karim ", "  sakib", "mina ")
+
+# .strip() দিয়ে স্পেসগুলো কেটে ফেলা হলো
+cleaned_names = tuple(name.strip() for name in raw_names)
+
+print(cleaned_names)
+
+
+
+
+
+
+all_files = ["photo1.jpg", "document.pdf", "banner.png", "profile.jpg", "notes.txt"]
+
+jpg_files = [file for file in all_files if ".jpg" in file]
+
+print(jpg_files)
+
+# for file in all_files:
+#   if (".jpg") in file:
+#     jpg_files.append(file)
+# print(jpg_files)
+
+
+# for file in all_files:
+#   if file.endswith(".jpg"):
+#     jpg_files.append(file)
+# print(jpg_files)
+
+jpg_files = [file for file in all_files if file.endswith(".jpg")]
+print(jpg_files)
+
+print('------------ Tuple----------------------')
+
+all_files = ("photo1.jpg", "document.pdf", "banner.png", "profile.jpg", "notes.txt")
+
+# result = tuple(file for file in all_files if ".jpg" in file)
+# print(result)
+
+add_result = tuple(file for file in all_files if file.endswith(".jpg"))
+print(add_result)
+
+# for file in all_files:
+#   if ".jpg" in file:
+#     result.append(file)
+# result =  tuple(result)
+# print(result)
+
+# for file in all_files:
+#   if file.endswith(".jpg"):
+#     add_result.append(file)
+# add_result = tuple(add_result)
+# print(add_result)
 
 
 
