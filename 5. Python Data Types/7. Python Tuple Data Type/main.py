@@ -925,13 +925,6 @@ print(all_files)
 
 
 
-
-
-
-
-
-
-
 pop()
 
 পাইথনে pop() হলো লিস্টের একটি বিল্ট-ইন মেথড (Method), যার কাজ হলো লিস্ট
@@ -1126,6 +1119,87 @@ n-এর মান যদি 2-এর সমান না হয় (if n != 2), �
 ---------------
 
 
+আসলে পাইথনে লিস্ট কম্প্রিহেনশনের মতো সরাসরি কোনো "Tuple Comprehension" বলে কিছু নেই। 
+ফার্স্ট ব্র্যাকেট () দিয়ে যেটা লেখা হয়, সেটিকে পাইথনের ভাষায় বলা হয় Generator Expression (জেনারেটর এক্সপ্রেশন)।
+
+১. লিস্ট কম্প্রিহেনশন [] কেন ব্যবহার করে?
+যেহেতু লিস্ট তৈরির মূল সিনট্যাক্স বা চিহ্ন হলো থার্ড ব্র্যাকেট [], তাই লিস্ট কম্প্রিহেনশন লেখার সময়ও পাইথন থার্ড ব্র্যাকেট ব্যবহার করে।
+এটি সরাসরি মেমোরিতে একটি পূর্ণাঙ্গ লিস্ট তৈরি করে ফেলে।
+
+উদাহরণ: [x for x in range(5)] এটি একটি লিস্ট আউটপুট দেয়: [0, 1, 2, 3, 4]
+
+
+
+২. ফার্স্ট ব্র্যাকেট () দিয়ে যেটা লেখা হয়, সেটি কী?
+যদি ফাস্ট ব্র্যাকেট দিয়ে এভাবে লেখেন: (x for x in range(5)) — তবে পাইথন এখানে কোনো টপল তৈরি করে না। 
+এটি একটি Generator Expression তৈরি করে, 
+যা একসাথে পুরো ডেটা মেমোরিতে না রেখে একটা একটা করে ডেটা জেনারেট করে (যা বড় ডেটার ক্ষেত্রে মেমোরি বাঁচায়)।
+
+
+৩. তাহলে সরাসরি টপল কম্প্রিহেনশন কীভাবে লেখে?
+পাইথনে সরাসরি কোনো ব্র্যাকেট দিয়ে টপল কম্প্রিহেনশন লেখার নিয়ম নেই। টপল তৈরি করতে চাইলে জেনারেটর এক্সপ্রেশনের সামনে tuple() ফাংশন বসাতে হয়:
+
+# এটি একটি টপল তৈরি করবে
+my_tuple = tuple(x for x in range(5))
+
+print(my_tuple)  # আউটপুট: (0, 1, 2, 3, 4)
+
+
+লিস্ট কম্প্রিহেনশন সরাসরি লিস্ট বানায় বলে [] ব্যবহার করে।
+
+আর ফার্স্ট ব্র্যাকেট () ব্যবহার করা হয় জেনারেটর এক্সপ্রেশনের জন্য, যেটিকে পরে tuple() ফাংশনের ভেতর পাস করে টপলে রূপান্তর করা যায়।
+
+
+
+
+problem--
+
+double = []
+
+for x in range(1, 6):
+  double.append(x * 2)
+squares_dubble = tuple(double)
+
+print(squares_dubble)
+  squares_dubble er moddhe tuple(double) ache tobe print(double) dile list e ase
+
+এর কারণ হলো: tuple(double) লেখার কারণে আসল double লিস্টটি নিজে টপল হয়ে যায়নি, 
+বরং পাইথন ওই লিস্টের ডেটাগুলো নিয়ে সম্পূর্ণ নতুন আরেকটি টপল তৈরি করে squares_dubble ভ্যারিয়েবলে রেখেছে।
+
+
+আসলে কি ঘটে?
+১. double ভ্যারিয়েবলটি শুরু থেকেই একটি লিস্ট (list) হিসেবে তৈরি করা হয়েছে এবং লুপের মাধ্যমে এতে ডেটা যোগ করা হয়েছে।
+২. এরপর যখন আপনি squares_dubble = tuple(double) লিখেছেন, তখন পাইথন double লিস্টের ভেতরের মানগুলোকে কপি করে একটি নতুন টপল (tuple) বানিয়ে সেটি squares_dubble-এ রেখে দিয়েছে।
+৩. এই প্রক্রিয়ায় মূল double লিস্টের গায়ে কোনো হাত দেওয়া হয়নি বা সেটির ডেটা টাইপ বদলানো হয়নি। তাই double লিস্টটি লিস্টই রয়ে গেছে।
+
+
+
+double = []
+
+for x in range(1, 6):
+  double.append(x * 2)
+
+squares_dubble = tuple(double)
+
+print("double এর টাইপ:", type(double))  # আউটপুট দেবে: 
+print(
+    "squares_dubble এর টাইপ:", type(squares_dubble)
+)  # আউটপুট দেবে: 
+
+print("double প্রিন্ট করলে:", double)  # আউটপুট: [2, 4, 6, 8, 10] (লিস্ট)
+print("squares_dubble প্রিন্ট করলে:", squares_dubble)  # আউটপুট: (2, 4, 6, 8, 10) (টপল)
+
+
+
+সংক্ষেপে: পাইথনে কোনো ডেটা টাইপকে রূপান্তর (tuple() বা list()) করলে মূল ভ্যারিয়েবল নিজে থেকে বদলায় না, 
+যদি না মূল ভ্যারিয়েবলেই সেটিকে আবার অ্যাসাইন করেন (যেমন: double = tuple(double))।
+
+
+
+
+
+
+
 # এটি একটি টিউপল
 my_tuple = ("Apple", "Banana", "Mango")
 
@@ -1134,6 +1208,125 @@ my_list = list(my_tuple)
 
 print(my_list)
 print(type(my_list))  # আউটপুট: <class 'list'>
+
+
+
+
+
+number = [1, 2, 3, 4, 5, 6]
+
+new = [i for i in number if i % 2 == 0]
+
+print(new)
+
+print('-------------------------')
+
+num = (1, 2, 3, 4, 5, 6)
+
+m = []
+
+for x in num:
+  if x % 2 == 0:
+    m.append(x)
+m = tuple(m)
+print(m)
+
+
+num = (1, 2, 3, 4, 5, 6)
+
+m = tuple(x for x in num if x % 2 == 0)
+
+print(m)
+
+
+
+
+names_list = ["abdullah", 'aziz', 'ebny', 'arman']
+new_name = [name.upper() for name in names_list]
+
+for name in names_list:
+  new_name.append(name.upper())
+print(new_name)  
+
+
+print('----------------------------------')
+
+tuple_name = "abdullah", 'aziz', 'ebny', 'arman'
+
+new_tupel = tuple(x.upper() for x in tuple_name)
+
+for x in tuple_name:
+  new_tupel.append(x.upper())
+  
+new_tupel = tuple(new_tupel)
+
+print(new_tupel)
+
+
+
+
+
+even_number = [even for even in range(1, 21) if even % 2 == 0]
+odd_number = [odd for odd in range(1, 21) if odd % 2 != 0]
+
+print(even_number)
+print(odd_number)
+
+# for even in range(1, 21):
+#   if even % 2 == 0:
+#     even_number.append(even)
+#   else:
+#     odd_number.append(even)
+    
+print(even_number)
+print(odd_number)
+
+
+print('------------ Tuple----------------------')
+
+even_num = tuple(even_x for even_x in range(1, 21) if even_x % 2 == 0)
+odd_num = tuple(odd_x for odd_x in range(1, 21) if odd_x % 2 == 1)
+
+print(even_num)
+print(odd_num)
+
+# for even_x in range(1, 21):
+#   if even_x % 2 == 0:
+#     even_num.append(even_x)
+#   else:
+#     odd_num.append(even_x)
+    
+# even_num = tuple(even_num)
+# odd_num = tuple(odd_num)
+
+print(even_num)
+print(odd_num)
+
+
+শব্দের দৈর্ঘ্য (Length of words) মাপা
+
+
+list_name = ['Abdullah', 'Ebny', 'Aziz', 'Arman']
+
+new_list = [len(length) for length in list_name]
+
+# for length in list_name:
+#   new_list.append(len(length))
+print(new_list)
+
+print('------------ Tuple----------------------')
+
+tuple_name = 'Abdullah', 'Ebny', 'Aziz', 'Arman'
+
+new_name = tuple(len(name_len) for name_len in tuple_name)
+
+# for name_len in tuple_name:
+#   new_name.append(len(name_len))
+# new_name = tuple(new_name)
+
+print(new_name)
+
+
 
 
 
