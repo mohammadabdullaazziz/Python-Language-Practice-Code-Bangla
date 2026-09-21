@@ -388,3 +388,80 @@ print("For লুপ দিয়ে Is Subset চেক:", is_sub)
 
 কিন্তু .update() বা .difference_update() এর মতো মেথডগুলোর কাজ হলো আগে থেকেই থাকা মূল সেটকে মডিফাই বা আপডেট করা (Mutate করা)। 
 এগুলোর জন্য কমপ্রিহেনশনের চেয়ে সরাসরি মেথড ব্যবহার করাই পাইথনের নিয়ম এবং এটাই সবচেয়ে সহজ ও স্ট্যান্ডার্ড পদ্ধতি।
+
+
+
+
+
+টেক্সট থেকে ইউনিক এবং ছোট হাতের (Lowercase) শব্দ আলাদা করা (For লুপ দিয়ে)
+
+
+text = "Python is powerful and python is easy to learn and use"
+
+# প্রথমে একটি খালি সেট তৈরি করা হলো
+unique_words = set()
+
+# for লুপ চালিয়ে একে একে শব্দ যোগ করা হলো
+for word in text.split():
+  unique_words.add(word.lower())
+
+print("Unique Lowercase Words:", unique_words)
+
+
+
+
+text = "Python is powerful and python is easy to learn and use"
+
+# সেট কমপ্রিহেনশন ব্যবহার করে ইউনিক ও লোয়ারকেস শব্দের সেট তৈরি
+unique_words = {word.lower() for word in text.split()}
+
+print("Unique Lowercase Words:", unique_words)
+
+
+
+ডেটাবেজ বা ইউজার ইনপুট থেকে স্পেস (Whitespace) রিমুভ করা (For লুপ দিয়ে)
+
+raw_usernames = {" rahim", "karim ", " tanvir ", "rahim", "salma"}
+
+# খালি সেট তৈরি
+clean_usernames = set()
+
+# for লুপ ও strip() ব্যবহার করে সেটে যুক্ত করা
+for name in raw_usernames:
+  clean_usernames.add(name.strip())
+
+print("Clean Unique Usernames:", clean_usernames)
+
+
+
+raw_usernames = {" rahim", "karim ", " tanvir ", "rahim", "salma"}
+
+# সেট কমপ্রিহেনশন ব্যবহার করে স্পেস রিমুভ ও ইউনিক সেট তৈরি
+clean_usernames = {name.strip() for name in raw_usernames}
+
+print("Clean Unique Usernames:", clean_usernames)
+
+
+
+
+কন্ডিশন ব্যবহার করে নির্দিষ্ট আইটেম ফিল্টার করা (For ও If দিয়ে)
+
+product_prices = [45, 120, 85, 120, 250, 90, 45, 300]
+
+# খালি সেট তৈরি
+expensive_prices = set()
+
+# লুপ এবং কন্ডিশন ব্যবহার করে ফিল্টার করা
+for price in product_prices:
+  if price > 100:
+    expensive_prices.add(price)
+
+print("Expensive Unique Prices:", expensive_prices)
+
+
+product_prices = [45, 120, 85, 120, 250, 90, 45, 300]
+
+# সেট কমপ্রিহেনশন এবং কন্ডিশন ব্যবহার করে এক লাইনে ফিল্টার করা
+expensive_prices = {price for price in product_prices if price > 100}
+
+print("Expensive Unique Prices:", expensive_prices)
