@@ -5,7 +5,7 @@ Set কী?
 Set হলো পাইথনের একটা ডেটা টাইপ যেটা দিয়ে একাধিক জিনিস রাখা যায়, কিন্তু এর দুইটা বিশেষ বৈশিষ্ট্য আছে:
 
 এর প্রধান দুটি জাদুকরী বৈশিষ্ট্য হলো:
-১. সেটের ভেতর কোনো ডুপ্লিকেট বা একই মান দুইবার থাকতে পারে না। আপনি যদি ভুল করেও একই ডেটা বারবার রাখেন, পাইথন নিজে থেকেই ডিরেক্ট ডুপ্লিকেটগুলো মুছে ফেলবে।
+১. সেটের ভেতর কোনো ডুপ্লিকেট বা একই মান দুইবার থাকতে পারে না। যদি ভুল করেও একই ডেটা বারবার রাখেন, পাইথন নিজে থেকেই ডিরেক্ট ডুপ্লিকেটগুলো মুছে ফেলবে।
 ২. সেটের কোনো নির্দিষ্ট ইনডেক্স বা সিরিয়াল নেই (Unordered)। তাই আপনি fruits[0] এভাবে ইনডেক্স দিয়ে কোনো আইটেম এক্সেস করতে পারবেন না।
 কোনো নির্দিষ্ট ক্রম (order) থাকে না
 
@@ -186,13 +186,44 @@ fruits.add("apple")  # কিছু হবে না, ইতিমধ্যে �
 colors = {"red", "green"}
 colors.add("blue")
 
-print(colors)  {'red', 'blue', 'green'}  # সিরিয়াল যেকোনোটা আগে-পিছে হতে পারে
+print(colors)  {'red', 'blue', 'green'}  # সিরিয়াল যেকোনোটা আগে-পিছে হতে পারে 
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = fruits_set.add("kk")
+
+print(fruits_set)
+
+print(fruits) None
   
 ---
 
+update() মেথডের কাজ কী?
+পাইথনের সেটের (set) নিজস্ব একটি বিল্ট-ইন মেথড হলো .update()। 
+এই মেথডের কাজ হলো যেকোনো ইটারেবল (Iterable) বা সংগ্রহ টাইপের ডেটা—
+যেমন: List, Tuple, Set, বা Dictionary থেকে উপাদানগুলো নিয়ে মূল সেটের সাথে যুক্ত করা।
+
+
+
 # একাধিক উপাদান (লিস্ট বা অন্য সেট) একসাথে যোগ করা update() — একাধিক item একসাথে যোগ করা
-fruits.update(["mango", "grape"])
-print(fruits)
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits_set.update(["kk", "grape"])
+
+print(fruits_set) 
+
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+kk = (("kk", "grape"))
+
+fruits_set.update(kk)
+
+print(fruits_set)
 
 
 fruits = {"apple", "banana"}
@@ -210,6 +241,44 @@ fruits.update(new_fruits)
 
 # আপডেট হওয়া সেটটি প্রিন্ট করা হচ্ছে
 print(fruits)  {'apple', 'banana', 'mango', 'grape', 'orange'}
+
+
+# মূল সেট
+my_skills = {"python", "git"}
+print("Original set:", my_skills)
+
+# একটি লিস্ট যার মধ্যে নতুন স্কিল রয়েছে
+new_skills_list = ["docker", "sql", "python"]
+
+# update() ব্যবহার করে লিস্টের উপাদানগুলো সেটে যুক্ত করা হলো
+my_skills.update(new_skills_list)
+
+print("After update:", my_skills)
+
+Original set: {'python', 'git'}
+After update: {'git', 'python', 'docker', 'sql'}
+
+
+দুটি ভিন্ন সেটের ডেটা মার্জ করা
+দুটি আলাদা সেটকে একসাথে মিলিয়ে ফেলার জন্যও এটি ব্যবহৃত হয়।
+
+
+# প্রাথমিক ফ্রেন্ডস লিস্ট
+group_a = {"rahim", "karim"}
+print("Group A:", group_a)
+
+# নতুন ফ্রেন্ডস লিস্ট
+group_b = {"tanvir", "salma"}
+
+# group_a এর মধ্যে group_b এর উপাদানগুলো আপডেট করা হলো
+group_a.update(group_b)
+
+print("After updating Group A:", group_a)
+
+
+add() দিয়ে সেটে একে একে শুধুমাত্র একটি উপাদান যোগ করা যায়।
+
+আর update() দিয়ে একসাথে একাধিক উপাদান (সেট, লিস্ট বা অন্যান্য ইটারেবল থেকে) যোগ করে মূল সেটটিকে এক লাফে বড় করে ফেলা যায়।
 
 
 
@@ -237,6 +306,25 @@ fruits.remove("banana")
 print(fruits)  # {'apple', 'mango'}
 
 fruits.remove("orange")  # KeyError: 'orange' -> এটা নেই তাই error
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+kk = fruits_set.remove("kk")
+
+print(kk)
+
+print(fruits_set)
+
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+kk = fruits_set.remove("banana")
+
+print(kk) None
+
+print(fruits_set)
 
 
 # ফলের একটি সেট
@@ -285,6 +373,48 @@ print("yellow ডাসকার্ড করার পর:", colors)
 
 
 
+fruits = {"apple", "banana", "mango", "orange"}
+print("Original set:", fruits)
+
+fruits.remove("banana")
+print("After removal:", fruits)
+
+
+
+colors = {"red", "green", "blue"}
+print("Original set:", colors)
+
+# সেটে থাকা উপাদান রিমুভ করা
+colors.discard("green")
+print("After discarding 'green':", colors)
+
+# সেটে নেই এমন উপাদান ডিসকার্ড করার চেষ্টা (কোনো এরর আসবে না)
+colors.discard("yellow")
+print("After discarding non-existent 'yellow':", colors)
+
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+kk = fruits_set.discard("kk")
+
+print(kk) 
+
+print(fruits_set)
+
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+kk = fruits_set.discard("banana")
+
+print(kk) None
+
+print(fruits_set)
+
+
+
+
 
 
 pop() — এলোমেলোভাবে একটা item সরিয়ে রিটার্ন করা
@@ -296,6 +426,7 @@ pop() মেথড
 বিশেষ সতর্কতা: সেটের যেহেতু কোনো নির্দিষ্ট ইনডেক্স বা সিরিয়াল নেই (0, 1 নম্বর বলে কিছু নেই), 
 তাই pop() কল করলে ঠিক কোন উপাদানটি মুছে যাবে তা আগে থেকে নিশ্চিত করে বলতে পারা যায় না। 
 পাইথন নিজের ইচ্ছামমতো যেকোনো একটি আইটেম উড়িয়ে দেবে। তাছাড়া, সেট ফাঁকা (Empty) থাকলে এটিও এরর দিবে।
+
 
 fruits = {"apple", "banana", "mango"}
 removed = fruits.pop()
@@ -319,7 +450,6 @@ print("মুছে ফেলার পর সেটটি যেমন আছ�
 
 
 
-
 # একটি সেট তৈরি করা হলো
 colors = {"red", "green", "blue", "yellow"}
 
@@ -337,6 +467,19 @@ print(f"আপডেট হওয়া সেট: {colors}")
 আপডেট হওয়া সেট: {'red', 'green', 'yellow'}
 
 
+
+# একটি ফলের সেট
+fruits = {"apple", "banana", "mango", "orange"}
+print("Original set:", fruits)
+
+# pop() মেথড ব্যবহার করে যেকোনো একটি আইটেম রিমুভ করা হলো এবং তা ভেরিয়েবলে রাখা হলো
+removed_item = fruits.pop()
+
+print("Removed item:", removed_item)
+print("After pop set:", fruits)
+
+
+
 🎯 সংক্ষেপে একনজরে পার্থক্য:
 
 উপাদান ফিক্সড এবং সেটে থাকতেই হবে, না থাকলে কোড ভেঙে ফেলার দরকার হলে remove() ব্যবহার করতে হবে।
@@ -346,6 +489,28 @@ print(f"আপডেট হওয়া সেট: {colors}")
 নির্দিষ্ট কোনো নাম না ধরে, শুধু র‍্যান্ডম যেকোনো একটি উপাদান সেট থেকে পপ বা হাওয়া করে দিতে চাইলে  pop() ব্যবহার  করতে হবে।
 
 
+fruits_set = {"apple", "banana", "mango"}
+
+removed = fruits_set.remove("kk")
+
+print(removed) 
+
+print(fruits_set)
+
+
+
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+removed = fruits_set.remove("banana")
+
+print(removed) None
+
+print(fruits_set)
+
+
+
 
 
 
@@ -353,6 +518,27 @@ clear() হলো পাইথনের একটি বিল্ট-ইন ম�
 
 সেটের .clear() মেথডটি খুবই সহজ এবং কাজের। এর কাজ হলো একটি সেটের ভেতরের সব উপাদান
 চিরতরে মুছে ফেলা এবং সেটটিকে একটি খালি (empty) সেটে রূপান্তর করা।
+
+fruits_set = {"apple", "banana", "mango"}
+
+removed = fruits_set.clear()
+
+print(removed) None
+
+print(fruits_set) set()
+
+
+
+fruits = {"apple", "banana", "mango", "orange"}
+print("Original set:", fruits)
+
+# clear() মেথড ব্যবহার করে সেটের সব উপাদান মুছে ফেলা হলো
+fruits.clear()
+
+print("After clear:", fruits)
+print("Type of set:", type(fruits))
+
+
 
 # শুরুতে সেটে ৩টি ফল আছে
 fruits = {"apple", "banana", "mango"}
@@ -396,6 +582,38 @@ print(f"বর্তমান সেট: {permissions}")
 
 
 # মূল সেট
+original_set = {"apple", "banana", "mango"}
+print("Original set:", original_set)
+
+# copy() মেথড ব্যবহার করে নতুন কপি তৈরি করা হলো
+copied_set = original_set.copy()
+print("Copied set:", copied_set)
+
+# এখন শুধু কপি করা সেটে নতুন একটি উপাদান যোগ করা যাক
+copied_set.add("orange")
+
+print("\n--- After modifying the copied set ---")
+print("Original set (unchanged):", original_set)
+print("Copied set (updated):", copied_set)
+
+
+
+
+# মূল সেট
+fruits_set = {"apple", "banana", "mango"}
+print("fruits set:", fruits_set)
+
+copy_set = fruits_set.copy()
+
+print("copy set", copy_set)
+
+copy_set.add("orange")
+
+print(copy_set)
+
+
+
+# মূল সেট
 original_set = {"apple", "banana", "cherry"}
 
 # .copy() ব্যবহার করে নতুন সেট তৈরি করা হলো
@@ -417,8 +635,25 @@ print(f"কপি করা সেট: {copied_set}")
 
 
 .intersection_update() মেথড
-সাধারণ .intersection() শুধু কমন উপাদানগুলো রিটার্ন করে নতুন আউটপুট দেয়,
-কিন্তু .intersection_update() সরাসরি মূল সেটকেই আপডেট করে ফেলে এবং শুধু কমন উপাদানগুলো মূল সেটের ভেতরে রেখে বাকিগুলো মুছে দেয়।
+
+পাইথনের সেটে .intersection_update() মেথডটি খুবই কাজের একটি ফাংশন। 
+এটি মূলত দুটি বা ততোধিক সেটের মধ্যে কমন (Common) বা সাধারণ উপাদানগুলো 
+খুঁজে বের করে এবং মূল সেটটিকে শুধুমাত্র ওই কমন উপাদানগুলো দিয়েই আপডেট করে দেয়।
+
+ইন-প্লেস পরিবর্তন (In-place Modification): .intersection() মেথড যেখানে নতুন একটি সেট রিটার্ন করে, 
+সেখানে .intersection_update() নতুন কোনো সেট তৈরি করে না—বরং মূল সেটটিকেই পরিবর্তন করে ফেলে।
+
+কমন উপাদান রাখা: দুটি সেটের মধ্যে যে উপাদানগুলো উভয় দলেই রয়েছে, শুধু সেগুলোকে রেখে বাকি সব উপাদান মূল সেট থেকে মুছে দেয়।
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = {"kk", 'yy',  "banana", "mango", 'orange'} 
+
+kk = fruits_set.intersection_update(fruits)
+
+print(fruits_set) "banana", "mango"
+
+print(kk) None
 
 
 
@@ -439,12 +674,146 @@ print(f"আপডেট হওয়া পারমিশন সেট: {my_permis
 
 
 
+# দুটি সেট তৈরি করা হলো
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+
+print("Original set1:", set1)
+print("Set2:", set2)
+
+# intersection_update() ব্যবহার করা হলো
+set1.intersection_update(set2)
+
+print("\nAfter intersection_update:")
+print("Updated set1:", set1)
+
+
+Original set1: {1, 2, 3, 4, 5}
+Set2: {4, 5, 6, 7, 8}
+
+After intersection_update:
+Updated set1: {4, 5}
+
+জরুরি নোট: যেহেতু এটি সরাসরি মূল সেটকে পরিবর্তন করে, তাই এর রিটার্ন ভ্যালু None হয়। 
+যদি সরাসরি প্রিন্ট করতে  print(set1.intersection_update(set2)), তবে আউটপুট None দেখাবে। 
+তাই মেথডটি আলাদা লাইনে চালিয়ে পরে set1 প্রিন্ট করতে হয়।
+
+
+এডমিন প্যানেল থেকে ইনঅ্যাক্টিভ ইউজার বাদ দেওয়া
+ধরে নিন আপনার সিস্টেমে কিছু রেজিস্টার্ড এডমিন আছেন এবং একটিভ ইউজারের লিস্ট আছে। 
+ মূল এডমিন লিস্টটিকে আপডেট করে শুধু তাদেরই রাখতে যারা বর্তমানে সিস্টেমে একটিভ আছেন।
+
+# মূল এডমিনদের সেট
+admins = {"rahim", "karim", "tanvir", "salma", "atik"}
+
+# বর্তমানে অনলাইন বা একটিভ ইউজারদের সেট
+active_users = {"karim", "salma", "atik", "jabbar"}
+
+print("Original Admins:", admins)
+print("Active Users:", active_users)
+
+# intersection_update ব্যবহার করে শুধু কমন এডমিনদের রাখা হলো
+admins.intersection_update(active_users)
+
+print("\nAfter intersection_update (Only Active Admins):")
+print("Updated Admins:", admins)
+
+
+
+দুটি ভিন্ন শপিং ক্যাটাগরির কমন প্রোডাক্ট ফিল্টার করা
+ধরে নিন আপনার কাছে একটি ফ্যাশন স্টোরের ট্রেন্ডিং পণ্যের সেট আছে এবং কাস্টমারদের পছন্দের পণ্যের সেট আছে।
+দেখতে ট্রেন্ডিংয়ের মধ্যে কোন পণ্যগুলো কাস্টমাররা বেশি পছন্দ করছে।
+
+# ট্রেন্ডিং পণ্যের সেট
+trending_products = {"shoes", "jacket", "watch", "sunglasses", "cap"}
+
+# কাস্টমারদের পছন্দের পণ্যের সেট
+customer_favorites = {"jacket", "watch", "backpack", "shoes"}
+
+print("Trending Products:", trending_products)
+print("Customer Favorites:", customer_favorites)
+
+# intersection_update দিয়ে ট্রেন্ডিং সেটটি আপডেট করা হলো
+trending_products.intersection_update(customer_favorites)
+
+print("\nAfter intersection_update (Top Selling Trending Items):")
+print("Updated Trending Products:", trending_products)
+
+
+
+জবের রিকোয়ারমেন্টের সাথে প্রার্থীর স্কিল ম্যাচ করা
+ধরে নিন একটি ব্যাকএন্ড ডেভেলপার পদের জন্য কিছু নির্দিষ্ট স্কিল প্রয়োজন। 
+এখন একজন প্রার্থীর যতগুলো স্কিল আছে, সেগুলোর মধ্যে থেকে শুধু জবের সাথে মিলে যাওয়া (কমন) স্কিলগুলো দিয়ে প্রার্থীর স্কিল সেটটি আপডেট করতে চান।
+
+
+# প্রার্থীর বর্তমান স্কিলসমূহের সেট
+candidate_skills = {"python", "git", "html", "css", "docker"}
+
+# জবের জন্য প্রয়োজনীয় স্কিলসমূহের সেট
+required_skills = {"python", "django", "sql", "git", "docker"}
+
+print("Candidate's Original Skills:", candidate_skills)
+print("Required Job Skills:", required_skills)
+
+# intersection_update ব্যবহার করে প্রার্থীর স্কিল ফিল্টার করা হলো
+candidate_skills.intersection_update(required_skills)
+
+print("\nAfter intersection_update (Matched/Valid Skills):")
+print("Updated Candidate Skills:", candidate_skills)
+
+এখানে প্রার্থীর অপ্রয়োজনীয় স্কিলগুলো (html, css) বাদ হয়ে গেছে 
+এবং শুধু জবের রিকোয়ারমেন্টের সাথে মিলে যাওয়া কমন স্কিলগুলো (python, docker, git) দিয়ে candidate_skills সেটটি আপডেট হয়ে গেছে!
+
+
+
+
 
 
 .difference_update() মেথড
 সাধারণ - বা .difference() অপারেটর শুধু ডিফারেন্স দেখায়, কিন্তু .intersection_update() এর মতো 
-.difference_update() সরাসরি মূল সেট থেকেই অন্য সেটের উপাদানগুলো মুছে ফেলে আপডেট করে দেয়।
+.difference_update() এটি মূলত একটি সেট থেকে অন্য সেটের কমন উপাদানগুলো মুছে ফেলার (Remove) জন্য ব্যবহার করা হয়।
 
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = {"kk", 'yy',  "banana", "mango", 'orange'} 
+
+kk = fruits_set.difference_update(fruits)
+
+print(fruits_set) 
+
+print(kk) 
+
+
+কোডটি কী করছে?
+fruits_set: {"apple", "banana", "mango"}
+
+fruits: {"kk", "yy", "banana", "mango", "orange"}
+
+অপারেশন: fruits_set.difference_update(fruits)
+
+আপনার প্রশ্ন অনুযায়ী "orange" কেন এল না বা কী হলো?
+orange কেন বাদ বা এল না?
+.difference_update() মেথডের কাজ হলো প্রথম সেট (fruits_set) থেকে ওই উপাদানগুলো মুছে ফেলা, যেগুলো দ্বিতীয় সেটে (fruits) কমন বা মিল রয়েছে।
+
+orange কেবল fruits সেটের মধ্যে ছিল, কিন্তু আপনার মূল fruits_set-এ orange নামটাই ছিল না!
+
+যেহেতু fruits_set-এ orange আগে থেকেই ছিল না, তাই সেখান থেকে নতুন করে কিছু বাদ দেওয়ার বা যোগ করার সুযোগ নেই।
+
+তাহলে আসলে কী ঘটল?
+
+fruits_set এবং fruits উভয়ের মধ্যে কমন উপাদান ছিল "banana" এবং "mango"।
+
+.difference_update(fruits) চালানোর ফলে fruits_set থেকে ওই কমন উপাদানগুলো (banana এবং mango) ডিলিট হয়ে গেছে।
+
+ফলে শুধু "apple" বাকি থাকে। তাই print(fruits_set) করলে আউটপুট আসবে: {'apple'}।
+
+print(kk) তে কী আসবে?
+আপনি kk = fruits_set.difference_update(fruits) লিখেছেন।
+
+আমরা আগেই জেনেছি, সমস্ত ইন-প্লেস আপডেট মেথড (যেমন: difference_update, intersection_update, update) নতুন কোনো সেট রিটার্ন করে না, এগুলো সরাসরি মূল সেটকে পরিবর্তন করে এবং রিটার্ন হিসেবে None দেয়।
+
+তাই print(kk) রান করলে আউটপুট দেখাবে: None। (আর এখানেই অনেকে ভুল করেন, তারা মনে করেন নতুন সেটটি kk-তে জমা হয়েছে)।
 
 
 
@@ -460,39 +829,324 @@ print(all_users)
 
 
 
+# দুটি সেট তৈরি করা হলো
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+
+print("Original set1:", set1)
+print("Set2:", set2)
+
+# difference_update() ব্যবহার করা হলো
+set1.difference_update(set2)
+
+print("\nAfter difference_update:")
+print("Updated set1:", set1)
+
+
+Original set1: {1, 2, 3, 4, 5}
+Set2: {4, 5, 6, 7, 8}
+
+After difference_update:
+Updated set1: {1, 2, 3}
+
+
+কোডটি যেভাবে কাজ করল:
+১. set1 এবং set2 উভয়ের মধ্যেই কমন বা মিল রয়েছে 4 এবং 5 এর মধ্যে।
+২. যখন set1.difference_update(set2) চালানো হলো, তখন পাইথন set1 থেকে ওই কমন উপাদানগুলো (4 এবং 5) মুছে দিল।
+৩. ফলে set1-এ শুধু বাকি উপাদানগুলো (1, 2, 3) রয়ে গেল এবং মূল সেটটি আপডেট হয়ে গেল।
+
+
+
+চ্যাট গ্রুপ থেকে ব্লক করা বা নিষিদ্ধ ইউজারদের বাদ দেওয়া
+ধরে নিন আপনার একটি কমিউনিটি চ্যাট গ্রুপের সমস্ত সদস্যের একটি সেট আছে। এর মধ্যে কিছু ইউজার নিয়ম 
+ভঙ্গ করায় তাদের একটি "ব্ল্যাকলিস্ট" বা নিষিদ্ধ ইউজারের সেটে রাখা হয়েছে। এখন আপনি মূল গ্রুপ থেকে ওই নিষিদ্ধ ইউজারদের পাকাপাকিভাবে বাদ দিতে চান।
+
+
+# গ্রুপে থাকা সমস্ত ইউজারের সেট
+all_users = {"rahim", "karim", "tanvir", "salma", "atik", "jabbar"}
+
+# নিয়ম ভঙ্গের কারণে ব্লক বা নিষিদ্ধ করা ইউজারদের সেট
+blocked_users = {"tanvir", "jabbar"}
+
+print("All Users:", all_users)
+print("Blocked Users:", blocked_users)
+
+# difference_update ব্যবহার করে মূল সেট থেকে নিষিদ্ধ ইউজারদের বাদ দেওয়া হলো
+all_users.difference_update(blocked_users)
+
+print("\nAfter difference_update (Allowed Users):")
+print("Active Users:", all_users)
+
+
+All Users: {'jabbar', 'karim', 'salma', 'atik', 'rahim', 'tanvir'}
+Blocked Users: {'jabbar', 'tanvir'}
+
+After difference_update (Allowed Users):
+Active Users: {'rahim', 'karim', 'salma', 'atik'}
+
+
+কোডটি যেভাবে কাজ করল:
+১. all_users এবং blocked_users উভয়ের মধ্যে কমন বা মিল থাকা ইউজাররা ("tanvir" এবং "jabbar") চিহ্নিত হলো।
+২. all_users.difference_update(blocked_users) চালানোর সাথে সাথেই মূল all_users সেট থেকে ওই নিষিদ্ধ ইউজারগুলো চিরতরে মুছে গেল।
+৩. ফলে মূল সেটটি আপডেট হয়ে শুধু বৈধ ইউজারদের নিয়ে থেকে গেল।
+
+
+
+রেসিপি থেকে অ্যালার্জিযুক্ত বা ক্ষতিকর উপাদান বাদ দেওয়া
+ধরে নিন আপনি একটি রান্নার রেসিপির জন্য প্রয়োজনীয় উপকরণের একটি সেট তৈরি করেছেন। 
+এখন কোনো নির্দিষ্ট ব্যক্তির খাবারের অ্যালার্জি (जैसे: peanuts বা milk) থাকার কারণে সেই উপাদানগুলো আপনার রেসিপি থেকে বাদ দিতে চান।
+
+
+# রেসিপির সমস্ত উপকরণের সেট
+recipe_ingredients = {"flour", "sugar", "peanuts", "milk", "butter", "chocolate"}
+
+# বাদ দিতে হবে বা অ্যালার্জিযুক্ত উপকরণের সেট
+allergens = {"peanuts", "milk"}
+
+print("Original Recipe Ingredients:", recipe_ingredients)
+print("Allergens to Avoid:", allergens)
+
+# difference_update ব্যবহার করে রেসিপি থেকে ক্ষতিকর উপাদানগুলো বাদ দেওয়া হলো
+recipe_ingredients.difference_update(allergens)
+
+print("\nAfter difference_update (Safe Ingredients):")
+print("Safe Ingredients:", recipe_ingredients)
+
+
+
+
+
+.difference()
+
+পাইথনের সেটে .difference() মেথডটি খুবই চমৎকার একটি ফাংশন। 
+এর কাজ হলো দুটি সেটের মধ্যে তুলনা করে প্রথম সেটটিতে আছে কিন্তু দ্বিতীয় সেটটিতে নেই—এমন উপাদানগুলো নিয়ে নতুন একটি সেট তৈরি করা।
+
+
+এটি কীভাবে কাজ করে?
+নতুন সেট রিটার্ন করে: .difference_update() এর মতো এটি মূল সেটটিকে সরাসরি পরিবর্তন করে না।
+বরং এটি মূল সেটগুলোকে অপরিবর্তিত রেখে ফলাফল হিসেবে সম্পূর্ণ নতুন একটি সেট রিটার্ন করে। তাই এর আউটপুট একটি ভেরিয়েবলে রেখে দিতে হয়।
+
+বিয়োগ করার মতো কাজ: সহজ কথায়, প্রথম সেট থেকে দ্বিতীয় সেটের কমন উপাদানগুলো বাদ দিয়ে বাকি যা থাকে,
+তা নিয়ে নতুন সেট বানিয়ে দেয় (Set1 - Set2-এর মতো কাজ করে)।
+
+
+# দুটি সেট তৈরি করা হলো
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+
+print("Original set1:", set1)
+print("Set2:", set2)
+
+# difference() ব্যবহার করে নতুন সেট তৈরি করা হলো এবং result_set এ রাখা হলো
+result_set = set1.difference(set2)
+
+print("\nAfter difference operation:")
+print("New Result Set:", result_set)
+print("Original set1 (Unchanged):", set1)
+
+
+Original set1: {1, 2, 3, 4, 5}
+Set2: {4, 5, 6, 7, 8}
+
+After difference operation:
+New Result Set: {1, 2, 3}
+Original set1 (Unchanged): {1, 2, 3, 4, 5}
+
+
+
+
 .symmetric_difference() এবং .symmetric_difference_update()
-এই মেথডটি দুটি সেটের মধ্যে যে উপাদানগুলো কমন নয় (উভয় সেটে আছে এমনগুলো বাদ দিয়ে বাকি সব ইউনিক উপাদান) সেগুলো খুঁজে বের করে।
+
+১. .symmetric_difference()
+এই মেথডটি দুটি সেটের মধ্যে থাকা কমন (Common) উপাদানগুলো বাদ দিয়ে বাকি অমিল (Uncommon)
+বা ইউনিক উপাদানগুলো নিয়ে নতুন একটি সেট রিটার্ন করে। এটি মূল সেটগুলোকে অপরিবর্তিত রাখে।
+
+set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+# symmetric_difference ব্যবহার করে নতুন সেট তৈরি করা হলো
+result_set = set1.symmetric_difference(set2)
+
+print("Original set1:", set1)
+print("Original set2:", set2)
+print("Symmetric Difference Result:", result_set)
+
+
+আউটপুট কেমন আসবে:
+
+কমন উপাদান (3, 4) বাদ যাবে।
+
+বাকি উপাদানগুলো নিয়ে নতুন সেট হবে: {1, 2, 5, 6}।
+
+মূল set1 এবং set2 আগের মতোই অক্ষত থাকবে।
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = {"kk", 'yy',  "banana", "mango", 'orange'} 
+
+kk = fruits_set.symmetric_difference(fruits)
+
+print(fruits_set) 
+
+print(kk) 
 
 
 
-set_a = {1, 2, 3}
-set_b = {3, 4, 5}
 
-# উভয় সেটে কমন (3) বাদ দিয়ে বাকিগুলো নিয়ে নতুন সেট বানাবে
-result = set_a.symmetric_difference(set_b)
-print(result)
-# আউটপুট: {1, 2, 4, 5}
+২. .symmetric_difference_update()
+এই মেথডটির কাজও একই (কমন উপাদান বাদ দিয়ে বাকিগুলো রাখা), 
+তবে পার্থক্য হলো এটি নতুন কোনো সেট তৈরি করে না—বরং মূল সেটটিকেই সরাসরি পরিবর্তন (In-place update) করে ফেলে।
 
-(আর যদি .symmetric_difference_update() ব্যবহার করা হয়, তবে এটি নতুন সেট না বানিয়ে সরাসরি মূল সেটকে আপডেট করে ফেলবে।)
+
+set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+print("Original set1:", set1)
+
+# set1-কে সরাসরি আপডেট করা হলো
+set1.symmetric_difference_update(set2)
+
+print("After symmetric_difference_update (Updated set1):", set1)
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = {"kk", 'yy',  "banana", "mango", 'orange'} 
+
+kk = fruits_set.symmetric_difference_update(fruits)
+
+print(fruits_set)    {'apple', 'kk', 'orange', 'yy'}
+
+print(kk) None
+
+
+
+
+
+বাস্তব উদাহরণ: দুটি গেমিং টিমের খেলোয়াড় সিলেকশন
+ধরে নিন একটি কলেজে দুটি আলাদা কোডিং ক্লাব বা গেমিং টিম আছে। কিছু শিক্ষার্থী দুটি টিমেই আছে (কমন), আবার কিছু শিক্ষার্থী শুধু একটি টিমে আছে। 
+এখন আপনি এমন একটি সেট চান যেখানে শুধু সেই শিক্ষার্থী থাকবে যারা যেকোনো একটি টিমে আছে, কিন্তু উভয় টিমে নেই (অর্থাৎ অমিল বা এক্সক্লুসিভ মেম্বাররা)।
+
+কোড উদাহরণ (.symmetric_difference() ব্যবহার করে):
+
+# টিম-এ এর খেলোয়াড়দের সেট
+team_a = {"rahim", "karim", "tanvir", "salma"}
+
+# টিম-বি এর খেলোয়াড়দের সেট
+team_b = {"tanvir", "salma", "atik", "jabbar"}
+
+print("Team A:", team_a)
+print("Team B:", team_b)
+
+# symmetric_difference ব্যবহার করে উভয়ের কমন মেম্বার বাদ দিয়ে শুধু ইউনিক মেম্বারদের নিয়ে নতুন সেট তৈরি
+exclusive_members = team_a.symmetric_difference(team_b)
+
+print("\nExclusive Members (In only one team, not both):", exclusive_members)
+print("Original Team A (Unchanged):", team_a)
+
+
+কোডটি যেভাবে কাজ করল:
+১. team_a এবং team_b উভয়ের মধ্যে কমন সদস্য ছিল "tanvir" এবং "salma"।
+২. .symmetric_difference() মেথড ওই কমন মেম্বারগুলোকে বাদ দিয়ে বাকিদের (rahim, karim, atik, jabbar) নিয়ে নতুন একটি সেট তৈরি করে দিয়েছে।
+৩. মূল team_a বা team_b অপরিবর্তিত রয়েছে। আপনি যদি চান যে নতুন সেট 
+না বানিয়ে সরাসরি team_a-কে আপডেট করে ফেলবেন, তবে team_a.symmetric_difference_update(team_b) ব্যবহার করতে পারেন।
+
+
+বাস্তব উদাহরণ: দুটি ডেটাবেজের সিঙ্ক বা ডিভাইস সিঙ্ক্রোনাইজেশন
+ধরে নিন একটি অফলাইন নোটস অ্যাপ এবং ক্লাউড সার্ভারের মধ্যে ডেটা সিঙ্ক করা হচ্ছে। যে ফাইলগুলো উভয় স্থানেই হুবহু আছে সেগুলোর প্রয়োজন নেই,
+কিন্তু যে ফাইলগুলো শুধু একটি জায়গায় আছে (অফলাইনে অথবা ক্লাউডে), সেগুলোকে চিহ্নিত করে লোকাল ডিভাইস সেটটিকে আপডেট করতে চান।
+
+
+
+# লোকাল ডিভাইসে থাকা ফাইলের সেট
+local_files = {"doc1.txt", "doc2.txt", "doc3.txt"}
+
+# ক্লাউড সার্ভারে থাকা ফাইলের সেট
+cloud_files = {"doc2.txt", "doc3.txt", "doc4.txt", "doc5.txt"}
+
+print("Original Local Files (Before update):", local_files)
+print("Cloud Files:", cloud_files)
+
+# symmetric_difference_update ব্যবহার করে লোকাল সেটটি সরাসরি আপডেট করা হলো
+local_files.symmetric_difference_update(cloud_files)
+
+print("\nAfter symmetric_difference_update (Updated Local Files):")
+print("Updated Local Files:", local_files)
+
+
+
+
 
 
 
 
 .issubset() এবং .issuperset()
-.issubset(): একটি সেট অন্য একটি সেটের ভেতরে পুরোপুরি আছে কিনা তা চেক করে (True বা False রিটার্ন করে)।
+পাইথনের সেটে .issubset() এবং .issuperset() মেথড দুটি মূলত একটি সেট অন্য একটি সেটের ভেতর সম্পূর্ণভাবে উপস্থিত আছে কি না,
+তা চেক করার জন্য ব্যবহার করা হয়। এগুলো বুলিয়ান ভ্যালু (True অথবা False) রিটার্ন করে।
 
-.issuperset(): একটি সেট অন্য সেটটির মূল বা সুপারসেট কিনা তা চেক করে।
+.issubset() (উপসেট চেক করা)
+এই মেথডটি চেক করে একটি সেটের সমস্ত উপাদান অন্য একটি সেটের মধ্যে উপস্থিত আছে কি না।
+প্রথম সেটটি যদি দ্বিতীয় সেটের সাবসেট (ছোট বা সমান সেট) হয়, তবে এটি True রিটার্ন করে, অন্যথায় False রিটার্ন করে।
 
 
-group_a = {"apple", "banana"}
-group_b = {"apple", "banana", "cherry", "mango"}
 
-# group_a এর সব উপাদান কি group_b এ আছে?
-print(group_a.issubset(group_b))  # আউটপুট: True
+# ছোট সেট বা সাবসেট
+my_skills = {"python", "git"}
 
-# group_b কি group_a কে পুরোপুরি ধারণ করে?
-print(group_b.issuperset(group_a))  # আউটপুট: True
+# বড় সেট
+all_skills = {"python", "git", "docker", "sql"}
 
+# check করা হচ্ছে my_skills-এর সব উপাদান all_skills-এ আছে কিনা
+is_sub = my_skills.issubset(all_skills)
+
+print("My Skills:", my_skills)
+print("All Skills:", all_skills)
+print("Is my_skills a subset of all_skills?:", is_sub)
+
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = {"kk", 'yy',  "banana", "mango", 'orange'} 
+
+kk = fruits_set.issubset(fruits)
+
+print(fruits_set)    fruits_set = {"apple", "banana", "mango"}
+
+print(kk) False 
+
+
+
+
+.issuperset() (সুপরসেট চেক করা)
+এটি ঠিক উল্টো কাজটি করে। এই মেথডটি চেক করে একটি সেট অন্য একটি সেটের সমস্ত উপাদানকে ধারণ করে আছে কি না। 
+অর্থাৎ প্রথম সেটটি বড় সেট হলে এবং তার ভেতরে ছোট সেটের সব উপাদান বিদ্যমান থাকলে এটি True রিটার্ন করে।
+
+
+# বড় সেট বা সুপরসেট
+company_requirements = {"python", "django", "sql", "git"}
+
+# প্রার্থীর স্কিল সেট
+candidate_skills = {"python", "sql"}
+
+# check করা হচ্ছে company_requirements-এর ভেতর প্রার্থীর স্কিলগুলো আছে কিনা
+is_super = company_requirements.issuperset(candidate_skills)
+
+print("Company Requirements:", company_requirements)
+print("Candidate Skills:", candidate_skills)
+print("Is company_requirements a superset of candidate_skills?:", is_super)
+
+
+fruits_set = {"apple", "banana", "mango"}
+
+fruits = { "banana", "mango"} 
+
+kk = fruits_set.issuperset(fruits)
+
+print(fruits_set)     fruits_set = {"apple", "banana", "mango"}
+
+print(kk) True
 
 
 
@@ -508,7 +1162,15 @@ print(set1.isdisjoint(set2))
 # আউটপুট: True (কারণ এই দুটি সেটের মধ্যে কোনো মিল বা কমন সংখ্যা নেই)
 
 
+fruits_set = {"apple", "banana", "mango"}
 
+fruits = { "banana", "mango"} 
+
+kk = fruits_set.isdisjoint(fruits)
+
+print(fruits_set)    
+
+print(kk) 
 
 
 
@@ -517,6 +1179,29 @@ print(set1.isdisjoint(set2))
 
 .union() মেথডটি ঠিক পাইথনের ইউনিয়ন অপারেটর (|) এর মতোই কাজ করে।
 দুটি বা ততোধিক সেটের সব ইউনিক উপাদানগুলোকে একসাথে মিলিয়ে একটি নতুন সেট তৈরি করাই এর কাজ (যেখানে কোনো ডুপ্লিকেট ভ্যালু থাকে না)।
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name.union(other_fruits)
+
+print(fruits_name) fruits_name = {"apple", "banana", "mango"}
+print(result) {'yy', 'kk', 'banana', 'apple', 'orange', 'mango'}
+
+
+
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name | other_fruits
+
+print(fruits_name) 
+print(result) 
+
+
+
+
 
 python_devs = {"Rahim", "Karim", "Jabbar", "Salam"}
 
@@ -610,6 +1295,27 @@ print(f"সকল টিম মেম্বারের তালিকা: {all
 .intersection() এবং & অপারেটর উভয়ের কাজ হলো দুটি বা ততোধিক সেটের মধ্যে কোন কোন উপাদান কমন বা মিল আছে তা খুঁজে বের করা। 
 অর্থাৎ, উভয় সেটের ভেতরে যে উপাদানগুলো উপস্থিত রয়েছে, শুধু সেগুলো নিয়েই এটি একটি নতুন সেট তৈরি করে।
 
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name.intersection(other_fruits)
+
+print(fruits_name) {"apple", "banana", "mango"}
+print(result) {'mango', 'banana'}
+
+
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name & other_fruits
+
+print(fruits_name) 
+print(result) 
+
+
+
 common_devs = python_devs.intersection(java_devs)
 # অথবা এমপার্সান্ড দিয়ে: common_devs = python_devs & java_devs
 
@@ -700,6 +1406,25 @@ print(f"কমন স্কিলসমূহ (& অপারেটর দিয়
 .difference() মেথড এবং মাইনাস (-) অপারেটর উভয়ের কাজ একই। এদের মূল কাজ হলো—প্রথম সেটে আছে কিন্তু দ্বিতীয় সেটে নেই,
 এমন উপাদানগুলো খুঁজে বের করে একটি নতুন সেট তৈরি করা (অর্থাৎ প্রথম সেট থেকে দ্বিতীয় সেটের উপাদানগুলো বাদ বা ডিফারেন্স করে দেওয়া)।
 
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name.difference(other_fruits)
+
+print(fruits_name) {'mango', 'banana', 'apple'}
+print(result) {'apple'}
+
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name - other_fruits
+
+print(fruits_name) 
+print(result) 
+
+
 .difference() মেথড দিয়ে উদাহরণ
 ধরুন,  মোট প্রজেক্টের লিস্ট থেকে যেসব প্রজেক্ট ইতিমধ্যে শেষ হয়ে গেছে, সেগুলো বাদ দিয়ে বাকি কাজগুলোর তালিকা বের করতে
 
@@ -787,6 +1512,24 @@ Sunflower: এটি কি দ্বিতীয় ঝুড়িতে আছে? 
 সিমেট্রিক ডিফারেন্স (Symmetric Difference) সেটের একটি চমৎকার অপারেশন। সহজ বাংলায় এর অর্থ হলো—উভয় সেটের মধ্যে যেগুলো কমন (Common) বা মিল রয়েছে, 
 সেগুলোকে বাদ দিয়ে বাকি সব ব্যতিক্রমী উপাদানগুলোকে একত্র করা।
 
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name.symmetric_difference(other_fruits)
+
+print(fruits_name) {"apple", "banana", "mango"}
+print(result) {'apple', 'yy', 'orange', 'kk'}
+
+
+fruits_name = {"apple", "banana", "mango"}
+other_fruits = {"kk", "orange", 'yy', "banana", "mango"}
+
+result = fruits_name ^ other_fruits
+
+print(fruits_name) 
+print(result) 
+
+
 unique_devs = python_devs.symmetric_difference(java_devs)
 # অথবা ক্যারেট সাইন দিয়ে: unique_devs = python_devs ^ java_devs
 
@@ -850,8 +1593,24 @@ clean_list = list(set(dirty_list))
 print(clean_list)  # আউটপুট: [1, 2, 3, 4, 5, 6] (অর্ডার বদলে যেতে পারে, কিন্তু ডুপ্লিকেট ফাস!)
 
 
+fruits_name = ["apple", "banana", "mango", "kk", "orange", 'yy', "banana", "mango"]
+
+result = set(fruits_name)
+
+print(fruits_name) 
+print(result) type set()
 
 
+
+fruits_name = ["apple", "banana", "mango", "kk", "orange", 'yy', "banana", "mango"]
+
+result = list(set(fruits_name))
+
+print(fruits_name) 
+print(type(result)) type list
+
+
+ 
 
 in দিয়ে Set এ কোনো মান আছে কিনা চেক করা
 
@@ -992,6 +1751,21 @@ print(squares)  # {16, 1, 4, 9, 25}  -> duplicate বাদ, order এলোম�
 
 
 
+fruits_name = ["apple", "banana", "mango", "kk", "orange", 'yy', "banana", "mango"]
+
+new = {name for name in fruits_name}
+
+print(fruits_name) 
+
+print(new)
+
+print(type(new))
+
+
+
+
+
+
 
 Frozenset — Advanced (Immutable Set)
 
@@ -1002,7 +1776,78 @@ frozen = frozenset([1, 2, 3])
 
 frozen.add(4)  AttributeError: 'frozenset' object has no attribute 'add'
 
-frozenset পরিবর্তন করা যায় না, তাই এটা Dictionary এর key হিসেবে বা আরেকটা Set এর ভিতরে item হিসেবে ব্যবহার করা যায় (কারণ Set এর item গুলোও অবশ্যই immutable হতে হবে):
+frozenset পরিবর্তন করা যায় না, তাই এটা Dictionary এর key হিসেবে বা আরেকটা Set 
+এর ভিতরে item হিসেবে ব্যবহার করা যায় (কারণ Set এর item গুলোও অবশ্যই immutable হতে হবে):
+
+
+frozenset কী এবং কেন ব্যবহার করা হয়?
+সাধারণ set পরিবর্তন করা গেলেও frozenset তৈরি করার পর এর ভেতরে আর নতুন কোনো উপাদান যোগ বা বাদ দেওয়া যায় না। অর্থাৎ এটি সম্পূর্ণ Immutable বা পরিবর্তনহীন
+
+
+frozenset-এর মূল বৈশিষ্ট্য:
+১. এটি পরিবর্তন করা যায় না (No add/remove allowed)।
+২. যেহেতু এটি immutable, তাই পাইথনের সাধারণ সেটের মতো এটিকে অন্য কোনো সেটের ভেতর উপাদান হিসেবে বা ডিকশনারির key হিসেবে ব্যবহার করা যায়।
+
+
+
+# একটি সাধারণ লিস্ট বা টুপল থেকে frozenset তৈরি করা হলো
+normal_list = ["apple", "banana", "mango"]
+frozen_fruits = frozenset(normal_list)
+
+print("Frozen Set:", frozen_fruits)
+print("Type:", type(frozen_fruits))
+
+# চেষ্টা করা যাক frozenset-এ নতুন কিছু যোগ করার (এটি Error দিবে!)
+try:
+    frozen_fruits.add("orange")
+except AttributeError as e:
+    print("\nError Message:", e)
+
+
+
+সাধারণ সেটের মতো ডেটা রাখা (কিন্তু পরিবর্তন করা যায় না)
+
+# একটি frozenset তৈরি করা হলো
+vowels = frozenset({"a", "e", "i", "o", "u"})
+
+print("Vowels:", vowels)
+print("Type:", type(vowels))
+
+
+Vowels: frozenset({'e', 'u', 'i', 'o', 'a'})
+Type: <class 'frozenset'>
+
+Vowels: frozenset({'e', 'u', 'i', 'o', 'a'})
+Type: <class 'frozenset'>
+
+
+নতুন আইটেম যোগ করতে গেলে যা ঘটে (Error দেয়)
+যেহেতু এটি পরিবর্তনহীন, তাই চাইলেও নতুন কিছু add() বা remove() করা যায় না:
+
+
+numbers = frozenset([1, 2, 3])
+
+# চেষ্টা করা যাক নতুন সংখ্যা যোগ করার
+try:
+    numbers.add(4)
+except AttributeError as e:
+    print("Error:", e)
+
+
+
+সেট অপারেশনগুলো করা যায় (যেমন: intersection)
+যোগ বা বাদ দেওয়া না গেলেও দুটি frozenset-এর মধ্যে কমন উপাদান খোঁজা বা অন্যান্য সেট অপারেশন ঠিকই করা যায়:
+
+
+set1 = frozenset([1, 2, 3, 4])
+set2 = frozenset([3, 4, 5, 6])
+
+# কমন উপাদান বের করা
+common = set1.intersection(set2)
+
+print("Common items:", common)
+
+Common items: frozenset({3, 4})
 
 
 
@@ -1061,5 +1906,4 @@ user_id = 205
 if user_id in blocked_users:   # List এর চেয়ে অনেক দ্রুত চেক হয়
     print("এই ইউজার ব্লকড")
 
-
-  
+    
