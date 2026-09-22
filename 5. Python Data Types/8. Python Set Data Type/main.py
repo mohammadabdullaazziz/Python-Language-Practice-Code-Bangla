@@ -9,6 +9,24 @@ Set হলো পাইথনের একটা ডেটা টাইপ য�
 ২. সেটের কোনো নির্দিষ্ট ইনডেক্স বা সিরিয়াল নেই (Unordered)। তাই আপনি fruits[0] এভাবে ইনডেক্স দিয়ে কোনো আইটেম এক্সেস করতে পারবেন না।
 কোনো নির্দিষ্ট ক্রম (order) থাকে না
 
+Python-এ set (সেট) প্রধানত ২ প্রকার।
+
+১. Mutable Set (পরিবর্তনযোগ্য সেট)এটি হলো সাধারণ set। এটি তৈরি করার পর এর উপাদানগুলো পরিবর্তন (যোগ বা বিয়োগ) করা যায়।
+সিনট্যাক্স: my_set = {1, 2, 3} 
+বৈশিষ্ট্য: এটি পরিবর্তনশীল (mutable)। 
+তাই এতে নতুন উপাদান যোগ করতে add() বা বাদ দিতে remove() ব্যবহার করা যায়।
+
+
+২. Immutable Set / Frozen Set (অপরিবর্তনযোগ্য সেট)পাইথনে একে frozenset বলা হয়। এটি তৈরি করার পর এর উপাদানগুলো আর পরিবর্তন করা যায় না।
+
+সিনট্যাক্স: my_frozen_set = frozenset([1, 2, 3])
+বৈশিষ্ট্য: এটি অপরিবর্তনশীল (immutable)। 
+অর্থাৎ, একবার তৈরি করলে এতে নতুন কোনো উপাদান যোগ বা বিয়োগ করা সম্ভব নয়। 
+এটি সাধারণত ডিকশনারির (dictionary) কি (key) হিসেবে ব্যবহারের জন্য উপযোগী।
+
+
+
+
 Set তৈরি করা
 Curly Bracket { } দিয়ে
 
@@ -348,7 +366,8 @@ discard() — নির্দিষ্ট মান সরানো (না থ�
 discard() মেথড
 
 কাজ কী: এটিও remove() এর মতো নির্দিষ্ট কোনো উপাদানকে সেট থেকে মুছে ফেলতে ব্যবহার করা হয়।
-পার্থক্য: যে উপাদানটি মুছে ফেলতে চাওয়া হসছে সেটি যদি সেটের ভেতরে না-ও থাকে, তবুও পাইথন কোনো এরর বা ঝামেলা করবে না। কোড একদম শান্তিতে পরের লাইনে চলে যাবে।
+পার্থক্য: যে উপাদানটি মুছে ফেলতে চাওয়া হসছে সেটি যদি সেটের ভেতরে না-ও থাকে, 
+তবুও পাইথন কোনো এরর বা ঝামেলা করবে না। কোড একদম শান্তিতে পরের লাইনে চলে যাবে।
 
 fruits = {"apple", "banana", "mango"}
 fruits.discard("orange")  # কোনো error আসবে না, চুপচাপ কিছুই হবে না
@@ -768,6 +787,68 @@ print("Updated Candidate Skills:", candidate_skills)
 
 
 
+.difference()
+
+পাইথনের সেটে .difference() মেথডটি খুবই চমৎকার একটি ফাংশন। 
+এর কাজ হলো দুটি সেটের মধ্যে তুলনা করে প্রথম সেটটিতে আছে কিন্তু দ্বিতীয় সেটটিতে নেই—এমন উপাদানগুলো নিয়ে নতুন একটি সেট তৈরি করা।
+
+
+এটি কীভাবে কাজ করে?
+নতুন সেট রিটার্ন করে: .difference_update() এর মতো এটি মূল সেটটিকে সরাসরি পরিবর্তন করে না।
+বরং এটি মূল সেটগুলোকে অপরিবর্তিত রেখে ফলাফল হিসেবে সম্পূর্ণ নতুন একটি সেট রিটার্ন করে। তাই এর আউটপুট একটি ভেরিয়েবলে রেখে দিতে হয়।
+
+বিয়োগ করার মতো কাজ: সহজ কথায়, প্রথম সেট থেকে দ্বিতীয় সেটের কমন উপাদানগুলো বাদ দিয়ে বাকি যা থাকে,
+তা নিয়ে নতুন সেট বানিয়ে দেয় (Set1 - Set2-এর মতো কাজ করে)।
+
+
+# দুটি সেট তৈরি করা হলো
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+
+print("Original set1:", set1)
+print("Set2:", set2)
+
+# difference() ব্যবহার করে নতুন সেট তৈরি করা হলো এবং result_set এ রাখা হলো
+result_set = set1.difference(set2)
+
+print("\nAfter difference operation:")
+print("New Result Set:", result_set)
+print("Original set1 (Unchanged):", set1)
+
+
+Original set1: {1, 2, 3, 4, 5}
+Set2: {4, 5, 6, 7, 8}
+
+After difference operation:
+New Result Set: {1, 2, 3}
+Original set1 (Unchanged): {1, 2, 3, 4, 5}
+
+
+
+
+
+# যারা ক্রিকেট খেলে
+cricket_players = {"rahim", "karim", "tanvir", "sakib"}
+
+# যারা ফুটবল খেলে
+football_players = {"karim", "sakib", "salma"}
+
+# difference() ব্যবহার করে শুধু ক্রিকেট খেলা খেলোয়াড়দের বের করা হলো
+only_cricket = cricket_players.difference(football_players)
+
+print("Only Cricket Players:", only_cricket)
+print("Original Cricket Set (Safe):", cricket_players)
+
+
+Only Cricket Players: {'rahim', 'tanvir'}
+Original Cricket Set (Safe): {'sakib', 'karim', 'tanvir', 'rahim'}
+
+
+
+
+
+
+
 
 .difference_update() মেথড
 সাধারণ - বা .difference() অপারেটর শুধু ডিফারেন্স দেখায়, কিন্তু .intersection_update() এর মতো 
@@ -915,42 +996,21 @@ print("Safe Ingredients:", recipe_ingredients)
 
 
 
+# ১. ইউজারের বর্তমানে সেশনে থাকা অ্যাক্টিভ পারমিশনগুলোর সেট (সার্ভার ক্যাশ বা মেমোরিতে আছে)
+active_user_permissions = {"read", "write", "delete", "execute", "upload"}
 
-.difference()
+# ২. অ্যাডমিন যে পারমিশনগুলো বাতিল বা রিমুভ করেছেন
+revoked_permissions = {"delete", "execute"}
 
-পাইথনের সেটে .difference() মেথডটি খুবই চমৎকার একটি ফাংশন। 
-এর কাজ হলো দুটি সেটের মধ্যে তুলনা করে প্রথম সেটটিতে আছে কিন্তু দ্বিতীয় সেটটিতে নেই—এমন উপাদানগুলো নিয়ে নতুন একটি সেট তৈরি করা।
+print("Before Revoke (Active Permissions):", active_user_permissions)
 
+# ৩. difference_update ব্যবহার করে মূল অ্যাক্টিভ সেটটি সরাসরি আপডেট করা হলো
+active_user_permissions.difference_update(revoked_permissions)
 
-এটি কীভাবে কাজ করে?
-নতুন সেট রিটার্ন করে: .difference_update() এর মতো এটি মূল সেটটিকে সরাসরি পরিবর্তন করে না।
-বরং এটি মূল সেটগুলোকে অপরিবর্তিত রেখে ফলাফল হিসেবে সম্পূর্ণ নতুন একটি সেট রিটার্ন করে। তাই এর আউটপুট একটি ভেরিয়েবলে রেখে দিতে হয়।
-
-বিয়োগ করার মতো কাজ: সহজ কথায়, প্রথম সেট থেকে দ্বিতীয় সেটের কমন উপাদানগুলো বাদ দিয়ে বাকি যা থাকে,
-তা নিয়ে নতুন সেট বানিয়ে দেয় (Set1 - Set2-এর মতো কাজ করে)।
-
-
-# দুটি সেট তৈরি করা হলো
-set1 = {1, 2, 3, 4, 5}
-set2 = {4, 5, 6, 7, 8}
-
-print("Original set1:", set1)
-print("Set2:", set2)
-
-# difference() ব্যবহার করে নতুন সেট তৈরি করা হলো এবং result_set এ রাখা হলো
-result_set = set1.difference(set2)
-
-print("\nAfter difference operation:")
-print("New Result Set:", result_set)
-print("Original set1 (Unchanged):", set1)
+print("After Revoke (Updated Active Permissions):", active_user_permissions)
 
 
-Original set1: {1, 2, 3, 4, 5}
-Set2: {4, 5, 6, 7, 8}
 
-After difference operation:
-New Result Set: {1, 2, 3}
-Original set1 (Unchanged): {1, 2, 3, 4, 5}
 
 
 
@@ -1076,7 +1136,10 @@ print("Updated Local Files:", local_files)
 
 
 
+difference মানে "পার্থক্য" বা "বাদ দেওয়া"। প্রথম সেট থেকে দ্বিতীয় সেটের কমন জিনিস বাদ দিতে চাইলে এটি ব্যবহার করতে হবে।
 
+যার নামের শেষে _update আছে (যেমন difference_update, update), সেটাই মূল
+সেটকে সরাসরি বদলে দেয় (In-place)। আর যেটি সাধারণ, সেটি নতুন আউটপুট দেয়।
 
 
 
