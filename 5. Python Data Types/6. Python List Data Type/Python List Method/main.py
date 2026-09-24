@@ -153,10 +153,92 @@ kk-এর ভেতরে "photo1.jpg" ছাড়া বাকি সব ফা�
 পাইথনের অনেক বিল্ট-ইন মেথড (যেমন append(), remove(), sort()) এভাবেই সরাসরি মূল ডেটাকে পরিবর্তন করে এবং None রিটার্ন করে।
 
 
+all_files = ["photo1.jpg", "document.pdf", "document.png", "photos.jpg", "notes.png", "banner.jpg"]
+
+new = []
+
+for file in all_files:
+  if not file.endswith(".jpg"):
+    new.append(file)
+    
+print(new) 
+
+১. not কেন বসানো হয়েছে?
+file.endswith(".jpg"): এই ফাংশনটি চেক করে ফাইলের নাম .jpg দিয়ে শেষ হয়েছে কি না। যদি শেষ হয়, তবে এটি উত্তর দেয় True (হ্যাঁ)।
+
+সামনে not বসানোর কারণ: আমরা মূলত .jpg ফাইলগুলোকে বাদ দিতে চাচ্ছি এবং বাকি ফাইলগুলোকে রাখতে চাচ্ছি।
+
+not বসালে True উল্টে গিয়ে False হয়ে যায়। অর্থাৎ, কন্ডিশনের অর্থ দাঁড়ায়: "যদি ফাইলটি .jpg দিয়ে শেষ না হয়", তবেই ভেতরের কোড কাজ করবে।
+
+২. কোডের ড্রাই রান (Dry Run / স্টেপ-বাই-স্টেপ এক্সিকিউশন)
+ধরে নিন শুরুতে new = [] খালি আছে। লুপটি এক একটি ফাইল নিয়ে যেভাবে কাজ করছে:
+
+প্রথম ফাইল: "photo1.jpg"
+
+file.endswith(".jpg") এর মান হলো True।
+
+সামনে not থাকার কারণে এটি হয়ে যায় False (not True)।
+
+শর্ত মিথ্যা হওয়ায় new.append() রান করবে না।
+
+new লিস্টটি অপরিবর্তিত থাকে: []
+
+দ্বিতীয় ফাইল: "document.pdf"
+
+file.endswith(".jpg") এর মান হলো False (কারণ এটি .pdf দিয়ে শেষ)।
+
+সামনে not থাকার কারণে এটি উল্টে গিয়ে True হয়ে যায় (not False)।
+
+শর্ত সত্যি হওয়ায় কোডটি কাজ করে এবং new-এ যুক্ত হয়।
+
+বর্তমান new লিস্ট: ['document.pdf']
+
+তৃতীয় ফাইল: "document.png"
+
+এটিও .png হওয়ায় endswith দেয় False, আর not সেটিকে বানিয়ে দেয় True।
+
+শর্ত সত্যি, তাই এটিও যোগ হয়।
+
+বর্তমান new লিস্ট: ['document.pdf', 'document.png']
+
+চতুর্থ ফাইল: "photos.jpg"
+
+এটি .jpg দিয়ে শেষ, তাই endswith দেয় True, আর not সেটিকে বানিয়ে দেয় False।
+
+শর্ত মিথ্যা, তাই এটি যোগ হবে না।
+
+new লিস্ট অপরিবর্তিত থাকে।
+
+পঞ্চম ফাইল: "notes.png"
+
+এটি .png হওয়ায় not এর কারণে শর্ত True হয় এবং লিস্টে যোগ হয়।
+
+বর্তমান new লিস্ট: ['document.pdf', 'document.png', 'notes.png']
+
+ষষ্ঠ ফাইল: "banner.jpg"
+
+এটি .jpg হওয়ায় শর্ত False হয়ে যায় এবং যোগ হয় না।
+
+
+['document.pdf', 'document.png', 'notes.png']
+
+
+
+all_files = ["photo1.jpg", "document.pdf", "document.png", "photos.jpg", "notes.png", "banner.jpg"]
+
+new = [file for file in all_files if file != ("photo1.jpg")]
+  
+print(new)
+
+
+
+
 
 
 pop 
-পাইথনে pop() হলো লিস্টের একটি বিল্ট-ইন মেথড (Method), যার কাজ হলো লিস্ট থেকে কোনো উপাদান বা আইটেম ইনডেক্স ধরে মুছে ফেলা এবং সেই মুছে ফেলা উপাদানটিকে ফিরিয়ে দেওয়া (return করা)।
+
+পাইথনে pop() হলো লিস্টের একটি বিল্ট-ইন মেথড (Method), যার কাজ হলো লিস্ট থেকে কোনো 
+উপাদান বা আইটেম ইনডেক্স ধরে মুছে ফেলা এবং সেই মুছে ফেলা উপাদানটিকে ফিরিয়ে দেওয়া (return করা)।
 colors = ["Red", "Green", "Blue", "Yellow"]
 removed_item = colors.pop(0)
 
@@ -971,6 +1053,18 @@ print(result)
 
 
 
+fruits = ["apple", "banana", "mango"]
+
+# for index, fruit in enumerate(fruits):
+#   print(f'index {index} : {fruit}')
+
+# new = [print(f'index {index} : {fruit}') for index, fruit in enumerate(fruits)]
+
+new = [(index, fruit) for index, fruit in enumerate(fruits)]
+
+for i, item in new:
+  print(i, item)
+
 
 
 colors = ["Lal", "Nil", "Sobuj"]
@@ -1273,6 +1367,49 @@ for count, item in new:
 
 
 
+names = ['Abdullah', 'Aziz', 'Arman']
+amounts = [100, 200, 300]
+
+new = [print(name, amount) for name, amount in zip(names, amounts)]
+
+# for name, amount in zip(names, amounts):
+#   print(name, amount)
+
+
+
+
+names = ['Abdullah', 'Aziz', 'Arman']
+amounts = [100, 200, 300]
+
+new = [(name, amount) for name, amount in zip(names, amounts)]
+
+print("\n".join(new))
+
+এখানে একটি TypeError আসবে। কারণটি:
+
+কেন হলো না?
+"\n".join() ফাংশনটি শুধুমাত্র স্ট্রিং (String) ডেটাকে একসাথে জোড়া লাগাতে পারে।
+
+কিন্তু আপনার new লিস্টের ভেতরের উপাদানগুলো হলো টুপল (Tuple) (যেমন: ('Abdullah', 100)), যেখানে একটি স্ট্রিং এবং একটি সংখ্যা (int) রয়েছে। পাইথন স্ট্রিংয়ের সাথে সংখ্যা বা টুপল একসাথে join করতে পারে না, তাই এরর দেয়।
+
+সঠিক সমাধান:
+যদি টুপলগুলোকে আলাদা লাইনে প্রিন্ট করতে চান, তবে join() ব্যবহার না করে সরাসরি লুপ চালিয়ে প্রিন্ট করতে:
+
+names = ['Abdullah', 'Aziz', 'Arman']
+amounts = [100, 200, 300]
+
+new = [(name, amount) for name, amount in zip(names, amounts)]
+
+# সঠিক উপায় ১: লুপ চালিয়ে প্রিন্ট করা
+for item in new:
+    print(item)
+
+Other--
+
+names = ['Abdullah', 'Aziz', 'Arman']
+amounts = [100, 200, 300]
+new = [f'{name} {amount}' for name, amount in zip(names, amounts)]
+print("\n".join(new))
 
 
 
@@ -1332,6 +1469,12 @@ Abdullah pacchhe Apple
 Ebny pacchhe Banana
 Aziz pacchhe Mango
 
+এখানে কোনো [i] লেখার ঝামেলা নেই।
+
+পাইথন নিজে থেকেই names থেকে একটি নাম এবং fruits থেকে একটি ফল নিয়ে জোড়া বানিয়ে ফেলছে।
+
+কোড দেখে একদম পরিষ্কার বোঝা যাচ্ছে কে কোন ফলটি পাচ্ছে।
+
 
 names = ['Abdullah', "Ebny", "Aziz"]
 amounts = [200, 300, 400]
@@ -1342,11 +1485,8 @@ for name, amount in zip(names, amounts):
 
 
 
-এখানে কোনো [i] লেখার ঝামেলা নেই।
 
-পাইথন নিজে থেকেই names থেকে একটি নাম এবং fruits থেকে একটি ফল নিয়ে জোড়া বানিয়ে ফেলছে।
 
-কোড দেখে একদম পরিষ্কার বোঝা যাচ্ছে কে কোন ফলটি পাচ্ছে।
 
 enumerate() এবং zip() কি একসাথে ব্যবহার করা যায়?
 অবশ্যই! পাইথনে এই দুটো একসাথে খুব জনপ্রিয়ভাবে ব্যবহার করা হয়। 
@@ -1431,11 +1571,39 @@ for index, (name, amount) in enumerate(zip(names, amounts)):
 for item in new:
     print(item)
 
+append() ফাংশনটি সবসময় মাত্র একটি আর্গুমেন্ট (argument) গ্রহণ করে। আপনি যদি ভুল করে এভাবে লিখতে যান:
+new.append(index, name, fruit)  # এটি ভুল
 
 যখনই কোনো লিস্টের ভেতরে ডেটাগুলো স্ট্রিং আকারে যুক্ত করা হয়েছে, তখন লুপ চালানোর সময় সবসময় একটি ভ্যারিয়েবল ব্যবহার করবেন।
 আর যদি একাধিক ভ্যারিয়েবল (item, real) ব্যবহার করতেই হয়, তবে new লিস্টে স্ট্রিং না রেখে টপল (Tuple) রাখতে হবে!
 
 
+
+names = ['Abdullah', "Ebny", "Aziz"]
+fruits = ['apple', 'banana', 'mango']
+
+# new = [print(index, name, fruit) for index, (name, fruit) in enumerate(zip(names, fruits), start= 1)]
+
+for index, (name, fruit) in enumerate(zip(names, fruits), start= 1):
+  print(index, name, fruit)
+
+
+
+names = ['Abdullah', "Ebny", "Aziz"]
+fruits = ['apple', 'banana', 'mango']
+
+new = [(index, name, fruit) for index, (name, fruit) in enumerate(zip(names, fruits), start= 1)]
+
+# তিনটি ভেরিয়েবল দিয়ে আনপ্যাক করতে হবে: num, name, fruit
+for num, name, fruit in new:
+    print(f"Serial {num}: {name} likes {fruit}")
+
+
+Serial 1: Abdullah likes apple
+(1, 'Abdullah', 'apple') ফরম্যাটে দেখতে চাইলে সরাসরি পুরো `item` প্রিন্ট:
+```python
+for num, name, fruit in new:
+    print(num, name, fruit)
 
 
 
@@ -1551,6 +1719,43 @@ zip() পদ্ধতি (সবচেয়ে আধুনিক ও সহজ
 Rahim kheleche Cricket evong score koreche 85
 Karim kheleche Football evong score koreche 90
 Sakib kheleche Chess evong score koreche 78
+
+
+
+players = ['abdullah', 'aziz', 'arman']
+games = ["Cricket", "Football", "Chess"]
+scores = [85, 90, 78]
+
+# new = [print(players[i], 'playing', games[i], "his score", scores[i]) for i, player in enumerate(players)]
+
+
+players = ['abdullah', 'aziz', 'arman']
+games = ["Cricket", "Football", "Chess"]
+scores = [85, 90, 78]
+
+new = [(players[i], 'playing', games[i], "his score", scores[i]) for i, player in enumerate(players)]
+
+# ৫টি ভেরিয়েবল দিয়ে রিসিভ করা হলো
+for name, status, game, text, score in new:
+    print(name, status, game, text, score)
+
+
+লুপের ভেতর একটিমাত্র ভেরিয়েবল ব্যবহার করা
+যদি আলাদা আলাদা ভেরিয়েবলে ভাগ না করে সরাসরি টুপলটি প্রিন্ট করতে
+
+
+players = ['abdullah', 'aziz', 'arman']
+games = ["Cricket", "Football", "Chess"]
+scores = [85, 90, 78]
+
+# zip দিয়ে খুব সহজেই একসাথে লুপ চালানো যায়
+new = [(p, 'playing', g, "his score", s) for p, g, s in zip(players, games, scores)]
+
+for item in new:
+    print(item)
+
+
+
 
 
 পরীক্ষার রেজাল্ট বা লিডারবোর্ড তৈরি করা (Leaderboard / Ranking)
@@ -2197,7 +2402,8 @@ for student in students:
 
 String আর List এর মধ্যে রূপান্তর
 
-পাইথনে String (টেক্সট) এবং List (তালিকা) এর মধ্যে পারস্পরিক রূপান্তর (Conversion) ব্যাকএন্ড ডেভেলপমেন্টের একটি অত্যন্ত গুরুত্বপূর্ণ এবং নিয়মিত কাজ। ডাটাবেজে ডেটা সেভ করার আগে, 
+পাইথনে String (টেক্সট) এবং List (তালিকা) এর মধ্যে পারস্পরিক রূপান্তর (Conversion) 
+ব্যাকএন্ড ডেভেলপমেন্টের একটি অত্যন্ত গুরুত্বপূর্ণ এবং নিয়মিত কাজ। ডাটাবেজে ডেটা সেভ করার আগে, 
 ইউজার ইনপুট প্রসেস করার সময় বা কোনো এপিআই (API) থেকে ডেটা নিয়ে ম্যানিপুলেট করার সময় এগুলো বারবার লাগে।
 
 String থেকে List-এ রূপান্তর (String to List)
