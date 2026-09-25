@@ -2350,10 +2350,108 @@ statuses = ("Active", "Pending", "Active")
 
 for index, (name, status) in enumerate(zip(names, statuses)):
   if status == "Active":
-    print(f"ইনডেক্স [{index}]: {name} বর্তমানে সিস্টেমের সাথে যুক্ত আছে।")
+    print(f"Index [{index}]: {name} is currently active in the system.")
 
 ইনডেক্স [0]: Abdullah বর্তমানে সিস্টেমের সাথে যুক্ত আছে।
 ইনডেক্স [2]: Arman বর্তমানে সিস্টেমের সাথে যুক্ত আছে।
+
+
+
+পণ্যের দাম চেক করা (E-commerce Scenario)
+এখানে আমরা পণ্যের নাম এবং দাম একসাথে মিলিয়ে চেক করছি কোনটি দামি আর কোনটি বাজেট-ফ্রেন্ডলি:
+
+products = ("Laptop", "Mouse", "Keyboard")
+prices = (1200, 25, 45)
+
+for index, (product, price) in enumerate(zip(products, prices)):
+    if price > 50:
+        print(f"Index [{index}]: {product} is an expensive item (${price}).")
+    else:
+        print(f"Index [{index}]: {product} is budget-friendly (${price}).")
+
+Index [0]: Laptop is an expensive item ($1200).
+Index [1]: Mouse is budget-friendly ($25).
+Index [2]: Keyboard is budget-friendly ($45).
+
+
+
+শিক্ষার্থীদের পাস-ফেল চেক করা (Student Result Scenario)
+এখানে শিক্ষার্থীদের নাম এবং প্রাপ্ত নম্বর একসাথে প্রসেস করে কে পাস করেছে আর কে ফেল করেছে তা বের করা হচ্ছে:
+
+
+students = ("Rahim", "Karim", "Sadia")
+scores = (75, 45, 90)
+
+for index, (student, score) in enumerate(zip(students, scores)):
+    if score >= 50:
+        print(f"Roll [{index}]: {student} has passed with {score} marks.")
+    else:
+        print(f"Roll [{index}]: {student} needs to improve (Score: {score}).")
+
+Roll [0]: Rahim has passed with 75 marks.
+Roll [1]: Karim needs to improve (Score: 45).
+Roll [2]: Sadia has passed with 90 marks.
+
+
+টাস্ক ম্যানেজমেন্ট (Todo App Scenario)
+এখানে কাজের নাম এবং সেগুলোর কাজের স্ট্যাটাস (True/False) চেক করা হচ্ছে:
+
+tasks = ("Design API", "Fix Bug", "Write Documentation")
+is_completed = (True, False, True)
+
+for index, (task, status) in enumerate(zip(tasks, is_completed)):
+    if status:
+        print(f"Task [{index}]: '{task}' is completed successfully.")
+    else:
+        print(f"Task [{index}]: '{task}' is still pending!")
+
+Task [0]: 'Design API' is completed successfully.
+Task [1]: 'Fix Bug' is still pending!
+Task [2]: 'Write Documentation' is completed successfully.
+
+
+
+স্টক ইনভেন্টরি চেক (E-commerce / Inventory Scenario)
+এখানে পণ্যের নাম এবং গুদামে থাকা পরিমাণ (stock) চেক করে স্টক আউট অ্যালার্ট দেওয়া হচ্ছে:
+
+items = ("Phone", "Headphone", "Charger")
+stocks = (5, 0, 12)
+
+for index, (item, stock) in enumerate(zip(items, stocks)):
+    if stock == 0:
+        print(f"Alert [{index}]: '{item}' is out of stock!")
+    else:
+        print(f"Stock [{index}]: {stock} units of '{item}' are available.")
+
+
+Stock [0]: 5 units of 'Phone' are available.
+Alert [1]: 'Headphone' is out of stock!
+Stock [2]: 12 units of 'Charger' are available.
+
+
+
+ইউজার অ্যাকাউন্ট স্ট্যাটাস (User Authentication Scenario)
+এখানে ইউজারের নাম এবং তাদের অ্যাকাউন্ট স্ট্যাটাস চেক করা হচ্ছে:
+
+
+usernames = ("JohnDoe", "Alice99", "DevKing")
+account_statuses = ("Banned", "Active", "Active")
+
+for index, (user, status) in enumerate(zip(usernames, account_statuses)):
+    if status == "Banned":
+        print(f"Warning [{index}]: User '{user}' is banned from the platform.")
+    else:
+        print(f"Access [{index}]: User '{user}' has standard access.")
+
+
+Warning [0]: User 'JohnDoe' is banned from the platform.
+Access [1]: User 'Alice99' has standard access.
+Access [2]: User 'DevKing' has standard access.
+
+
+
+
+
 
 
 ছাত্রছাত্রীদের রোল নম্বর জেনারেট করা (Auto-ID Generation)
